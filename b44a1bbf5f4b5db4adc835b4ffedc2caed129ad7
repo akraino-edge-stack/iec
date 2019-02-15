@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12f8d885_556e6755",
+        "filename": "README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-15T16:20:56Z",
+      "side": 1,
+      "message": "space before (",
+      "revId": "b44a1bbf5f4b5db4adc835b4ffedc2caed129ad7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8dcaecd1_d504005d",
+        "filename": "README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-15T16:20:56Z",
+      "side": 1,
+      "message": "I think we can use an include directive to avoid duplicating the code in the scripts subdir and also eliminate the need to update the docs each time we change the scripts.",
+      "revId": "b44a1bbf5f4b5db4adc835b4ffedc2caed129ad7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
