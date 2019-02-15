@@ -10,6 +10,11 @@ if [ -z "${MGMT_IP}" ]; then
   exit 1
 fi
 
+if ! ip addr | grep -q -e "${MGMT_IP}"; then
+  echo "Requested management IP ${MGMT_IP} not present!"
+  exit 2
+fi
+
 if ! kubectl get nodes; then
   sudo kubeadm config images pull
   sudo kubeadm init \
