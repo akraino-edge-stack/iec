@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8708c832_f6ed9a1a",
+        "filename": "scripts/k8s_worker.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-18T14:27:00Z",
+      "side": 1,
+      "message": "I would add `set -e` too",
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "237bf79b_f25a3756",
+        "filename": "scripts/setup-cni.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-18T14:27:00Z",
+      "side": 1,
+      "message": "I would add `set -e` so the whole script fails if any subcommand fails.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ed143748_bb69ea0a",
+        "filename": "scripts/setup-cni.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-18T14:27:00Z",
+      "side": 1,
+      "message": "How about:\n  if [ \"$(uname -m)\" \u003d\u003d \u0027aarch64\u0027 ]; then\n    ETCD_YAML\u003detcd-arm64.yaml\n  else\n    ETCD_YAML\u003detcd-amd64.yaml\n  fi\n  sed -i \"s/10.96.232.136/${CLUSTER_IP}/\" \"cni/calico/${ETCD_YAML}\"\n  kubectl apply -f \"cni/calico/${ETCD_YAML}\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 2
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b25c2aff_2511f38c",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-18T14:27:00Z",
+      "side": 1,
+      "message": "We can either group all commands in this block into a single ssh command, or define a variable for\n  sshpass -p ... ssh ...\nto avoid having lines longer than 80/120 chars.",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 61
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2aba659e_810ebd82",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-18T14:27:00Z",
+      "side": 1,
+      "message": "I would make the username configurable too, maybe optional, e.g.\nHOST_USER\u003d${4:-iec}",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c350898b_40f2f2d9",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-18T14:27:00Z",
+      "side": 1,
+      "message": "We should also support multiple workers, maybe separated by a predefined character like \u0027,\u0027.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 15
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e98b2dde_bd2d9189",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-18T14:27:00Z",
+      "side": 1,
+      "message": "It would be nice to also support key-based authentication.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 12
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0065d8e_4c8c7d7d",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-18T14:27:00Z",
+      "side": 1,
+      "message": "Let\u0027s not mix tabs with spaces in the same file.",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 1
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
