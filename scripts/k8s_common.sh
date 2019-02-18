@@ -27,7 +27,7 @@ EOF
 sudo apt update
 sudo apt install -y \
   kubelet=${KUBE_VERSION} kubeadm=${KUBE_VERSION} kubectl=${KUBE_VERSION}
-apt-mark hold kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
 
 _conf='/etc/sysctl.d/99-akraino-iec.conf'
 echo 'net.bridge.bridge-nf-call-iptables = 1' |& sudo tee "${_conf}"
