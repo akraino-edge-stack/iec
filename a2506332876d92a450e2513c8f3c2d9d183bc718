@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fe1ebb47_66328efc",
+        "filename": "scripts/k8s_worker.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8708c832_f6ed9a1a",
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "237bf79b_f25a3756",
         "filename": "scripts/setup-cni.sh",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2019-02-18T14:27:00Z",
       "side": 1,
       "message": "I would add `set -e` so the whole script fails if any subcommand fails.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eda3c1ee_0ec1c3c5",
+        "filename": "scripts/setup-cni.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "237bf79b_f25a3756",
       "range": {
         "startLine": 2,
         "startChar": 0,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "57f349ba_e2014c6e",
+        "filename": "scripts/setup-cni.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed143748_bb69ea0a",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 2
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b25c2aff_2511f38c",
         "filename": "scripts/startup.sh",
         "patchSetId": 2
@@ -76,6 +142,30 @@
       "writtenOn": "2019-02-18T14:27:00Z",
       "side": 1,
       "message": "We can either group all commands in this block into a single ssh command, or define a variable for\n  sshpass -p ... ssh ...\nto avoid having lines longer than 80/120 chars.",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 61
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "534a7f5d_bec79458",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b25c2aff_2511f38c",
       "range": {
         "startLine": 29,
         "startChar": 1,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "5b70f68e_824d3a83",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aba659e_810ebd82",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c350898b_40f2f2d9",
         "filename": "scripts/startup.sh",
         "patchSetId": 2
@@ -122,6 +236,30 @@
       "writtenOn": "2019-02-18T14:27:00Z",
       "side": 1,
       "message": "We should also support multiple workers, maybe separated by a predefined character like \u0027,\u0027.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 15
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "392c9bd8_36eae0e5",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "The multi-worker will be supported in future. I will do some work in next few patches.",
+      "parentUuid": "c350898b_40f2f2d9",
       "range": {
         "startLine": 59,
         "startChar": 0,
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "750de89f_4273e188",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "It will be implemented in future",
+      "parentUuid": "e98b2dde_bd2d9189",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 12
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0065d8e_4c8c7d7d",
         "filename": "scripts/startup.sh",
         "patchSetId": 2
@@ -168,6 +330,30 @@
       "writtenOn": "2019-02-18T14:27:00Z",
       "side": 1,
       "message": "Let\u0027s not mix tabs with spaces in the same file.",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 1
+      },
+      "revId": "a2506332876d92a450e2513c8f3c2d9d183bc718",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "807d096e_81b2293b",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0065d8e_4c8c7d7d",
       "range": {
         "startLine": 66,
         "startChar": 0,
