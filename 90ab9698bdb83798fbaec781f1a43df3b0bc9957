@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5e4deb2d_e68a9a6d",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "I will fix it in next few patches. Thanks.",
+      "parentUuid": "90b4ff8f_6af2435f",
+      "range": {
+        "startLine": 42,
+        "startChar": 13,
+        "endLine": 42,
+        "endChar": 28
+      },
+      "revId": "90ab9698bdb83798fbaec781f1a43df3b0bc9957",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81654db7_a9b8175e",
         "filename": "scripts/startup.sh",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fed942b4_95be3538",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81654db7_a9b8175e",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 49
+      },
+      "revId": "90ab9698bdb83798fbaec781f1a43df3b0bc9957",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "40342f08_746f60ee",
         "filename": "scripts/startup.sh",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2019-02-19T14:04:34Z",
       "side": 1,
       "message": "rm -f \"$LOG_FILE\"",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 2
+      },
+      "revId": "90ab9698bdb83798fbaec781f1a43df3b0bc9957",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02896a23_e080507f",
+        "filename": "scripts/startup.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-02-20T06:41:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40342f08_746f60ee",
       "range": {
         "startLine": 66,
         "startChar": 0,
