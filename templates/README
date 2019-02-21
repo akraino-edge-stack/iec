@@ -1,0 +1,15 @@
+This is a set of Openstack Heat templates which creates a simple topology of
+virtual machines to be used to deploy Kubernetes and Calico.
+
+It consists of one master VM and a configurable number of slave VMs, 2 by
+default.
+
+The clusters configures itself automatically and installs the base IEC platform
+together with the needed resources for Helm. SEBA will have to be installed
+manually afterwards.
+
+See the main control.sh script to start/stop the set of stacks and various
+run-time options, like DPDK support.
+
+Also look at net.yaml for the network configurations. By default, the cluster
+will use 10.111.0.0/12 as the service cidr.

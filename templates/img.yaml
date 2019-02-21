@@ -1,0 +1,25 @@
+heat_template_version: 2015-04-30
+
+parameters:
+  slave_count:
+    type: number
+    description: Number of K8 slaves
+    default: 2
+
+  base_img:
+    type: string
+    description: Base OS image
+    default: "xenial"
+
+  k8_master_vol:
+    type: string
+    default: "k8_master_vol"
+
+
+resources:
+  vol_master:
+    type: OS::Cinder::Volume
+    properties:
+      name: { get_param: k8_master_vol }
+      image: "xenial"
+      size: 20
