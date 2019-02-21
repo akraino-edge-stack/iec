@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9cc62fa3_7893680e",
+        "filename": "templates/control.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-21T18:09:36Z",
+      "side": 1,
+      "message": "please run shellcheck on this file, there are multiple issues reported worth looking at",
+      "revId": "2755cd4240ca8882cf9a197a1585ef4248779a91",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5aa3f09a_8cd1d6a7",
+        "filename": "templates/control.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-21T18:09:36Z",
+      "side": 1,
+      "message": "This is specific to old Fuel.\nNew Fuel uses /root/keystonev3, Apex uses overcloudrc (or overcloudrc.v3 in earlier releases) etc.\nShould probably be configurable via a positional argument or env var.",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "2755cd4240ca8882cf9a197a1585ef4248779a91",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e68959b_4881b501",
+        "filename": "templates/control.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-21T18:09:36Z",
+      "side": 1,
+      "message": "maybe it would be useful to make these configurable via env var too?\ne.g.\nskip_img\u003d${skip_img:-1}",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "2755cd4240ca8882cf9a197a1585ef4248779a91",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3da5badd_79646386",
+        "filename": "templates/control.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-21T18:09:36Z",
+      "side": 1,
+      "message": "a more detailed message would be nice",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 10
+      },
+      "revId": "2755cd4240ca8882cf9a197a1585ef4248779a91",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f15fe41_1c54d833",
+        "filename": "templates/control.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-21T18:09:36Z",
+      "side": 1,
+      "message": "could be abstracted into a function or a for loop",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 6
+      },
+      "revId": "2755cd4240ca8882cf9a197a1585ef4248779a91",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "734d7b8f_6150f941",
+        "filename": "templates/k8_master_init.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-21T18:09:36Z",
+      "side": 1,
+      "message": "I understand the problem of ssh-ing as root from slave nodes, but I think it\u0027d be nicer to \u003e/root/joincmd and just do sshpass ... \u0027sudo cat /root/joincmd\u0027 on the slaves.\nNot that big of a deal anyway.",
+      "range": {
+        "startLine": 16,
+        "startChar": 100,
+        "endLine": 16,
+        "endChar": 120
+      },
+      "revId": "2755cd4240ca8882cf9a197a1585ef4248779a91",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "548edf1c_b434f581",
+        "filename": "templates/k8_slave.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-21T18:09:36Z",
+      "side": 1,
+      "message": "please run yamllint on all yaml files, there are multiple issues reported",
+      "revId": "2755cd4240ca8882cf9a197a1585ef4248779a91",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d35f524_cde2b304",
+        "filename": "templates/k8_slave_init.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-21T18:09:36Z",
+      "side": 1,
+      "message": "this should probably be configurable via template",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 27
+      },
+      "revId": "2755cd4240ca8882cf9a197a1585ef4248779a91",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
