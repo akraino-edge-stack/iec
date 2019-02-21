@@ -1,0 +1,78 @@
+heat_template_version: 2015-04-30
+
+parameters:
+  external_net:
+    type: string
+    description: Name of the external network
+    default: "external"
+
+resources:
+
+  k8s_mgmt_net:
+    type: OS::Neutron::Net
+    properties:
+      name: "k8s_mgmt_net"
+
+  k8s_mgmt_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      network_id: { get_resource: k8s_mgmt_net }
+      cidr: "192.168.100.0/24"
+      gateway_ip: 192.168.100.254
+      ip_version: 4
+      dns_nameservers: [ "8.8.8.8", "8.8.4.4" ]
+
+  k8s_mgmt_router:
+    type: OS::Neutron::Router
+    properties:
+      external_gateway_info: { network: { get_param: external_net } }
+
+  k8s_mgmt_interface:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router_id: { get_resource: k8s_mgmt_router }
+      subnet: { get_resource: k8s_mgmt_subnet }
+
+  k8s_pod_net:
+    type: OS::Neutron::Net
+    properties:
+      name: "k8s_pod_net"
+
+  k8s_pod_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      network_id: { get_resource: k8s_pod_net }
+      cidr: "192.168.50.0/24"
+      gateway_ip: null
+      allocation_pools:
+      - start: 192.168.50.20
+        end: 192.168.50.200
+      ip_version: 4
+
+  k8s_svc_net:
+    type: OS::Neutron::Net
+    properties:
+      name: "k8s_svc_net"
+
+  k8s_svc_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      network_id: { get_resource: k8s_svc_net }
+      cidr: "10.96.0.0/12"
+      gateway_ip: null
+      allocation_pools:
+      - start: 10.96.0.2
+        end: 10.111.255.253
+      ip_version: 4
+
+outputs:
+  k8s_master_ip:
+    value: 192.168.50.100
+  k8s_master_svc_ip:
+    value: 10.96.0.10
+  k8s_pod_net_cidr:
+    value: { get_attr: [k8s_pod_subnet, cidr] }
+  k8s_svc_net_cidr:
+    value: { get_attr: [k8s_svc_subnet, cidr] }
+  k8s_cluster_ip:
+    value: "10.96.232.136"
