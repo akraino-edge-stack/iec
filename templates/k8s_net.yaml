@@ -1,0 +1,61 @@
+# yamllint disable-line rule:document-start
+heat_template_version: 2015-04-30
+
+parameters:
+  external_net:
+    type: string
+    description: Name of the external network
+    default: "external"
+
+resources:
+
+  k8s_mgmt_net:
+    type: OS::Neutron::Net
+    properties:
+      name: "k8s_mgmt_net"
+
+  k8s_mgmt_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      network_id: {get_resource: k8s_mgmt_net}
+      cidr: "192.168.11.0/24"
+      gateway_ip: 192.168.11.254
+      ip_version: 4
+
+  k8s_mgmt_router:
+    type: OS::Neutron::Router
+    properties:
+      external_gateway_info: {network: {get_param: external_net}}
+
+  k8s_mgmt_interface:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router_id: {get_resource: k8s_mgmt_router}
+      subnet: {get_resource: k8s_mgmt_subnet}
+
+  k8s_int_net:
+    type: OS::Neutron::Net
+    properties:
+      name: "k8s_int_net"
+
+  k8s_int_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      network_id: {get_resource: k8s_int_net}
+      cidr: "172.16.10.0/24"
+      gateway_ip: null
+      allocation_pools:
+        - start: 172.16.10.10
+          end: 172.16.10.253
+      ip_version: 4
+      enable_dhcp: false
+
+outputs:
+  k8s_master_ip:
+    value: "172.16.10.36"
+  k8s_pod_net_cidr:
+    value: "100.100.0.0/16"
+  k8s_svc_net_cidr:
+    value: "172.16.1.0/24"
+  k8s_cluster_ip:
+    value: "172.16.1.136"

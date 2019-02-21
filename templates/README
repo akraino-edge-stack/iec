@@ -1,0 +1,126 @@
+Foreword:
+---------
+This is a set of Openstack Heat templates which creates a simple topology of
+virtual machines to be used to deploy Kubernetes and Calico.
+
+It consists of one master VM and 2 optional slave VMs. In the future it might
+be possible to configure the number of slaves but for now it is fixed.
+
+
+Prerequisites:
+--------------
+In order to run these templates, you need an Openstack deployment (at least
+Ocata version, later is preferred), either a single node installation or
+multinode).
+
+The job of the Heat stacks is to spawn either 1 or 3 VMs which will form a
+Kubernetes cluster. The base image is required to exist, by default the stacks
+will expect a Glance image named "xenial" to exist.
+
+It is required to upload an image prior to using the templates. Currently the
+templates operate on the assumption that an Ubuntu Xenial cloud image will be
+used, as such it installs the required packages using apt.
+
+See the main control.sh script to start/stop the set of stacks and various
+run-time options, like DPDK support.
+
+
+Usage:
+------
+For a DPDK enabled deployment, it is usually necessary to pass an extra metadata
+in the flavor (e.g. hw:mem_page_size=large). For DPDK usecase you also have to
+create a host aggregate which has the pinned=true metadata and add the desired
+compute nodes to this host aggregate.
+
+For floating IP support, you need to specify the name of the external network,
+otherwise the script will use the default "external".
+
+Example of running the script on a DPDK deployment:
+  has_dpdk=true external_net=ext_net ./control.sh start
+
+The set of templates currently define three stacks, which can be skipped from
+starting or stopping, if so desired. This makes it useful to skip deleting
+the nets or for starting the setup using one host only (master). E.g:
+  skip_k8s_net=1 ./control.sh stop
+  skip_k8s_slaves=1 ./control.sh start
+
+Networking:
+-----------
+Have a look at k8s_net.yaml for the network configurations.
+
+Currently the Heat templates define 2 networks:
+- k8s_mgmt_net: this is primarily used for sshing into the node, but it also
+  serves as the access to the external network. Thus the floating IPs (which are
+  activated by default) will be assigned to the ports from this network
+- k8s_int_net: kubernetes internal network, which is used by the nodes to join
+  the cluster.
+
+Separating the traffic into two networks makes sense in an Openstack environment
+by hiding the internal traffic from the outside world.
+Thus, for accessing the services inside the clusters, it will be required to use
+the floating IPs assigned to the Kubernetes servers.
+
+In terms of CNI, there will be two additional networks involved, which are
+defined in k8s_net.yaml. These networks are not visible from outside of the Heat
+stacks, Kubernetes and Calico will encapsulate packets on these networks using
+IP-in-IP. In fact, to Openstack these are virtual networks, the only reason to
+have them in k8s_pod_net.yaml is to have a central view of all the network
+parameters.
+The two networks are described by Heat stack output variables, as follows:
+- k8s_pod_net_cidr: the POD network, passed to kubeadm init --pod-network-cidr
+- k8s_svc_net_cidr: the service network, passed to kubeadm init --service-cidr
+
+
+Calico networking:
+------------------
+In terms of Calico, k8s_net.yaml defines yet another stack output variable:
+- k8s_cluster_ip: corresponds to the etcd_endpoints parameter in calico.yaml
+
+
+Network security:
+-----------------
+For the moment, for ease of operation, the stacks ports will have port security
+disabled. It should be possible to enable it, and provide a set of security
+groups rule to allow all TCP and UDP traffic for the internal network.
+
+
+Cluster setup:
+--------------
+The clusters configures itself automatically and installs the base IEC platform
+together with the needed resources for Helm. SEBA or other applications will
+have to be installed manually afterwards.
+
+For the K8s cluster setup, the Master VM will print the join command in a file
+in /home/ubuntu/joincmd. Then the slave VMs will connect to the Master VM using
+ssh and read the joincmd file.
+
+All of these are achieved by using cloud-init scripts that run at startup. You
+can follow the progress of the init scripts by looking at the console log, which
+right now are very verbose.
+After the setup is completed, you can look for the joincmd string in the output.
+
+
+Using the cluster:
+------------------
+Once the setup is complete, you can login to the k8s_master VM. Use the Horizon
+interface or ssh into the floating ip, using the default credentials:
+ubuntu:ubuntu
+
+A public key is also generated, and a private key saved in a file called
+ak-key.pem but for now password logins are permitted for ease of operation.
+
+Once logged into the master VM, you need to become root.
+  sudo su -
+
+From here it is possible to run the usual kubernetes and helm tools, thanks to
+having the KUBECONFIG env variable exported through /root/.profile.
+
+It is also possible to use kubernetes as non-root, in which case you need to
+manually create ~/.kube/ and copy the kubernetes config:
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+The most basic operation you can run is verifying the nodes in the cluster:
+  kubectl get nodes
+  kubcetl describe node k8s-master

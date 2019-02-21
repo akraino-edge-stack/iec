@@ -1,0 +1,200 @@
+# yamllint disable-line rule:document-start
+heat_template_version: 2016-10-14
+
+description: "K8 master VM"
+
+parameters:
+  key_name:
+    type: string
+    description: management ssh key
+    default: 'ak-key'
+
+  k8s_master_hostname:
+    type: string
+    description: Hostname of the K8s master node
+    default: "k8s-master"
+
+  k8s_master_vol:
+    type: string
+    default: "k8s_master_vol"
+
+  k8s_mgmt_net:
+    type: string
+    description: management network
+    default: "k8s_mgmt_net"
+
+  k8s_int_net:
+    type: string
+    description: Kubernetes service network
+    default: "k8s_int_net"
+
+  k8s_master_ip:
+    type: string
+    description: k8s_master management IP (fixed)
+
+  k8s_pod_net_cidr:
+    type: string
+    description: k8 pod_net cidr used for setting up k8s cluster
+
+  k8s_svc_net_cidr:
+    type: string
+    description: k8 pod_net cidr used for setting up k8s cluster
+
+  k8s_cluster_ip:
+    type: string
+    description: k8 service IP addr used for setting up k8s cluster
+
+  k8s_user:
+    type: string
+    description: User id to connect to the VMs (ssh)
+    default: "ubuntu"
+
+  k8s_password:
+    type: string
+    description: Access password for the user to connect to the VMs (ssh)
+    default: "ubuntu"
+
+  public_ip_pool:
+    type: string
+    description: Public IP pool
+    default: "external"
+
+  enable_floating_ip:
+    type: boolean
+    default: true
+
+  has_dpdk:
+    type: boolean
+    default: false
+
+conditions:
+  cond_floating_ip: {equals: [{get_param: enable_floating_ip}, true]}
+  has_dpdk: {equals: [{get_param: has_dpdk}, true]}
+
+resources:
+  flavor:
+    type: OS::Nova::Flavor
+    properties:
+      ram: 16384
+      vcpus: 4
+      disk: 10
+
+  flavor_dpdk:
+    type: OS::Nova::Flavor
+    properties:
+      ram: 16384
+      vcpus: 8
+      disk: 40
+      extra_specs:
+        "hw:mem_page_size": large
+        "hw:cpu_policy": dedicated
+        "aggregate_instance_extra_specs:pinned": "true"
+        "hw:numa_node.0": 0
+        "hw:numa_nodes": 1
+
+  server_fip:
+    type: OS::Nova::FloatingIP
+    condition: cond_floating_ip
+    properties:
+      pool: {get_param: public_ip_pool}
+
+  server_association_fip:
+    type: OS::Nova::FloatingIPAssociation
+    condition: cond_floating_ip
+    properties:
+      floating_ip: {get_resource: server_fip}
+      server_id: {get_resource: server}
+
+  mgmt_port:
+    type: OS::Neutron::Port
+    properties:
+      network: {get_param: k8s_mgmt_net}
+      port_security_enabled: false
+      # security_groups:
+      #   - {get_resource: server_security_group}
+
+  int_net_port:
+    type: OS::Neutron::Port
+    properties:
+      network: {get_param: k8s_int_net}
+      port_security_enabled: false
+      # security_groups:
+      #   - {get_resource: server_security_group}
+      fixed_ips: [{"ip_address": {get_param: k8s_master_ip}}]
+
+  server_cloudinit_config:
+    type: OS::Heat::CloudConfig
+    properties:
+      cloud_config:
+        password: ubuntu
+        chpasswd: {expire: false}
+        ssh_pwauth: true
+        manage_etc_hosts: true
+        disable_root: false
+
+  server_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      config:
+        str_replace:
+          template: {get_file: k8s_master_init.sh}
+          params:
+            k8s_master_hostname: {get_param: k8s_master_hostname}
+            k8s_master_ip: {get_param: k8s_master_ip}
+            k8s_pod_net_cidr: {get_param: k8s_pod_net_cidr}
+            k8s_svc_net_cidr: {get_param: k8s_svc_net_cidr}
+            k8s_cluster_ip: {get_param: k8s_cluster_ip}
+            k8s_user: {get_param: k8s_user}
+
+  server_user_data:
+    type: OS::Heat::MultipartMime
+    properties:
+      parts:
+        - config: {get_resource: server_cloudinit_config}
+        - config: {get_resource: server_config}
+
+  server_security_group:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      description: Security group for ssh and icmp
+      name: test-security-group
+      rules: [
+        {remote_ip_prefix: 0.0.0.0/0,
+         protocol: tcp,
+         port_range_min: 1,
+         port_range_max: 65535},
+        {remote_ip_prefix: 0.0.0.0/0,
+         protocol: udp,
+         port_range_min: 1,
+         port_range_max: 65535},
+        {remote_ip_prefix: 0.0.0.0/0, protocol: icmp}
+      ]
+
+  # k8s_master_volume:
+  #   type: OS::Cinder::Volume
+  #   properties:
+  #     description: 'user: Volume for Node1'
+  #     image: "xenial"
+  #     name: {get_param: k8s_master_vol}
+  #     size: 20
+  #     availability_zone: nova
+
+  server:
+    type: OS::Nova::Server
+    properties:
+      name: k8s-master
+      key_name: {get_param: key_name}
+      flavor: {get_resource: {if: ["has_dpdk", "flavor_dpdk", "flavor"]}}
+      image: "xenial"
+      # block_device_mapping: [
+      #   {device_name: "vda",
+      #    volume_id:
+      #      {get_resource: k8s_master_volume},
+      #    delete_on_termination: true
+      #   }
+      # ]
+      user_data: {get_resource: server_user_data}
+      user_data_format: RAW
+      networks:
+        - port: {get_resource: mgmt_port}
+        - port: {get_resource: int_net_port}
