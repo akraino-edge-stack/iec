@@ -134,6 +134,30 @@
     },
     {
       "key": {
+        "uuid": "0c195ab4_52b6de43",
+        "filename": "templates/k8_master_init.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-02-25T15:51:19Z",
+      "side": 1,
+      "message": "I tried to find a way to make this work nicely, but it requires altering the sshd config on the master to allow empty passwords. I couldn\u0027t find a cloud_init option for this, but there are other, uglier ways to do it.\nThis is merely for testing purposes anyway, in a real life scenario the token and shaid will have to be passed from an entity outside the cluster.",
+      "parentUuid": "734d7b8f_6150f941",
+      "range": {
+        "startLine": 16,
+        "startChar": 100,
+        "endLine": 16,
+        "endChar": 120
+      },
+      "revId": "2755cd4240ca8882cf9a197a1585ef4248779a91",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "548edf1c_b434f581",
         "filename": "templates/k8_slave.yaml",
         "patchSetId": 1
