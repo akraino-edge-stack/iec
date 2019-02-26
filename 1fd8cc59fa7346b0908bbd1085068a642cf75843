@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b222e975_74a6989e",
+        "filename": "templates/control.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-26T13:47:35Z",
+      "side": 1,
+      "message": "why are these commented?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 7
+      },
+      "revId": "1fd8cc59fa7346b0908bbd1085068a642cf75843",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0077e67b_1d4fc990",
+        "filename": "templates/k8s_master_init.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-26T13:47:35Z",
+      "side": 1,
+      "message": "set -e too?",
+      "revId": "1fd8cc59fa7346b0908bbd1085068a642cf75843",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4aaee115_dd1980b0",
+        "filename": "templates/k8s_slaves_init.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-02-26T13:47:35Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "1fd8cc59fa7346b0908bbd1085068a642cf75843",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
