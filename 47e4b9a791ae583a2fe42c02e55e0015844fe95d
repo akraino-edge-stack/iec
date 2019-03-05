@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9100d326_858de785",
+        "filename": "templates/README",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-05T17:34:48Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 21,
+        "startChar": 41,
+        "endLine": 21,
+        "endChar": 42
+      },
+      "revId": "47e4b9a791ae583a2fe42c02e55e0015844fe95d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e70172f_e420a5fc",
+        "filename": "templates/README",
+        "patchSetId": 10
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-05T17:34:48Z",
+      "side": 1,
+      "message": "this is environment specific and should be ommitted",
+      "range": {
+        "startLine": 105,
+        "startChar": 28,
+        "endLine": 105,
+        "endChar": 63
+      },
+      "revId": "47e4b9a791ae583a2fe42c02e55e0015844fe95d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd1c5b76_c22dfbdd",
+        "filename": "templates/README",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-05T17:34:48Z",
+      "side": 1,
+      "message": "root, not any superuser",
+      "range": {
+        "startLine": 112,
+        "startChar": 51,
+        "endLine": 112,
+        "endChar": 53
+      },
+      "revId": "47e4b9a791ae583a2fe42c02e55e0015844fe95d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c58189e_29448c16",
+        "filename": "templates/k8s_master_init.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-05T17:34:48Z",
+      "side": 1,
+      "message": "useless since this runs as root\nIf you want to be explicit, `sudo apt` \u0026 co should all have sudo.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 5
+      },
+      "revId": "47e4b9a791ae583a2fe42c02e55e0015844fe95d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb835521_45b8a77e",
+        "filename": "templates/k8s_master_init.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-05T17:34:48Z",
+      "side": 1,
+      "message": "./setup-cni.sh k8s_cluster_ip k8s_pod_net_cidr",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 29
+      },
+      "revId": "47e4b9a791ae583a2fe42c02e55e0015844fe95d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdc21393_3b2cd240",
+        "filename": "templates/k8s_master_init.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-05T17:34:48Z",
+      "side": 1,
+      "message": "awk \u0027END{print $1}\u0027",
+      "range": {
+        "startLine": 16,
+        "startChar": 44,
+        "endLine": 16,
+        "endChar": 70
+      },
+      "revId": "47e4b9a791ae583a2fe42c02e55e0015844fe95d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
