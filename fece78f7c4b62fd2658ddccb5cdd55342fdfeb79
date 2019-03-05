@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfc8bb2b_d4f3ed0a",
+        "filename": "docs/conf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-05T12:02:49Z",
+      "side": 1,
+      "message": "2019",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "fece78f7c4b62fd2658ddccb5cdd55342fdfeb79",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d5ac99c2_970bbd2e",
+        "filename": "docs/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-05T12:02:49Z",
+      "side": 1,
+      "message": "should be updated",
+      "range": {
+        "startLine": 5,
+        "startChar": 7,
+        "endLine": 5,
+        "endChar": 36
+      },
+      "revId": "fece78f7c4b62fd2658ddccb5cdd55342fdfeb79",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
