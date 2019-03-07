@@ -3,6 +3,7 @@ set -o xtrace
 set -e
 
 CLUSTER_IP=${1:-172.16.1.136} # Align with the value in our K8s setup script
+POD_NETWORK_CIDR=${2:-192.168.0.0/16}
 
 # Install the Etcd Database
 if [ "$(uname -m)" == 'aarch64' ]; then
@@ -20,7 +21,8 @@ kubectl apply -f "${SCRIPTS_DIR}/cni/calico/${ETCD_YAML}"
 kubectl apply -f "${SCRIPTS_DIR}/cni/calico/rbac.yaml"
 
 # Install Calico to system
-sed -i "s/10.96.232.136/${CLUSTER_IP}/" "${SCRIPTS_DIR}/cni/calico/calico.yaml"
+sed -i "s@10.96.232.136@${CLUSTER_IP}@; s@192.168.0.0/16@${POD_NETWORK_CIDR}@" \
+  "${SCRIPTS_DIR}/cni/calico/calico.yaml"
 kubectl apply -f "${SCRIPTS_DIR}/cni/calico/calico.yaml"
 
 # Remove the taints on master node
