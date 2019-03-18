@@ -39,3 +39,4 @@ install: installation scripts and files for SEBA-on-arm
 src_repo: the source code repository that SEBA-on-arm uses
 docker: dockfiles and related scripts to build and manage the docker images used in SEBA-on-arm
 charts: Helm charts used in the SEBA-on-arm installation
+patches: Akraino specific patches for each git submodule in any other directory above
