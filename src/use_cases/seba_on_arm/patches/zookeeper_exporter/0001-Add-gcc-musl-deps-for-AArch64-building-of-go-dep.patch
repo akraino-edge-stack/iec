@@ -1,0 +1,30 @@
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+: Copyright (c) 2019 Akraino IEC
+:
+: All rights reserved. This program and the accompanying materials
+: are made available under the terms of the Apache License, Version 2.0
+: which accompanies this distribution, and is available at
+: http://www.apache.org/licenses/LICENSE-2.0
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+From: Alexandru Avadanii <Alexandru.Avadanii@enea.com>
+Date: Tue, 26 Feb 2019 21:19:36 +0000
+Subject: [PATCH] Add gcc, musl deps for AArch64 building of go/dep
+
+Signed-off-by: Alexandru Avadanii <Alexandru.Avadanii@enea.com>
+---
+ Dockerfile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Dockerfile b/Dockerfile
+index c86b6e7..fd2b041 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -3,7 +3,7 @@ FROM golang:1.9.2-alpine3.6 AS build
+
+ # Install tools required to build the project
+ # We need to run `docker build --no-cache .` to update those dependencies
+-RUN apk add --no-cache git
++RUN apk add --no-cache git gcc musl-dev
+ RUN go get github.com/golang/dep/cmd/dep
+
+ # Gopkg.toml and Gopkg.lock lists project dependencies

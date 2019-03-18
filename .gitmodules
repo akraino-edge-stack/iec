@@ -1,0 +1,5 @@
+[submodule "zookeeper_exporter"]
+	path = src/use_cases/seba_on_arm/src_repo/zookeeper_exporter
+	url = https://github.com/josdotso/zookeeper_exporter
+	branch = v1.1.2
+	ignore = all
