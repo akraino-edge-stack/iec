@@ -1,0 +1,4 @@
+Forked from solsson/dockerfiles branch misc-dockerfiles::
+	git clone -b misc-dockerfiles  https://github.com/solsson/dockerfiles.git  kafka-prometheus-jmx-exporter
+The commit_sha of fork point is:a595dcf74a0d7161a9c6bdf8858090bfc2411642
+Added Dockerfile.arm64 for aarch64 support.

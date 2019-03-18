@@ -1,0 +1,6 @@
+dependencies:
+- name: kubernetes
+  repository: file://../../xos-services/kubernetes
+  version: 1.1.3
+digest: sha256:a37d323e4751678f01ecb4c877ca4cd513e7afedf6139a24771d1a267c2a3313
+generated: 2018-12-17T10:29:54.337664924-07:00

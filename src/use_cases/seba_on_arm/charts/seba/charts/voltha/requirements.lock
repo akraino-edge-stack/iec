@@ -1,0 +1,6 @@
+dependencies:
+- name: etcd-cluster
+  repository: file://../etcd-cluster
+  version: 0.1.1
+digest: sha256:beb74a2bea68054a10117b77bf499f2f372d50dd93817b448a4306c173bb44c5
+generated: 2018-11-19T14:44:51.333417159-07:00

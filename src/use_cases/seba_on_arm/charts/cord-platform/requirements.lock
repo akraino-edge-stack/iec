@@ -1,0 +1,21 @@
+dependencies:
+- name: etcd-operator
+  repository: https://kubernetes-charts.storage.googleapis.com
+  version: 0.8.0
+- name: kafka
+  repository: http://storage.googleapis.com/kubernetes-charts-incubator
+  version: 0.8.8
+- name: onos
+  repository: https://charts.opencord.org
+  version: 1.1.0
+- name: xos-core
+  repository: https://charts.opencord.org
+  version: 2.3.2
+- name: logging
+  repository: https://charts.opencord.org
+  version: 1.0.0
+- name: nem-monitoring
+  repository: https://charts.opencord.org
+  version: 1.0.0
+digest: sha256:128b668700997f5dcdab94ad59fffd9f598d74ec96eaa89c58ca50000fe5be47
+generated: 2019-01-03T13:45:06.210072932-07:00

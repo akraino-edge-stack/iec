@@ -1,0 +1,12 @@
+dependencies:
+- name: voltha
+  repository: https://charts.opencord.org
+  version: 1.0.3
+- name: seba-services
+  repository: https://charts.opencord.org
+  version: 1.0.2
+- name: base-kubernetes
+  repository: https://charts.opencord.org
+  version: 1.0.2
+digest: sha256:06fe1a8a03ff5bd316156cd41abbd823b7770aefc07db0e61fa2c8d391dfc36e
+generated: 2019-01-03T13:30:53.258772755-07:00

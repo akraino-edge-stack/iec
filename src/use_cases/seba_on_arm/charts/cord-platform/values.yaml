@@ -1,0 +1,92 @@
+---
+# Copyright 2017-present Open Networking Foundation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+xos-core:
+  platformKafka: cord-platform-kafka:9092
+  xos-gui:
+    platformKafka: cord-platform-kafka:9092
+
+onos:
+  log_agent:
+    kafka_brokers: ['cord-platform-kafka:9092']
+
+nem-monitoring:
+  args:
+    voltha_kpi_broker: cord-platform-kafka:9092
+  grafana:
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: Prometheus
+            type: prometheus
+            url: http://cord-platform-prometheus-server.default.svc.cluster.local
+            access: proxy
+            isDefault: true
+
+logging:
+  kibana:
+    env:
+      ELASTICSEARCH_URL: "http://cord-platform-elasticsearch-client:9200"
+  elasticsearch:
+    cluster:
+      env:
+        MINIMUM_MASTER_NODES: "1"
+    client:
+      replicas: 1
+    master:
+      replicas: 2
+      persistence:
+        enabled: false
+    data:
+      replicas: 1
+      persistence:
+        enabled: false
+  logstash:
+    elasticsearch:
+      host: "cord-platform-elasticsearch-client"
+    inputs:
+      main: |-
+        input {
+          kafka {
+            auto_offset_reset => "earliest" # get all previous items from new topics
+            bootstrap_servers => "cord-platform-kafka:9092"
+            client_id => "logstash_ck"
+            codec => json { charset => "UTF-8" }
+            consumer_threads => 1
+            decorate_events => true
+            group_id => "logstash_ck"
+            metadata_max_age_ms => 60000 # recheck for new topics every minute
+            # other topics that are not indexed: xos.gui_events, voltha.kpis, voltha.heartbeat
+            topics_pattern => '.*\.events|dhcp.*|onos.*|.*\.log.*'
+            type => "cord-platform-kafka"
+          }
+        }
+  fluentd-elasticsearch:
+    elasticsearch:
+      host: "cord-platform-elasticsearch-client"
+
+kafka:
+  configurationOverrides:
+    "offsets.topic.replication.factor": 1
+    "log.retention.hours": 4
+    "log.message.timestamp.type": "LogAppendTime"
+
+  persistence:
+    enabled: false
+
+  zookeeper:
+    persistence:
+      enabled: false

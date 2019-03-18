@@ -1,0 +1,5 @@
+appVersion: 6.1.0
+description: A Helm chart to install the CORD platform
+icon: https://guide.opencord.org/logos/cord.svg
+name: cord-platform
+version: 6.1.0

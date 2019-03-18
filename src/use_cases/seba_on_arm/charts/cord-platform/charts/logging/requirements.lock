@@ -1,0 +1,15 @@
+dependencies:
+- name: elasticsearch
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.11.0
+- name: kibana
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 0.16.1
+- name: fluentd-elasticsearch
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.0.3
+- name: logstash
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.0.0
+digest: sha256:7ee6a73ff3e4558886e14ca06381f6d775b6bfade42525468b4e66397cb228b6
+generated: 2018-12-19T11:26:23.274726079-07:00

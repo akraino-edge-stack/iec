@@ -1,0 +1,5 @@
+appVersion: 1.1.3
+description: A Helm chart for XOS's "kubernetes" service
+icon: https://guide.opencord.org/logos/cord.svg
+name: kubernetes
+version: 1.1.3

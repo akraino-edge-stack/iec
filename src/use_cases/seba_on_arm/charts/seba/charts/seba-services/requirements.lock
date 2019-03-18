@@ -1,0 +1,21 @@
+dependencies:
+- name: rcord
+  repository: file://../../xos-services/rcord
+  version: 1.0.8
+- name: onos-service
+  repository: file://../../xos-services/onos-service
+  version: 2.0.7
+- name: fabric
+  repository: file://../../xos-services/fabric
+  version: 2.1.6
+- name: volt
+  repository: file://../../xos-services/volt
+  version: 2.1.9
+- name: fabric-crossconnect
+  repository: file://../../xos-services/fabric-crossconnect
+  version: 1.1.4
+- name: sadis-server
+  repository: file://../../sadis-server
+  version: 1.0.2
+digest: sha256:f805439a28c54c1e2afd5352046cf7b533cb4721022743dad9b74611b3d21d85
+generated: 2018-12-19T11:26:50.587237667-07:00

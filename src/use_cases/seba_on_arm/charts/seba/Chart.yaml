@@ -1,0 +1,5 @@
+appVersion: 1.0.0
+description: A Helm chart to install the SEBA profile on top of the CORD platform
+icon: https://guide.opencord.org/logos/cord.svg
+name: seba
+version: 1.0.0
