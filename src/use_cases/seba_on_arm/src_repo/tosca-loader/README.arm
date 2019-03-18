@@ -1,0 +1,7 @@
+Forked from cachengo/xos-tosca branch 1.1.5::
+        git clone -b 1.1.4 https://github.com/cachengo/fabric-crossconnect.git fabric-crossconnect
+The commit_sha of fork point is: 1b9385143cde0c78f44342af7bcf13da1266be64
+
+Building docker image::
+	cd loader/
+	docker build -f Dockerfile.tosca-loader  -t iecedge/tosca-loader_arm64:1.1.5 .

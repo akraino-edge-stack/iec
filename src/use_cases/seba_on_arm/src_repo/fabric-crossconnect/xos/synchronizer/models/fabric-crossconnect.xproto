@@ -1,0 +1,22 @@
+option name = "fabric-crossconnect";
+option app_label = "fabric-crossconnect";
+option legacy = "True";
+
+message FabricCrossconnectService (Service){
+    option verbose_name = "Fabric Crossconnect Service";
+    option description="Fabric Crossconnect implementation";
+}
+
+message FabricCrossconnectServiceInstance (ServiceInstance){
+    option verbose_name = "Fabric Crossconnect Service Instance";
+    option owner_class_name="FabricCrossconnectService";
+
+    required int32 s_tag = 1 [help_text = "s-tag"];
+    required string switch_datapath_id = 2 [help_text = "switch datapath id"];
+    required int32 source_port = 3 [help_text = "source port of fabric crossconnect"];
+}
+
+message BNGPortMapping (XOSBase) {
+    required string s_tag = 1 [help_text = "Single s-tag, range of s-tags, or ANY", null = False, db_index = False, blank = False, unique=True, tosca_key=True];
+    required int32 switch_port = 2 [help_text = "Port Number", null = False, db_index = False, blank = False];
+}

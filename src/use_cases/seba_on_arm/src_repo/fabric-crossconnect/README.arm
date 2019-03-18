@@ -1,0 +1,6 @@
+Forked from cachengo/fabric-crossconnect-synchronizer branch 1.1.4::
+        git clone -b 1.1.4 https://github.com/cachengo/fabric-crossconnect.git fabric-crossconnect
+The commit_sha of fork point is: 273a34b9f03947a1798bfc251df5d996ed8e27f1
+
+Building docker image::
+	docker build -t iecedge/fabric-crossconnect-synchronizer_arm64:1.1.4 -f Dockerfile.synchronizer .

@@ -1,0 +1,57 @@
+
+# Copyright 2017-present Open Networking Foundation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# curl -H "xos-username: admin@opencord.org" -H "xos-password: letmein" -X POST --data-binary @test.yaml http://192.168.99.100:30007/run
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+description: Persist xos-sample-gui-extension
+
+imports:
+   - custom_types/user.yaml
+   - custom_types/site.yaml
+   - custom_types/xosguiextension.yaml
+
+topology_template:
+  node_templates:
+
+    # UI Extension
+    test:
+      type: tosca.nodes.XOSGuiExtension
+      properties:
+        name: test
+        files: /spa/extensions/test/vendor.js, /spa/extensions/test/app.js
+
+    # Site
+    site_onlab:
+      type: tosca.nodes.Site
+      properties:
+        name: Open Networking Lab
+        site_url: http://onlab.us/
+        hosts_nodes: True
+
+    # User
+    user_test:
+      type: tosca.nodes.User
+      properties:
+        username: test@opencord.org
+        email: test@opencord.org
+        password: mypwd
+        firstname: User
+        lastname: Test
+        is_admin: True
+      requirements:
+        - site:
+            node: site_onlab
+            relationship: tosca.relationships.BelongsToOne

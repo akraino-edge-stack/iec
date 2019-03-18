@@ -1,0 +1,8 @@
+Forked from kubernetes/contrib::
+        git clone https://github.com/kubernetes/contrib
+The commit_sha of fork point is: b72fa5059d8ce9de234b65c392dc03bca8a73be4
+
+Building the image only requires the source code in the ./statefulsets/zookeeper directory.
+Building docker image::
+	docker build -t iecedge/k8szk_arm64:v3 .
+
