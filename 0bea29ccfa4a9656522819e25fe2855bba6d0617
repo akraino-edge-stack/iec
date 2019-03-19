@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c024b093_ba45b154",
+        "filename": "src/foundation/scripts/k8s_common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T15:56:28Z",
+      "side": 1,
+      "message": "1. Use `sudo` or this will fail when ran as regular user (non-root)\n2. This will duplicate config if script is re-ran (it is not reentrant)\nSo I suggest something like:\n  if ! grep -q -e \u0027fail-swap-on\u0027 /etc/default/kubelet; then\n    sudo sed -E \u0027s/(KUBELET_EXTRA_ARGS\u003d)/\\1--fail-swap-on\u003dfalse --feature-gates HugePages\u003dfalse --cluster-dns 8.8.8.8/\u0027 -i /etc/default/kubelet\n  fi",
+      "revId": "0bea29ccfa4a9656522819e25fe2855bba6d0617",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
