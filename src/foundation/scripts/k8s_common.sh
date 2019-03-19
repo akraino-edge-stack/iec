@@ -29,6 +29,11 @@ sudo apt install -y \
   kubelet=${KUBE_VERSION} kubeadm=${KUBE_VERSION} kubectl=${KUBE_VERSION}
 sudo apt-mark hold kubelet kubeadm kubectl
 
+#Add extra flags to Kubelet
+if ! grep -q -e 'fail-swap-on' /etc/default/kubelet; then
+   sudo sed 's/KUBELET_EXTRA_ARGS=/KUBELET_EXTRA_ARGS=--fail-swap-on=false --feature-gates HugePages=false/' -i /etc/default/kubelet
+fi
+
 _conf='/etc/sysctl.d/99-akraino-iec.conf'
 echo 'net.bridge.bridge-nf-call-iptables = 1' |& sudo tee "${_conf}"
 sudo sysctl -q -p "${_conf}"

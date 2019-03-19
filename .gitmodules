@@ -1,0 +1,3 @@
+[submodule "onos"]
+	path = onos
+	url = https://github.com/cachengo/onos.git
