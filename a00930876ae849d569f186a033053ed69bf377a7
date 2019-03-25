@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8941f143_11850483",
+        "filename": "src/foundation/scripts/functest.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-25T13:27:19Z",
+      "side": 1,
+      "message": "if [ -z \"${K8S_MASTER_IP}\" ]",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "a00930876ae849d569f186a033053ed69bf377a7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf5e02f1_eb65ddcc",
+        "filename": "src/foundation/scripts/functest.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-25T13:27:19Z",
+      "side": 1,
+      "message": "double quote, same for all occurrences below",
+      "range": {
+        "startLine": 25,
+        "startChar": 9,
+        "endLine": 25,
+        "endChar": 33
+      },
+      "revId": "a00930876ae849d569f186a033053ed69bf377a7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
