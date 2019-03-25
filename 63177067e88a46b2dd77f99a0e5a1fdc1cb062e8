@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2d5370a_a91e1fa2",
+        "filename": "src/foundation/scripts/config",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-25T13:23:03Z",
+      "side": 1,
+      "message": "We could rename this file to config.sh to make it obvious it\u0027s a shell script.",
+      "revId": "63177067e88a46b2dd77f99a0e5a1fdc1cb062e8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a74659c_96dddae9",
+        "filename": "src/foundation/scripts/config",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-25T13:23:03Z",
+      "side": 1,
+      "message": "I would make this overrideable just in case someone uses a different user, e.g.\nHOST_USER\u003d${HOST_USER:-iec}\nSame observation for the other variables too.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 9
+      },
+      "revId": "63177067e88a46b2dd77f99a0e5a1fdc1cb062e8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f141bb0c_2f6db566",
+        "filename": "src/foundation/scripts/startup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-25T13:23:03Z",
+      "side": 1,
+      "message": "should be quoted to avoid double-splitting\nSee shellcheck.net or the `shellcheck` utility for a full list of warnings/errors.",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 38
+      },
+      "revId": "63177067e88a46b2dd77f99a0e5a1fdc1cb062e8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0951ee97_5081e2f3",
+        "filename": "src/foundation/scripts/startup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-25T13:23:03Z",
+      "side": 1,
+      "message": "The same can be achieved by simply:\nrm -f \"${LOG_FILE}\"",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 2
+      },
+      "revId": "63177067e88a46b2dd77f99a0e5a1fdc1cb062e8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
