@@ -7,14 +7,20 @@ set -e
 # Displays the help menu.
 #
 display_help () {
-  echo "Usage: $0 [master ip] [worker ip] [user] [password] "
+  echo "Usage:"
   echo " "
-  echo "There should be an user which will be used to install the "
-  echo "corresponding software on master & worker node. This user can "
+  echo "This script can help you to deploy a simple iec testing"
+  echo "environments."
+  echo "Firstly, the master node and worker node information must"
+  echo "be added into config file which will be used for deployment."
+  echo ""
+  echo "Secondly, there should be an user on each node which will be"
+  echo "used to install the corresponding software on master and"
+  echo "worker nodes. At the same time, this user should be enable to"
   echo "run the sudo command without input password on the hosts."
   echo " "
   echo "Example usages:"
-  echo "   ./startup.sh 10.169.40.171 10.169.41.172 iec 123456"
+  echo "   ./startup.sh"
 }
 
 
@@ -33,15 +39,26 @@ deploy_k8s () {
   #Automatic deploy the K8s environments on Master node
   SETUP_MASTER="cd iec/src/foundation/scripts/ && source k8s_master.sh ${K8S_MASTER_IP}"
   sshpass -p ${K8S_MASTERPW} ssh ${HOST_USER}@${K8S_MASTER_IP} ${INSTALL_SOFTWARE}
-  sshpass -p ${K8S_MASTERPW} ssh ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_MASTER} | tee kubeadm.log
+  sshpass -p ${K8S_MASTERPW} ssh ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_MASTER} | tee ${LOG_FILE}
 
-  KUBEADM_JOIN_CMD=$(grep "kubeadm join " ./kubeadm.log)
+  KUBEADM_JOIN_CMD=$(grep "kubeadm join " ./${LOG_FILE})
 
-  #Automatic deploy the K8s environments on Worker node
+
+  #Automatic deploy the K8s environments on each worker-node
   SETUP_WORKER="cd iec/src/foundation/scripts/ && source k8s_worker.sh"
-  sshpass -p ${K8S_WORKERPW} ssh ${HOST_USER}@${K8S_WORKER01_IP} ${INSTALL_SOFTWARE}
-  sshpass -p ${K8S_WORKERPW} ssh ${HOST_USER}@${K8S_WORKER01_IP} "echo \"sudo ${KUBEADM_JOIN_CMD}\" >> ./iec/src/foundation/scripts/k8s_worker.sh"
-  sshpass -p ${K8S_WORKERPW} ssh ${HOST_USER}@${K8S_WORKER01_IP} ${SETUP_WORKER}
+
+  for worker in "${K8S_WORKER_GROUP[@]}"
+  do
+    ip_addr="$(cut -d',' -f1 <<<${worker})"
+    passwd="$(cut -d',' -f2 <<<${worker})"
+    echo "Install & Deploy on ${ip_addr}. password:${passwd}"
+
+    sshpass -p ${passwd} ssh ${HOST_USER}@${ip_addr} ${INSTALL_SOFTWARE}
+    sshpass -p ${passwd} ssh ${HOST_USER}@${ip_addr} "echo \"sudo ${KUBEADM_JOIN_CMD}\" >> ./iec/src/foundation/scripts/k8s_worker.sh"
+    sshpass -p ${passwd} ssh ${HOST_USER}@${ip_addr} ${SETUP_WORKER}
+
+  done
+
 
   #Deploy etcd & CNI from master node
   #There may be more options in future. e.g: Calico, Contiv-vpp, Ovn-k8s ...
@@ -62,31 +79,22 @@ check_k8s_status(){
 }
 
 
-PASSWD=${4:-"123456"}
-HOST_USER=${3:-"iec"}
-
-K8S_MASTER_IP=${1:-"10.169.40.171"}
-K8S_MASTERPW=${PASSWD}
-
-K8S_WORKER01_IP=${2:-"10.169.41.172"}
-K8S_WORKERPW=${PASSWD}
-
-REPO_URL="https://gerrit.akraino.org/r/iec"
-LOG_FILE="kubeadm.log"
-
-if [ -f "./${LOG_FILE}" ]; then
-  rm "${LOG_FILE}"
-fi
-
 #
 # Init
 #
-if [ $# -lt 4 ]
+if [ $1 == "--help" ] || [ $1 == "-h" ];
 then
   display_help
   exit 0
 fi
 
+
+# Read the configuration file
+source config
+
+echo "The number of K8s-Workers:${#K8S_WORKER_GROUP[@]}"
+
+rm -f "${LOG_FILE}"
 
 deploy_k8s
 
