@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8707c780_0761f0a6",
+        "filename": "src/foundation/scripts/k8s_common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-26T18:13:20Z",
+      "side": 1,
+      "message": "I think we can do all these in a single `apt` call.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 73
+      },
+      "revId": "f71c68ffd6cb9277d70ac03ae83e0d66cf124ec4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "73b87359_0fd64ff8",
+        "filename": "src/foundation/scripts/k8s_common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-26T18:13:20Z",
+      "side": 1,
+      "message": "I think kubernetes-cni shoul be `apt-mark`ed too to prevent warnings/issues on `apt upgrade`.",
+      "revId": "f71c68ffd6cb9277d70ac03ae83e0d66cf124ec4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
