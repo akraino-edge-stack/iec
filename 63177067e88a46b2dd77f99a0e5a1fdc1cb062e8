@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "5a768d0c_81db2dee",
+        "filename": "src/foundation/scripts/config",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-03-27T03:50:38Z",
+      "side": 1,
+      "message": "It is reasonable. I will modify it.",
+      "parentUuid": "0a74659c_96dddae9",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 9
+      },
+      "revId": "63177067e88a46b2dd77f99a0e5a1fdc1cb062e8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f141bb0c_2f6db566",
         "filename": "src/foundation/scripts/startup.sh",
         "patchSetId": 1
@@ -76,6 +100,30 @@
       "writtenOn": "2019-03-25T13:23:03Z",
       "side": 1,
       "message": "The same can be achieved by simply:\nrm -f \"${LOG_FILE}\"",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 2
+      },
+      "revId": "63177067e88a46b2dd77f99a0e5a1fdc1cb062e8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b3a1e3f_0e24ea75",
+        "filename": "src/foundation/scripts/startup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-03-27T03:50:38Z",
+      "side": 1,
+      "message": "Good idea.",
+      "parentUuid": "0951ee97_5081e2f3",
       "range": {
         "startLine": 98,
         "startChar": 0,
