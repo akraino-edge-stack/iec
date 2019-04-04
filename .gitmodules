@@ -22,3 +22,20 @@
 [submodule "jmx-prometheus-exporter"]
 	path = src/use_cases/seba_on_arm/src_repo/jmx-prometheus-exporter
 	url = https://github.com/iecedge/docker-jmx-prometheus-exporter.git
+[submodule "xos"]
+	path = src/use_cases/seba_on_arm/src_repo/xos
+	url = https://github.com/iecedge/xos.git
+	branch = 2.1.25
+[submodule "xos-tosca"]
+	path = src/use_cases/seba_on_arm/src_repo/xos-tosca
+	url = https://github.com/iecedge/xos-tosca.git
+	branch = 1.1.6
+[submodule "cord-tester"]
+	path = src/use_cases/seba_on_arm/src_repo/cord-tester
+	url = https://github.com/iecedge/cord-tester.git
+[submodule "xos-gui"]
+	path = src/use_cases/seba_on_arm/src_repo/xos-gui
+	url = https://github.com/iecedge/xos-gui.git
+[submodule "xos-ws"]
+	path = src/use_cases/seba_on_arm/src_repo/xos-ws
+	url = https://github.com/iecedge/xos-rest-gw.git

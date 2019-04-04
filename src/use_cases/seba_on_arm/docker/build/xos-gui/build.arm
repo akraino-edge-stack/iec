@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# This script builds the xos-gui docker image
+set -o errexit
+set -o xtrace
+
+#cd $XOS-GUI_PATH
+
+#building xos-gui docker image
+docker build -f Dockerfile -t iecedge/xos-gui_arm64:master .

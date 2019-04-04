@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# This script builds the xos docker image
+set -o errexit
+set -o xtrace
+
+#cd $XOS_PATH
+
+#building xos-core docker image
+docker build -f ./containers/xos/Dockerfile.xos-core  -t iecedge/xos-core_arm64 .
+
+#building Chameleon for XOS
+cd containers/chameleon
+make
+docker build -f Dockerfile.chameleon -t iecedge/chameleon_arm64:2.1.25 .

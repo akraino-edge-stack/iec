@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# This script builds the xos-tosca docker image
+set -o errexit
+set -o xtrace
+
+#cd $XOS-TOSCA_PATH
+
+#building xos-tosca docker image
+make build
+docker tag xosproject/xos-tosca:latest xosproject/xos-tosca_arm64:1.1.6

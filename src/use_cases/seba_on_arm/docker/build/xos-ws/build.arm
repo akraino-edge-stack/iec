@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# This script builds the xos-ws docker image
+set -o errexit
+set -o xtrace
+
+#cd $XOS-WS_PATH
+
+#building xos-ws docker image
+docker build -t iecedge/xos-ws_arm64:master .
