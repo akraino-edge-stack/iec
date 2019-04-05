@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32186b68_6bec4468",
+        "filename": "src/use_cases/seba_on_arm/docker/build/kafka-exporter/build.arm",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-05T00:00:25Z",
+      "side": 1,
+      "message": "In my opinion we should try to use Docker manifests where possible, or at least avoid using a different image name (kafka-exporter_arm64 unlike kafka-exporter), which would also require updating the seba charts with all the image names having \"_arm64\".\nOr we can make the tag arch-dependent, e.g. kafka-exporter:master-arm64, which would make it easier to support multiarch and manifests later.\nAnyway, as long as the same convention is used for all the containers, it shouldn\u0027t matter that much.",
+      "range": {
+        "startLine": 13,
+        "startChar": 34,
+        "endLine": 13,
+        "endChar": 62
+      },
+      "revId": "b62ec841b284f3ce0f1c1b748eb33e50f8efcad5",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
