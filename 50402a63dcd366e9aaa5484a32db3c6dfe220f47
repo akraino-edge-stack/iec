@@ -22,6 +22,30 @@
       "revId": "50402a63dcd366e9aaa5484a32db3c6dfe220f47",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "299a4aed_90d5723e",
+        "filename": "src/use_cases/seba_on_arm/docker/build/xos-tosca/build.arm",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-04-08T08:12:00Z",
+      "side": 1,
+      "message": "Yes, here should be iecedge",
+      "parentUuid": "7a13a23b_fdb4bd28",
+      "range": {
+        "startLine": 11,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 49
+      },
+      "revId": "50402a63dcd366e9aaa5484a32db3c6dfe220f47",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
