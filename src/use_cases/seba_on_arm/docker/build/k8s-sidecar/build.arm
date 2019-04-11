@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# This script builds the k8s-sidecar docker image
+set -o errexit
+set -o xtrace
+
+#cd $K8S-SIDECAR_PATH
+
+#building k8s-sidecar docker image
+docker build -t iecedge/k8s-sidecar_arm64:0.0.3 .

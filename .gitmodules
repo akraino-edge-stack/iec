@@ -86,3 +86,31 @@
 [submodule "logstash_exporter"]
 	path = src/use_cases/seba_on_arm/src_repo/logstash_exporter
 	url = https://github.com/iecedge/logstash_exporter.git
+[submodule "kafka-topic-exporter"]
+	path = src/use_cases/seba_on_arm/src_repo/kafka-topic-exporter
+	url = https://github.com/iecedge/kafka-topic-exporter.git
+[submodule "docker-curl"]
+	path = src/use_cases/seba_on_arm/src_repo/docker-curl
+	url = https://github.com/iecedge/docker-curl.git
+[submodule "k8s-sidecar"]
+	path = src/use_cases/seba_on_arm/src_repo/k8s-sidecar
+	url = https://github.com/iecedge/k8s-sidecar.git
+[submodule "alertmanager"]
+	path = src/use_cases/seba_on_arm/src_repo/alertmanager
+	url = https://github.com/iecedge/alertmanager.git
+	branch = v0.15.0-arm64v8
+[submodule "kube-state-metrics"]
+	path = src/use_cases/seba_on_arm/src_repo/kube-state-metrics
+	url = https://github.com/iecedge/kube-state-metrics.git
+[submodule "node_exporter"]
+	path = src/use_cases/seba_on_arm/src_repo/node_exporter
+	url = https://github.com/iecedge/node_exporter.git
+	branch = release-0.16-arm64v8
+[submodule "prometheus"]
+	path = src/use_cases/seba_on_arm/src_repo/prometheus
+	url = https://github.com/iecedge/prometheus.git
+	branch = v2.3.1-arm64v8
+[submodule "pushgateway"]
+	path = src/use_cases/seba_on_arm/src_repo/pushgateway
+	url = https://github.com/iecedge/pushgateway.git
+	branch = v0.5.2-arm64v8

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# This script builds the docker-curl docker image
+set -o errexit
+set -o xtrace
+
+#cd $DOCKER-CURL_PATH
+
+#building docker-curl docker image
+cd latest
+docker build -t iecedge/curl_arm64:latest .

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# This script builds the kafka-topic-exporter docker image
+set -o errexit
+set -o xtrace
+
+#cd $KAFKA-TOPIC-EXPORTER_PATH
+
+#building kafka-topic-exporter docker image
+docker build -t iecedge/kafka-topic-exporter_arm64:1.1.2 .

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# This script builds the prometheus docker image
+set -o errexit
+set -o xtrace
+
+#cd $PROMETHEUS_PATH
+
+#building prometheus docker image
+make build
+make docker
+docker tag prometheus:v2.3.1-arm64v8  iecedge/prometheus_arm64:v2.3.1

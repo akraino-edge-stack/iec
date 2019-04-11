@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# This script builds the pushgateway docker image
+set -o errexit
+set -o xtrace
+
+#cd $PUSHGATEWAY_PATH
+
+#building pushgateway docker image
+make build
+make docker
+docker tag pushgateway:v0.5.2-arm64v8 iecedge/pushgateway_arm64:v0.5.2

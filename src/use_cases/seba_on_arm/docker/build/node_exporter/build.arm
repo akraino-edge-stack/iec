@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# This script builds the node_exporter docker image
+set -o errexit
+set -o xtrace
+
+#cd $NODE_EXPORTER_PATH
+
+#building node_exporter docker image
+make build
+make docker
+docker tag node-exporter:release-0.16-arm64v8  iecedge/node-exporter_arm64:release-0.16

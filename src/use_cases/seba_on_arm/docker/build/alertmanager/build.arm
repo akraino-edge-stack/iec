@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# This script builds the alertmanager docker image
+set -o errexit
+set -o xtrace
+
+#cd $ALERTMANAGER_PATH
+
+#building alertmanager docker image
+make build
+make docker
+docker tag alertmanager:v0.15.0-arm64v8 iecedge/alertmanager_arm64:v0.15.0

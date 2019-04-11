@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# This script builds the kube-state-metrics docker image
+set -o errexit
+set -o xtrace
+
+#cd $KUBE-STATE-METRICS_PATH
+
+#building kube-state-metrics docker image
+make container
+docker tag quay.io/coreos/kube-state-metrics-arm64:v1.3.1 iecedge/kube-state-metrics_arm64:v1.3.1
