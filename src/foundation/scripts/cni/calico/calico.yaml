@@ -18,7 +18,7 @@ data:
   # If you're using TLS enabled etcd uncomment the following.
   # You must also populate the Secret below with these files.
   etcd_ca: ""   # "/calico-secrets/etcd-ca"
-  etcd_cert: "" # "/calico-secrets/etcd-cert"
+  etcd_cert: ""   # "/calico-secrets/etcd-cert"
   etcd_key: ""  # "/calico-secrets/etcd-key"
   # Configure the Calico backend to use.
   calico_backend: "bird"
@@ -71,13 +71,13 @@ metadata:
   name: calico-etcd-secrets
   namespace: kube-system
 data:
-  # Populate the following files with etcd TLS configuration if desired, but leave blank if
-  # not using TLS for etcd.
-  # This self-hosted install expects three files with the following names.  The values
-  # should be base64 encoded strings of the entire contents of each file.
-  # etcd-key: null
-  # etcd-cert: null
-  # etcd-ca: null
+# Populate the following files with etcd TLS configuration if desired, but leave blank if
+# not using TLS for etcd.
+# This self-hosted install expects three files with the following names.  The values
+# should be base64 encoded strings of the entire contents of each file.
+# etcd-key: null
+# etcd-cert: null
+# etcd-ca: null
 
 ---
 
@@ -220,9 +220,9 @@ spec:
           readinessProbe:
             exec:
               command:
-              - /bin/calico-node
-              - -bird-ready
-              - -felix-ready
+                - /bin/calico-node
+                - -bird-ready
+                - -felix-ready
             periodSeconds: 10
           volumeMounts:
             - mountPath: /lib/modules
@@ -384,8 +384,8 @@ spec:
           readinessProbe:
             exec:
               command:
-              - /usr/bin/check-status
-              - -r
+                - /usr/bin/check-status
+                - -r
       volumes:
         # Mount in the etcd TLS secrets with mode 400.
         # See https://kubernetes.io/docs/concepts/configuration/secret/
@@ -401,4 +401,3 @@ kind: ServiceAccount
 metadata:
   name: calico-kube-controllers
   namespace: kube-system
-
