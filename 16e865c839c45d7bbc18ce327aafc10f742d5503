@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b64fce56_2d2fccbb",
+        "filename": "ci/labs/arm/virtual1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-19T18:05:10Z",
+      "side": 1,
+      "message": "I would rather recommend setting the max_line_length to 120 columns for all YAMLs.",
+      "revId": "16e865c839c45d7bbc18ce327aafc10f742d5503",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ec3f3c0_17ed637f",
+        "filename": "docs/release/installation/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-19T18:05:10Z",
+      "side": 1,
+      "message": "The license header is pretty standard, I wouldn\u0027t change it just to keep the WriteGood bear happy ...",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "16e865c839c45d7bbc18ce327aafc10f742d5503",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22490d9a_c32fcaf6",
+        "filename": "src/foundation/hot/k8s_master_init.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-19T18:05:10Z",
+      "side": 1,
+      "message": "`source\u003d/dev/null` since /home/ubuntu is a dir and might also not exist on some systems",
+      "range": {
+        "startLine": 13,
+        "startChar": 20,
+        "endLine": 13,
+        "endChar": 32
+      },
+      "revId": "16e865c839c45d7bbc18ce327aafc10f742d5503",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45c9f201_8bb8df09",
+        "filename": "src/foundation/scripts/cni/calico/etcd-amd64.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-19T18:05:10Z",
+      "side": 1,
+      "message": "This is another case supporting the idea of 120-columns for YAMLs. Since we fetch this file from upstream, it would be easier in the future to keep it as close as possible to its original source, so we can diff only the changes we applied to it.",
+      "revId": "16e865c839c45d7bbc18ce327aafc10f742d5503",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7d44d5_e2f9c08a",
+        "filename": "src/use_cases/seba_on_arm/install/install.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-19T18:05:10Z",
+      "side": 1,
+      "message": "Makes more sense to actually fix it:\n  basepath\u003d$(cd \"$(dirname \"$0\")\"; pwd)",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 27
+      },
+      "revId": "16e865c839c45d7bbc18ce327aafc10f742d5503",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
