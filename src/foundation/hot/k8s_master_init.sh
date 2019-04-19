@@ -10,6 +10,7 @@ git clone https://gerrit.akraino.org/r/iec
 cd iec/src/foundation/scripts
 ./k8s_common.sh
 ./k8s_master.sh k8s_master_ip k8s_pod_net_cidr k8s_svc_net_cidr
+# shellcheck source=/dev/null
 . ${HOME}/.profile
 ./setup-cni.sh k8s_cluster_ip k8s_pod_net_cidr
 token=$(kubeadm token list --skip-headers | awk 'END{print $1}')

@@ -10,8 +10,8 @@
 
 version: 1.0
 details:
-  pod_owner: ENEA AB
-  contact: armband@enea.com
+  pod_owner: Arm IEC team
+  contact: blueprints@lists.akraino.org   # use hashtag iec
   lab: ENEA lab
   location: Stockholm, Sweden
   type: production

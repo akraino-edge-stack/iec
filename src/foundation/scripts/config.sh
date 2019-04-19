@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2034
 
 # Host user which can log into master and each worker nodes
 HOST_USER=${HOST_USER:-iec}
