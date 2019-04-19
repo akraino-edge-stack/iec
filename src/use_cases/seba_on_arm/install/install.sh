@@ -3,7 +3,7 @@
 
 #Modified from https://github.com/cachengo/seba_charts/blob/master/scripts/installSEBA.sh
 
-basepath=$(cd `dirname $0`; pwd)
+basepath=$(cd "$(dirname "$0")"; pwd)
 CORD_REPO=${CORD_REPO:-https://charts.opencord.org}
 CORD_PLATFORM_VERSION=${CORD_PLATFORM_VERSION:-6.1.0}
 SEBA_VERSION=${SEBA_VERSION:-1.0.0}
