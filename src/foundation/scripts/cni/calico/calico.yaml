@@ -18,7 +18,7 @@ data:
   # If you're using TLS enabled etcd uncomment the following.
   # You must also populate the Secret below with these files.
   etcd_ca: ""   # "/calico-secrets/etcd-ca"
-  etcd_cert: "" # "/calico-secrets/etcd-cert"
+  etcd_cert: ""   # "/calico-secrets/etcd-cert"
   etcd_key: ""  # "/calico-secrets/etcd-key"
   # Configure the Calico backend to use.
   calico_backend: "bird"
@@ -63,7 +63,8 @@ data:
 
 
 # The following contains k8s Secrets for use with a TLS enabled etcd cluster.
-# For information on populating Secrets, see http://kubernetes.io/docs/user-guide/secrets/
+# For information on populating Secrets, see
+# http://kubernetes.io/docs/user-guide/secrets/
 apiVersion: v1
 kind: Secret
 type: Opaque
@@ -71,13 +72,15 @@ metadata:
   name: calico-etcd-secrets
   namespace: kube-system
 data:
-  # Populate the following files with etcd TLS configuration if desired, but leave blank if
-  # not using TLS for etcd.
-  # This self-hosted install expects three files with the following names.  The values
-  # should be base64 encoded strings of the entire contents of each file.
-  # etcd-key: null
-  # etcd-cert: null
-  # etcd-ca: null
+
+# Populate the following files with etcd TLS configuration if desired, but
+# leave blank if not using TLS for etcd.
+# This self-hosted install expects three files with the following names.
+# The values should be base64 encoded strings of the entire contents of
+# each file.
+# etcd-key: null
+# etcd-cert: null
+# etcd-ca: null
 
 ---
 
@@ -123,8 +126,9 @@ spec:
         - effect: NoExecute
           operator: Exists
       serviceAccountName: calico-node
-      # Minimize downtime during a rolling upgrade or deletion; tell Kubernetes to do a "force
-      # deletion": https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods.
+      # Minimize downtime during a rolling upgrade or deletion; tell Kubernetes
+      # to do a "force deletion":
+      # https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods.
       terminationGracePeriodSeconds: 0
       containers:
         # Runs calico/node container on each Kubernetes node.  This
@@ -185,9 +189,10 @@ spec:
                 configMapKeyRef:
                   name: calico-config
                   key: veth_mtu
-            # The default IPv4 pool to create on startup if none exists. Pod IPs will be
-            # chosen from this range. Changing this value after installation will have
-            # no effect. This should fall within `--cluster-cidr`.
+            # The default IPv4 pool to create on startup if none exists.
+            # Pod IPs will be chosen from this range. Changing this value after
+            # installation will have no effect.
+            # This should fall within `--cluster-cidr`.
             - name: CALICO_IPV4POOL_CIDR
               value: "192.168.0.0/16"
             # Disable file logging so `kubectl logs` works.
@@ -220,9 +225,9 @@ spec:
           readinessProbe:
             exec:
               command:
-              - /bin/calico-node
-              - -bird-ready
-              - -felix-ready
+                - /bin/calico-node
+                - -bird-ready
+                - -felix-ready
             periodSeconds: 10
           volumeMounts:
             - mountPath: /lib/modules
@@ -384,8 +389,8 @@ spec:
           readinessProbe:
             exec:
               command:
-              - /usr/bin/check-status
-              - -r
+                - /usr/bin/check-status
+                - -r
       volumes:
         # Mount in the etcd TLS secrets with mode 400.
         # See https://kubernetes.io/docs/concepts/configuration/secret/
@@ -401,4 +406,3 @@ kind: ServiceAccount
 metadata:
   name: calico-kube-controllers
   namespace: kube-system
-

@@ -15,6 +15,7 @@ details:
   lab: ENEA lab
   location: Stockholm, Sweden
   type: production
+  # yamllint disable-line rule:line-length
   link: https://wiki.akraino.org/display/AK/IEC+Internal+Verification+and+Validation+Lab+Setup
 ##############################################################################
 jumphost:

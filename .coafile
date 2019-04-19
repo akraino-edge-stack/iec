@@ -1,0 +1,43 @@
+[all]
+ignore = .tox/**,
+    .git/**,
+    .gitignore,
+    .gitreview,
+    .gitmodules,
+    **.sw?,
+    **.orig
+
+[all.GitCommit]
+bears = GitCommitBear
+ignore_length_regex = Signed-off-by,
+    Also-by,
+    Co-authored-by,
+    http://,
+    https://
+
+[all.reStructuredText]
+bears = SpaceConsistencyBear,WriteGoodLintBear
+files = docs/**.rst
+use_spaces = true
+allow_passive_voice = false
+ignore = .git/**,
+    .tox/**,
+
+[all.ShellCheck]
+bears = ShellCheckBear,SpaceConsistencyBear
+files = **.sh
+shell = bash
+use_spaces = true
+ignore = src/foundation/scripts/config.sh
+
+[all.YAML]
+bears = YAMLLintBear
+files = **.yaml, **.yml
+use_spaces = true
+ignore_length_regex = ^.*https?://
+
+[all.Python]
+bears = PyLintBear
+files = **.py
+use_spaces = true
+pylint_disable = E0401, W0401, C0111
