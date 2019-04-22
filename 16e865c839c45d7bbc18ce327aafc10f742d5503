@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9edf36e4_a66385b6",
+        "filename": "ci/labs/arm/virtual1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-04-22T10:23:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b64fce56_2d2fccbb",
+      "revId": "16e865c839c45d7bbc18ce327aafc10f742d5503",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ec3f3c0_17ed637f",
         "filename": "docs/release/installation/index.rst",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "10321e1c_40ec2672",
+        "filename": "docs/release/installation/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-04-22T10:23:31Z",
+      "side": 1,
+      "message": "It seems like coala has a bug and can\u0027t really disable the passive voice check. We can either disable/replace the WriteGood bear or leave the license header.",
+      "parentUuid": "9ec3f3c0_17ed637f",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "16e865c839c45d7bbc18ce327aafc10f742d5503",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "22490d9a_c32fcaf6",
         "filename": "src/foundation/hot/k8s_master_init.sh",
         "patchSetId": 1
@@ -53,6 +95,30 @@
       "writtenOn": "2019-04-19T18:05:10Z",
       "side": 1,
       "message": "`source\u003d/dev/null` since /home/ubuntu is a dir and might also not exist on some systems",
+      "range": {
+        "startLine": 13,
+        "startChar": 20,
+        "endLine": 13,
+        "endChar": 32
+      },
+      "revId": "16e865c839c45d7bbc18ce327aafc10f742d5503",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3899e275_3c2e31af",
+        "filename": "src/foundation/hot/k8s_master_init.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-04-22T10:23:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22490d9a_c32fcaf6",
       "range": {
         "startLine": 13,
         "startChar": 20,
