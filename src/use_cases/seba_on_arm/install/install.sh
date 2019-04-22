@@ -13,24 +13,7 @@ CORD_CHART=${CORD_CHART:-${basepath}/../src_repo/seba_charts}
 
 # TODO(alav): Make each step re-entrant
 
-function wait_for {
-  # Execute in a subshell to prevent local variable override during recursion
-  (
-    local total_attempts=$1; shift
-    local cmdstr=$*
-    local sleep_time=2
-    echo -e "\n[wait_for] Waiting for cmd to return success: ${cmdstr}"
-    # shellcheck disable=SC2034
-    for attempt in $(seq "${total_attempts}"); do
-      echo "[wait_for] Attempt ${attempt}/${total_attempts%.*} for: ${cmdstr}"
-      # shellcheck disable=SC2015
-      eval "${cmdstr}" && echo "[wait_for] OK: ${cmdstr}" && return 0 || true
-      sleep "${sleep_time}"
-    done
-    echo "[wait_for] ERROR: Failed after max attempts: ${cmdstr}"
-    return 1
-  )
-}
+source util.sh
 
 wait_for 10 'test $(kubectl get pods --all-namespaces | grep -ce "tiller.*Running") -eq 1'
 
@@ -51,12 +34,15 @@ fi
 # Install the CORD platform
 helm install -n cord-platform ${CORD_CHART}/cord-platform --version="${CORD_PLATFORM_VERSION}"
 # Wait until 3 etcd CRDs are present in Kubernetes
-wait_for 300 'test $(kubectl get crd | grep -ice etcd) -eq 3'
+wait_for 300 'test $(kubectl get crd | grep -ice etcd) -eq 3' || true
 
 # Install the SEBA profile
 helm install -n seba --version "${SEBA_VERSION}" ${CORD_CHART}/seba
-wait_for 1500 'test $(kubectl get pods | grep -vcE "(\s(.+)/\2.*Running|tosca-loader.*Completed)") -eq 1'
+wait_for 500 'test $(kubectl get pods | grep -vcE "(\s(.+)/\2.*Running|tosca-loader.*Completed)") -eq 1' || true
 
 # Install the AT&T workflow
 helm install -n att-workflow --version "${ATT_WORKFLOW_VERSION}" ${CORD_CHART}/att-workflow
-wait_for 300 'test $(kubectl get pods | grep -vcE "(\s(.+)/\2.*Running|tosca-loader.*Completed)") -eq 1'
+wait_for 300 'test $(kubectl get pods | grep -vcE "(\s(.+)/\2.*Running|tosca-loader.*Completed)") -eq 1' || true
+
+# Install bbsim
+#helm install -n bbsim --version ${BBSIM_VERSION} ${CORD_CHART}/bbsim

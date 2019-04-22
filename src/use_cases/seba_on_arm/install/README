@@ -1,0 +1,12 @@
+SEBA on Arm Installation Guide
+
+1. To install:
+   sudo install.sh
+
+2. To uninstal:
+   sudo uninstall.sh
+
+3. A simple test for its function:
+   sudo test.sh
+   It may need to install the tool 'curl', for ubuntu 16.04/18.04 by:
+   apt-get -y install curl
