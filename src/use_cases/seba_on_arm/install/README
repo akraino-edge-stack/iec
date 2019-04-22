@@ -1,0 +1,18 @@
+SEBA on Arm Installation Guide
+
+1. To install:
+   sudo install.sh
+
+2. To uninstal:
+   sudo uninstall.sh
+
+3. A simple test for its function:
+   sudo test.sh
+   It may need to install the tool 'curl', for ubuntu 16.04/18.04 by:
+   apt-get -y install curl
+
+4. Use the XOS-GUI webui with your browser to check the config:
+   http://node_ip:30001
+   For a known Kubernetes issues, you may need to add to the node you would like to access:
+   $sudo iptables -A FORWARD -j ACCEPT
+   if you can only access the GUI from the node where xos-gui pod runs.
