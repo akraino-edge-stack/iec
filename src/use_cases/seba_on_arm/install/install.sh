@@ -27,8 +27,9 @@ function wait_for {
       eval "${cmdstr}" && echo "[wait_for] OK: ${cmdstr}" && return 0 || true
       sleep "${sleep_time}"
     done
-    echo "[wait_for] ERROR: Failed after max attempts: ${cmdstr}"
-    return 1
+    echo "[wait_for] NOT_COMPLETED: after max attempts: ${cmdstr}"
+    #return 1
+    return 0
   )
 }
 
@@ -55,7 +56,7 @@ wait_for 300 'test $(kubectl get crd | grep -ice etcd) -eq 3'
 
 # Install the SEBA profile
 helm install -n seba --version "${SEBA_VERSION}" ${CORD_CHART}/seba
-wait_for 1500 'test $(kubectl get pods | grep -vcE "(\s(.+)/\2.*Running|tosca-loader.*Completed)") -eq 1'
+wait_for 500 'test $(kubectl get pods | grep -vcE "(\s(.+)/\2.*Running|tosca-loader.*Completed)") -eq 1'
 
 # Install the AT&T workflow
 helm install -n att-workflow --version "${ATT_WORKFLOW_VERSION}" ${CORD_CHART}/att-workflow
