@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13618d7a_0da2d93d",
+        "filename": "src/use_cases/seba_on_arm/install/install.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T16:07:32Z",
+      "side": 1,
+      "message": "This is useful for critical timeouts, e.g. we want to abort everything if the CORD platform did not finish succesfully below.\nInstead, we could do it like this below:\n\n  wait_for 500 \u0027test ... -eq q\u0027 || true",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 12
+      },
+      "revId": "320c9bab4087b065cea8efd91b789e4abe866576",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb741b96_2170c64c",
+        "filename": "src/use_cases/seba_on_arm/install/olt.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T16:07:32Z",
+      "side": 1,
+      "message": "If I remember right, instead of hardcoding the IP here we could use:\n\n  voltha.bbsim.svc",
+      "range": {
+        "startLine": 21,
+        "startChar": 14,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "320c9bab4087b065cea8efd91b789e4abe866576",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14f63635_cda1a6fb",
+        "filename": "src/use_cases/seba_on_arm/install/olt.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T16:07:32Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 28,
+        "startChar": 24,
+        "endLine": 28,
+        "endChar": 36
+      },
+      "revId": "320c9bab4087b065cea8efd91b789e4abe866576",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48fc2feb_1b846b08",
+        "filename": "src/use_cases/seba_on_arm/install/uninstall.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T16:07:32Z",
+      "side": 1,
+      "message": "we could move this to a lib.sh and source it both in install.sh and here",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 1
+      },
+      "revId": "320c9bab4087b065cea8efd91b789e4abe866576",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9154caee_a56651e6",
+        "filename": "src/use_cases/seba_on_arm/install/uninstall.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T16:07:32Z",
+      "side": 1,
+      "message": "not needed?",
+      "range": {
+        "startLine": 27,
+        "startChar": 40,
+        "endLine": 27,
+        "endChar": 44
+      },
+      "revId": "320c9bab4087b065cea8efd91b789e4abe866576",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
