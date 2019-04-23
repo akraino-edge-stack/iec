@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c3c48d3_69634f1e",
+        "filename": ".coafile",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T14:05:00Z",
+      "side": 1,
+      "message": "extra ,",
+      "range": {
+        "startLine": 23,
+        "startChar": 11,
+        "endLine": 23,
+        "endChar": 12
+      },
+      "revId": "2c40513b63f492241e3aa63246395bf32537275c",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a4b0f39_e7cd6cf7",
+        "filename": ".coafile",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T14:05:00Z",
+      "side": 1,
+      "message": "Instead of whitelisting this file, I would add this after the shebang in it:\n# shellcheck disable\u003dSC2034",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "2c40513b63f492241e3aa63246395bf32537275c",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59cb884f_48cb0238",
+        "filename": ".coafile",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T14:05:00Z",
+      "side": 1,
+      "message": "rm",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 81
+      },
+      "revId": "2c40513b63f492241e3aa63246395bf32537275c",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
