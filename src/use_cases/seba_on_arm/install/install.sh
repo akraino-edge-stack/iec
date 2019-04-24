@@ -39,7 +39,7 @@ wait_for 10 'test $(kubectl get pods --all-namespaces | grep -ce "tiller.*Runnin
 if [ "$(uname -m)" == "aarch64" ]; then
   if [ ! -d ${CORD_CHART}/cord-platform ]; then
     #git clone https://github.com/iecedge/seba_charts ${CORD_CHART}
-    cd ${basepath}/../src_repo && git submodule update seba_charts
+    cd ${basepath}/../src_repo && git submodule update --init seba_charts
   fi
 else
   helm repo add cord "${CORD_REPO}"
