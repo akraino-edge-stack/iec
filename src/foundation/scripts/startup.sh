@@ -21,6 +21,7 @@ display_help () {
   echo " "
   echo "Example usages:"
   echo "   ./startup.sh"
+
 }
 
 
