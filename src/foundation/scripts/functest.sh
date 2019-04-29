@@ -24,6 +24,7 @@ EOF
 
 mkdir -p "${HOME}/functest/results"
 
+echo "hello world"
 sudo docker run --rm -e DEPLOY_SCENARIO=k8-nosdn-nofeature-noha \
        -v "${HOME}/k8.creds:/home/opnfv/functest/conf/env_file" \
        -v "${HOME}/functest/results:/home/opnfv/functest/results" \
