@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3539cade_2ee7b90e",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-05-06T13:14:15Z",
+      "side": 1,
+      "message": "hopefully akraino will add RTD jobs for docs building and we can later change this to a proper (rendered) document",
+      "revId": "e6a62488d41368c8e51b489325b54aa106a39d03",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
