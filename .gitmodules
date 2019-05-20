@@ -135,3 +135,6 @@
 	path = src/use_cases/seba_on_arm/src_repo/beats-docker
 	url = https://github.com/iecedge/beats-docker.git
 	branch = 6.4.2-arm64v8
+[submodule "kubectl-deployer-docker"]
+	path = src/use_cases/seba_on_arm/src_repo/kubectl-deployer-docker
+	url = https://github.com/iecedge/kubectl-deployer-docker.git

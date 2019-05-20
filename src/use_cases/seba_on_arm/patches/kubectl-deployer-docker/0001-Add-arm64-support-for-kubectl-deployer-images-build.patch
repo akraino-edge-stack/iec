@@ -1,0 +1,33 @@
+From ea01e03a45227bb9aad77c454bb9c6c064522690 Mon Sep 17 00:00:00 2001
+From: jialv01 <Jianlin.Lv@arm.com>
+Date: Tue, 14 May 2019 17:37:53 +0800
+Subject: [PATCH] Add arm64 support for kubectl-deployer images build
+
+Signed-off-by: jialv01 <Jianlin.Lv@arm.com>
+---
+ Dockerfile | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/Dockerfile b/Dockerfile
+index 117b386..88195c6 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -1,13 +1,11 @@
+ FROM alpine:3.6
+ 
+-LABEL MAINTAINER="Sergii Nuzhdin <ipaq.lw@gmail.com@gmail.com>"
+-
+-ENV KUBE_LATEST_VERSION="v1.13.0"
++ENV KUBE_LATEST_VERSION="v1.6.4"
+ 
+ RUN apk add --update ca-certificates \
+     && apk add --update -t deps curl \
+     && apk add --update gettext \
+-    && curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
++    && curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/arm64/kubectl -o /usr/local/bin/kubectl \
+     && chmod +x /usr/local/bin/kubectl \
+     && apk del --purge deps \
+     && rm /var/cache/apk/*
+-- 
+2.17.1
+

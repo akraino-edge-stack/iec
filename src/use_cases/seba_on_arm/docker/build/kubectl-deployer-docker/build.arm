@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# This script builds the kubectl-deployer docker image
+set -o errexit
+set -o xtrace
+
+#cd $KUBECTL-DEPLOYER-DOCKER_PATH
+
+#building kubectl-deployer docker image
+docker build -t iecedge/kubectl_deployer_arm64:0.4 .
