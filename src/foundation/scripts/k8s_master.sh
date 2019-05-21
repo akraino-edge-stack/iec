@@ -19,9 +19,9 @@ if ! kubectl get nodes; then
 
   if [ "$(id -u)" = 0 ]; then
     echo "export KUBECONFIG=/etc/kubernetes/admin.conf" | \
-      tee -a "${HOME}/.profile"
+      tee -a "${HOME}/.bashrc"
     # shellcheck disable=SC1090
-    source "${HOME}/.profile"
+    source "${HOME}/.bashrc"
   else
     mkdir -p "${HOME}/.kube"
     sudo cp -i /etc/kubernetes/admin.conf "${HOME}/.kube/config"
