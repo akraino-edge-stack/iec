@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e48ed7a_a172f328",
+        "filename": "docs/release/installation/installation.instruction.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-05-21T10:23:51Z",
+      "side": 1,
+      "message": "At present, MACCHIATObin is the smallest resource-constrained device deployed in SEBA. The hardware configuration of this board is: 16GRAM, 32Gflash, quad-core;\nAfter deploying k8s and calico only, MACCHIATObin system memory is about 920M temporarily, so I think that the minimum memory should be greater than 1G.also need more storage space to store docker images；\n\n\nThe following information is also available for your reference;\nI used two MACCHIATObins to form a cluster to run seba; and observe the memory usage, one device occupies 5.5G of memory and the other occupies 9.9G;  \nOf course, if there are more nodes to join, the hardware requirements for a single node will be reduced;",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 75
+      },
+      "revId": "1a076922db8ee32cbde94b43adefdc0263c18013",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dd3e81a_a2007f19",
+        "filename": "docs/release/installation/installation.instruction.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-05-21T10:23:51Z",
+      "side": 1,
+      "message": "By observing the actual memory utilization of ThunderX2, it is found that if IEC is deployed on a single node, at least 15G of memory is required;",
+      "range": {
+        "startLine": 120,
+        "startChar": 2,
+        "endLine": 120,
+        "endChar": 66
+      },
+      "revId": "1a076922db8ee32cbde94b43adefdc0263c18013",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
