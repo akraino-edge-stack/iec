@@ -1,5 +1,9 @@
 #!/bin/bash -ex
 
+if [ -f "~/.bashrc" ]; then
+  source ~/.bashrc
+fi
+
 VERSION='v2.12.3'
 TILLER_SA_RBAC=~/tiller-rbac.yaml
 if [ "$(uname -m)" == 'aarch64' ]; then

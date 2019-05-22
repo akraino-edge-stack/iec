@@ -22,6 +22,10 @@ if ! kubectl get nodes; then
       tee -a "${HOME}/.bashrc"
     # shellcheck disable=SC1090
     source "${HOME}/.bashrc"
+
+    mkdir -p "${HOME}/.kube"
+    cp -i /etc/kubernetes/admin.conf "${HOME}/.kube/config"
+    chown "$(id -u)":"$(id -g)" "${HOME}/.kube/config"
   else
     mkdir -p "${HOME}/.kube"
     sudo cp -i /etc/kubernetes/admin.conf "${HOME}/.kube/config"

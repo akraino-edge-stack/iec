@@ -64,9 +64,9 @@ deploy_k8s () {
 
   #Deploy etcd & CNI from master node
   #There may be more options in future. e.g: Calico, Contiv-vpp, Ovn-k8s ...
-  SETUP_CNI="KUBECONFIG=/etc/kubernetes/admin.conf && cd iec/src/foundation/scripts && source setup-cni.sh"
+  SETUP_CNI="cd iec/src/foundation/scripts && source setup-cni.sh"
   sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_CNI}
-  SETUP_HELM="KUBECONFIG=/etc/kubernetes/admin.conf && cd iec/src/foundation/scripts && source helm.sh"
+  SETUP_HELM="cd iec/src/foundation/scripts && source helm.sh"
   sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_HELM}
 
 }
