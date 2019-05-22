@@ -38,8 +38,8 @@ deploy_k8s () {
 
   #Automatic deploy the K8s environments on Master node
   SETUP_MASTER="cd iec/src/foundation/scripts/ && source k8s_master.sh ${K8S_MASTER_IP}"
-  sshpass -p ${K8S_MASTERPW} ssh ${HOST_USER}@${K8S_MASTER_IP} ${INSTALL_SOFTWARE}
-  sshpass -p ${K8S_MASTERPW} ssh ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_MASTER} | tee ${LOG_FILE}
+  sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${INSTALL_SOFTWARE}
+  sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_MASTER} | tee ${LOG_FILE}
 
   KUBEADM_JOIN_CMD=$(grep "kubeadm join " ./${LOG_FILE})
 
@@ -53,9 +53,9 @@ deploy_k8s () {
     passwd="$(cut -d',' -f2 <<<${worker})"
     echo "Install & Deploy on ${ip_addr}. password:${passwd}"
 
-    sshpass -p ${passwd} ssh ${HOST_USER}@${ip_addr} ${INSTALL_SOFTWARE}
-    sshpass -p ${passwd} ssh ${HOST_USER}@${ip_addr} "echo \"sudo ${KUBEADM_JOIN_CMD}\" >> ./iec/src/foundation/scripts/k8s_worker.sh"
-    sshpass -p ${passwd} ssh ${HOST_USER}@${ip_addr} ${SETUP_WORKER}
+    sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} ${INSTALL_SOFTWARE}
+    sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} "echo \"sudo ${KUBEADM_JOIN_CMD}\" >> ./iec/src/foundation/scripts/k8s_worker.sh"
+    sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} ${SETUP_WORKER}
 
   done
 
@@ -63,7 +63,7 @@ deploy_k8s () {
   #Deploy etcd & CNI from master node
   #There may be more options in future. e.g: Calico, Contiv-vpp, Ovn-k8s ...
   SETUP_CNI="cd iec/src/foundation/scripts && source setup-cni.sh"
-  sshpass -p ${K8S_MASTERPW} ssh ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_CNI}
+  sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_CNI}
 }
 
 #
@@ -73,7 +73,7 @@ check_k8s_status(){
   set -o xtrace
 
   VERIFY_K8S="cd iec/src/foundation/scripts/ && source nginx.sh"
-  sshpass -p ${K8S_MASTERPW} ssh ${HOST_USER}@${K8S_MASTER_IP} ${VERIFY_K8S}
+  sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${VERIFY_K8S}
 
   sleep 30
 }
@@ -82,12 +82,14 @@ check_k8s_status(){
 #
 # Init
 #
-if [ $1 == "--help" ] || [ $1 == "-h" ];
+if [ -n "$1" ];
 then
-  display_help
-  exit 0
+  if [ $1 == "--help" ] || [ $1 == "-h" ];
+  then
+    display_help
+    exit 0
+  fi
 fi
-
 
 # Read the configuration file
 source config
