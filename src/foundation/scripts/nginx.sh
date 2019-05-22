@@ -36,6 +36,11 @@ spec:
         - containerPort: 80
 EOF
 
+if [ -f "$HOME/.bashrc" ]; then
+  # shellcheck source=/root/.bashrc
+  source "$HOME/.bashrc"
+fi
+
 if ! kubectl get services | grep -q nginx; then
   kubectl create -f "${NGINX_APP}"
 fi

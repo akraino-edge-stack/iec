@@ -1,5 +1,10 @@
 #!/bin/bash -ex
 
+if [ -f "$HOME/.bashrc" ]; then
+  # shellcheck source=/root/.bashrc
+  source "$HOME/.bashrc"
+fi
+
 VERSION='v2.12.3'
 TILLER_SA_RBAC=~/tiller-rbac.yaml
 if [ "$(uname -m)" == 'aarch64' ]; then

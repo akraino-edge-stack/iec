@@ -2,6 +2,11 @@
 set -o xtrace
 set -e
 
+if [ -f "$HOME/.bashrc" ]; then
+  # shellcheck source=/root/.bashrc
+  source "$HOME/.bashrc"
+fi
+
 CLUSTER_IP=${1:-172.16.1.136} # Align with the value in our K8s setup script
 POD_NETWORK_CIDR=${2:-192.168.0.0/16}
 
