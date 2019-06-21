@@ -7,28 +7,54 @@ if [ -f "$HOME/.bashrc" ]; then
   source "$HOME/.bashrc"
 fi
 
+
 CLUSTER_IP=${1:-172.16.1.136} # Align with the value in our K8s setup script
 POD_NETWORK_CIDR=${2:-192.168.0.0/16}
-
-# Install the Etcd Database
-if [ "$(uname -m)" == 'aarch64' ]; then
-  ETCD_YAML=etcd-arm64.yaml
-else
-  ETCD_YAML=etcd-amd64.yaml
-fi
+CNI_TYPE=${3:-calico}
 
 SCRIPTS_DIR=$(dirname "${BASH_SOURCE[0]}")
 
-sed -i "s/10.96.232.136/${CLUSTER_IP}/" "${SCRIPTS_DIR}/cni/calico/${ETCD_YAML}"
-kubectl apply -f "${SCRIPTS_DIR}/cni/calico/${ETCD_YAML}"
+install_calico(){
+  # Install the Etcd Database
+  if [ "$(uname -m)" == 'aarch64' ]; then
+    ETCD_YAML=etcd-arm64.yaml
+  else
+    ETCD_YAML=etcd-amd64.yaml
+  fi
 
-# Install the RBAC Roles required for Calico
-kubectl apply -f "${SCRIPTS_DIR}/cni/calico/rbac.yaml"
+  sed -i "s/10.96.232.136/${CLUSTER_IP}/" "${SCRIPTS_DIR}/cni/calico/${ETCD_YAML}"
+  kubectl apply -f "${SCRIPTS_DIR}/cni/calico/${ETCD_YAML}"
 
-# Install Calico to system
-sed -i "s@10.96.232.136@${CLUSTER_IP}@; s@192.168.0.0/16@${POD_NETWORK_CIDR}@" \
-  "${SCRIPTS_DIR}/cni/calico/calico.yaml"
-kubectl apply -f "${SCRIPTS_DIR}/cni/calico/calico.yaml"
+  # Install the RBAC Roles required for Calico
+  kubectl apply -f "${SCRIPTS_DIR}/cni/calico/rbac.yaml"
+
+  # Install Calico to system
+  sed -i "s@10.96.232.136@${CLUSTER_IP}@; s@192.168.0.0/16@${POD_NETWORK_CIDR}@" \
+    "${SCRIPTS_DIR}/cni/calico/calico.yaml"
+  kubectl apply -f "${SCRIPTS_DIR}/cni/calico/calico.yaml"
+}
+
+install_flannel(){
+  # Install the flannel CNI
+  sed -i "s@10.244.0.0/16@${POD_NETWORK_CIDR}@" "${SCRIPTS_DIR}/cni/flannel/kube-flannel.yml"
+  kubectl apply -f "${SCRIPTS_DIR}/cni/flannel/kube-flannel.yml"
+}
+
+
+case ${CNI_TYPE} in
+ 'calico')
+        echo "Install calico ..."
+        install_calico
+        ;;
+ 'flannel')
+        echo "Install flannel ..."
+        install_flannel
+        ;;
+ *)
+        echo "${CNI_TYPE} does not supportted"
+        exit 1
+        ;;
+esac
 
 # Remove the taints on master node
 kubectl taint nodes --all node-role.kubernetes.io/master- || true
