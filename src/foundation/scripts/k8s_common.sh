@@ -4,6 +4,43 @@ DOCKER_VERSION=18.06.1~ce~3-0~ubuntu
 KUBE_VERSION=1.13.0-00
 K8S_CNI_VERSION=0.6.0-00
 
+# install the dns tools which will be used for cleaning
+# the dns cache
+refresh_dns(){
+  sudo apt update
+  sudo apt install -y nscd
+  sudo /etc/init.d/nscd restart
+  echo "sleep 10s ..."
+  sleep 10
+}
+
+check_network(){
+
+  IP_LIST="www.google.com download.docker.com"
+
+  for IP in $IP_LIST; do
+    NUM=1
+    while [ $NUM -le 3 ]; do
+      if ping -c 1 $IP > /dev/null; then
+        echo "$IP Ping is successful."
+        break
+      else
+        # echo "$IP Ping is failure $NUM"
+        FAIL_COUNT[$NUM]=$IP
+        let NUM++
+      fi
+    done
+    if [ ${#FAIL_COUNT[*]} -eq 3 ];then
+      echo "${FAIL_COUNT[1]} Ping is failure!"
+      unset FAIL_COUNT[*]
+      refresh_dns
+    fi
+  done
+}
+
+# Before install enssential software, make sure the network is OK
+check_network
+
 # Install basic software
 sudo apt update
 sudo apt install -y software-properties-common apt-transport-https curl
