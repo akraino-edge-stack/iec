@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64c55a61_448f0f1d",
+        "filename": "src/foundation/scripts/k8s_common.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-06-29T16:06:51Z",
+      "side": 1,
+      "message": "I think we could simplify this a bit, e.g.:\n\n  HOST_LIST\u003d\"www.google.com download.docker.com\"\n\n  for HOST in $HOST_LIST; do\n    for NUM in $(seq 3); do\n      if ping -c 1 $HOST \u003e /dev/null; then\n        NUM\u003d1 # just in case ping is successful on the 3rd try\n        echo \"$HOST Ping is successful.\"\n        break\n      fi\n    done\n    if [ ${NUM} -eq 3 ];then\n      echo \"$HOST Ping failure!\"\n      refresh_dns\n    fi\n  done",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 6
+      },
+      "revId": "3b85acb420634d12a129ec8148ec90d79b33af63",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
