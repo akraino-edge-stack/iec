@@ -22,6 +22,30 @@
       "revId": "3b85acb420634d12a129ec8148ec90d79b33af63",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47ac44a9_c5dd3252",
+        "filename": "src/foundation/scripts/k8s_common.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-06-30T14:44:21Z",
+      "side": 1,
+      "message": "Good!",
+      "parentUuid": "64c55a61_448f0f1d",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 6
+      },
+      "revId": "3b85acb420634d12a129ec8148ec90d79b33af63",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
