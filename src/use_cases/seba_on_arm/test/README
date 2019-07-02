@@ -1,0 +1,5 @@
+Thie folder contains installation scripts and other resources for testing SEBA.
+For now we rely on virtualized PON and OLT software, such as BBSim and PONSim.
+
+Each folder/testing method should contain an install.sh and test.sh scripts
+respectively.
