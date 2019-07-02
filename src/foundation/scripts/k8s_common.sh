@@ -28,11 +28,12 @@ esac
 case ${OS_ID_LIKE:-} in
 debian)
   # Install basic software
+  sudo echo "Acquire::ForceIPv4 \"true\";" >> /etc/apt/apt.conf.d/99force-ipv4
   sudo apt update
   sudo apt install -y software-properties-common apt-transport-https curl
 
   # Install Docker as Prerequisite
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  curl -4fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   sudo apt-key fingerprint 0EBFCD88
   sudo add-apt-repository \
     "deb https://download.docker.com/linux/ubuntu \
