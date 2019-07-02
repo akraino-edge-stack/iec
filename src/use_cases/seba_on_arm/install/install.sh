@@ -8,8 +8,6 @@ CORD_REPO=${CORD_REPO:-https://charts.opencord.org}
 CORD_PLATFORM_VERSION=${CORD_PLATFORM_VERSION:-6.1.0}
 SEBA_VERSION=${SEBA_VERSION:-1.0.0}
 ATT_WORKFLOW_VERSION=${ATT_WORKFLOW_VERSION:-1.0.2}
-BBSIM_VERSION=${SEBA_VERSION:-1.0.0}
-
 CORD_CHART=${CORD_CHART:-${basepath}/../src_repo/seba_charts}
 
 # TODO(alav): Make each step re-entrant
@@ -45,6 +43,3 @@ wait_for 500 'test $(kubectl get pods | grep -vcE "(\s(.+)/\2.*Running|tosca-loa
 helm install -n att-workflow --version "${ATT_WORKFLOW_VERSION}" ${CORD_CHART}/att-workflow
 wait_for 300 'test $(kubectl get pods | grep -vcE "(\s(.+)/\2.*Running|tosca-loader.*Completed)") -eq 1' || true
 
-# Install bbsim
-export BBSIM_VERSION
-#helm install -n bbsim --version ${BBSIM_VERSION} ${CORD_CHART}/bbsim
