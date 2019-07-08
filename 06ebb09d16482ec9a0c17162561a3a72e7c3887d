@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f4ed1963_82675be4",
+        "filename": "src/use_cases/seba_on_arm/install/bbsim/test.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-07-08T12:16:04Z",
+      "side": 1,
+      "message": "Yes, makes more sense to split this into install.sh and test.sh scripts",
+      "parentUuid": "a87782f2_3f3b880b",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 103
+      },
+      "revId": "06ebb09d16482ec9a0c17162561a3a72e7c3887d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "288bb4f3_5ce43b93",
         "filename": "src/use_cases/seba_on_arm/install/ponsim/install.sh",
         "patchSetId": 1
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "53559633_4b9f4a47",
+        "filename": "src/use_cases/seba_on_arm/install/ponsim/install.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-07-08T12:16:04Z",
+      "side": 1,
+      "message": "I need to know the exact path anyway, see below when faking helm-charts being cloned at ${WORKSPACE}/cord/helm-charts",
+      "parentUuid": "6d473896_d3559452",
+      "range": {
+        "startLine": 23,
+        "startChar": 37,
+        "endLine": 23,
+        "endChar": 77
+      },
+      "revId": "06ebb09d16482ec9a0c17162561a3a72e7c3887d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e0e3b547_083f6182",
         "filename": "src/use_cases/seba_on_arm/install/ponsim/install.sh",
         "patchSetId": 1
@@ -82,6 +130,30 @@
       "writtenOn": "2019-07-07T20:24:19Z",
       "side": 1,
       "message": "`ln -sf` to make this idempotent",
+      "range": {
+        "startLine": 43,
+        "startChar": 10,
+        "endLine": 43,
+        "endChar": 15
+      },
+      "revId": "06ebb09d16482ec9a0c17162561a3a72e7c3887d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "169c065b_99ceeea0",
+        "filename": "src/use_cases/seba_on_arm/install/ponsim/install.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-07-08T12:16:04Z",
+      "side": 1,
+      "message": "it shouldn\u0027t matter, next time the script is run it should find helm available in /usr/local/bin/ but I can do it just to be sure.",
+      "parentUuid": "e0e3b547_083f6182",
       "range": {
         "startLine": 43,
         "startChar": 10,
