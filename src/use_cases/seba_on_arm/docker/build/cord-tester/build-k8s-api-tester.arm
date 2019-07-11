@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# This script can be used to build the cord-tester xos-api-tester docker image
+set -o errexit
+set -o xtrace
+
+#cd $CORD-TESTER_PATH
+
+cd src/test/cord-api/
+docker build -f Dockerfile.k8s-api-tester \
+             -t iecedge/xos-api-tester_arm64:master .

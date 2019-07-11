@@ -3,3 +3,21 @@ For now we rely on virtualized PON and OLT software, such as BBSim and PONSim.
 
 Each folder/testing method should contain an install.sh and test.sh scripts
 respectively.
+
+The testing phase consists of two steps:
+1. Installing the PON software (for now either bbsim or ponsim). This can be
+done by running the corresponding install.sh directly on the K8S master.
+
+2. Running the actual SIAB tests. In upstream opencord.org the SIAB tests are
+run on a single machine (hence the term SEBA-in-a-Box), directly on the
+machine. In contrast, the iec project aims to be able to run the SIAB tests
+from a different machine, in order to not pollute the environment with
+testing framework. To achieve this, it is also necessary to create a running
+environment and this is done using a simple Docker container which contains
+all the necessary tools for running cord-tester SIAB tests. Take a look at
+src/usecases/seba_on_arm/docker/build/cord-tester/build-cord-tester.arm
+script for details on this image.
+Note that for runing test.sh, it is necessary to obtain the Kubernetes config
+(e.g. /root/.kube/) and place it in a convenient location. This will then be
+passed to the docker container. Of course, the container must also have
+access to the Kubernetes cluster.
