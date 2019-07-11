@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d881f45_78e8ebfd",
+        "filename": "misc/type1/macbin/README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-07-11T14:54:01Z",
+      "side": 1,
+      "message": "Shouldn\u0027t you also cd into ~/musdk?",
+      "revId": "58fbcff2296568fcfc44107d141735fda1eb30f6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c4b801d_1be56e68",
+        "filename": "misc/type1/macbin/README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-07-11T14:54:01Z",
+      "side": 1,
+      "message": "where can defconfig-mcbin-edge be obtained from? I can\u0027t find it in the musdk for example.\nSeems unnecessary anyway, since one of the patches in musdk modifies arch/arm64/configs/mvebu_v8_lsp_defconfig",
+      "revId": "58fbcff2296568fcfc44107d141735fda1eb30f6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23fcad1e_32c3fdb6",
+        "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-07-11T14:54:01Z",
+      "side": 1,
+      "message": "s/currently/current",
+      "range": {
+        "startLine": 22,
+        "startChar": 51,
+        "endLine": 22,
+        "endChar": 60
+      },
+      "revId": "58fbcff2296568fcfc44107d141735fda1eb30f6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f3484ef_545a7fe2",
+        "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-07-11T14:54:01Z",
+      "side": 1,
+      "message": "This check seems unnecessary, it was already done above.",
+      "revId": "58fbcff2296568fcfc44107d141735fda1eb30f6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
