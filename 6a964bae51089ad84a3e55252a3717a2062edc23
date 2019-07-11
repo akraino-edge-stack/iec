@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3545cbe1_88b29f09",
+        "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-07-11T11:00:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b10b587_22de6f8b",
+      "range": {
+        "startLine": 16,
+        "startChar": 7,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "6a964bae51089ad84a3e55252a3717a2062edc23",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1e5656f_11f4446e",
         "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-11T10:14:25Z",
       "side": 1,
       "message": "This \u0027.\u0027 parameter can be ignored, git clones by default in the current dir.",
+      "range": {
+        "startLine": 41,
+        "startChar": 69,
+        "endLine": 41,
+        "endChar": 70
+      },
+      "revId": "6a964bae51089ad84a3e55252a3717a2062edc23",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b84eefb_1280e528",
+        "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-07-11T11:00:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1e5656f_11f4446e",
       "range": {
         "startLine": 41,
         "startChar": 69,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "4faa3c1a_c62ae76d",
+        "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-07-11T11:00:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a02d167_11751657",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 11
+      },
+      "revId": "6a964bae51089ad84a3e55252a3717a2062edc23",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c48d29dd_14af4383",
         "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2019-07-11T10:14:25Z",
       "side": 1,
       "message": "You could let make figure out the parallel threads to run, i.e. \u0027make -j\u0027, is there another reason for this nproc+1 thing?",
+      "range": {
+        "startLine": 65,
+        "startChar": 7,
+        "endLine": 65,
+        "endChar": 22
+      },
+      "revId": "6a964bae51089ad84a3e55252a3717a2062edc23",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c6bf2663_d8c83c33",
+        "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-07-11T11:00:05Z",
+      "side": 1,
+      "message": "This is recommended by Marvell, I don\u0027t know the specific reason; I guess this is because MACCHIATObin is an embedded board, the processing power is not as good as the server, here the number of jobs is limited to prevent excessive CPU resources;",
+      "parentUuid": "c48d29dd_14af4383",
       "range": {
         "startLine": 65,
         "startChar": 7,
