@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# This script builds the cord-tester multi-arch docker image.
+# The main purpose of this image is to run the cord-tester tests, i.e. SIAB.
+# The existing image in iecedge/cord-tester:arm64 also contains the amd64
+# version and specifies a manifest for proper multi-arch.
+set -o errexit
+set -o xtrace
+
+docker build -f Dockerfile.cord-tester -t iecedge/cord-tester:arm64 .
