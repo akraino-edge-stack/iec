@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "581db47c_8b3bee26",
+        "filename": "misc/type1/macbin/README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-07-12T01:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d881f45_78e8ebfd",
+      "revId": "58fbcff2296568fcfc44107d141735fda1eb30f6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c4b801d_1be56e68",
         "filename": "misc/type1/macbin/README.md",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2019-07-11T14:54:01Z",
       "side": 1,
       "message": "where can defconfig-mcbin-edge be obtained from? I can\u0027t find it in the musdk for example.\nSeems unnecessary anyway, since one of the patches in musdk modifies arch/arm64/configs/mvebu_v8_lsp_defconfig",
+      "revId": "58fbcff2296568fcfc44107d141735fda1eb30f6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "137c9d7d_1e3c417c",
+        "filename": "misc/type1/macbin/README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-07-12T01:51:29Z",
+      "side": 1,
+      "message": "Defconfig-mcbin-edge will be uploaded in another patch, which is still under internal review.\nThe kernel provided by Marvell does not have enabled modules such as NETFILTER, IPTABLES, OVERLAY_FS, which are required for containers.So here is a verified config file for developers to use;",
+      "parentUuid": "8c4b801d_1be56e68",
       "revId": "58fbcff2296568fcfc44107d141735fda1eb30f6",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "0a62fb70_82ee3972",
+        "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-07-12T01:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23fcad1e_32c3fdb6",
+      "range": {
+        "startLine": 22,
+        "startChar": 51,
+        "endLine": 22,
+        "endChar": 60
+      },
+      "revId": "58fbcff2296568fcfc44107d141735fda1eb30f6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f3484ef_545a7fe2",
         "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
         "patchSetId": 10
@@ -70,6 +130,24 @@
       "writtenOn": "2019-07-11T14:54:01Z",
       "side": 1,
       "message": "This check seems unnecessary, it was already done above.",
+      "revId": "58fbcff2296568fcfc44107d141735fda1eb30f6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b98d3c23_f314c8c8",
+        "filename": "misc/type1/macbin/setup-macbin-kernel.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-07-12T01:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f3484ef_545a7fe2",
       "revId": "58fbcff2296568fcfc44107d141735fda1eb30f6",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
