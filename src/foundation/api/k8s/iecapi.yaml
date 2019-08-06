@@ -1,0 +1,35 @@
+# yamllint disable rule:hyphens rule:commas rule:indentation
+apiVersion: v1
+kind: Service
+metadata:
+  name: iec-apiserver-svc
+  labels:
+    app: iec-apiserver-svc
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9131
+      nodePort: 31131
+  selector:
+    app: iec-apiserver
+
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: iec-apiserver
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: iec-apiserver
+    spec:
+      containers:
+        - name: iec-apiserver
+          image: iecedge/iec-apiserver:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+              - containerPort: 9131
