@@ -1,0 +1,6 @@
+FROM golang:1.12.7
+RUN go get github.com/revel/revel && go get github.com/revel/cmd/revel && \
+    go get github.com/revel/modules && \
+    go get github.com/valyala/fasthttp && go get golang.org/x/crypto/bcrypt && \
+    go get gopkg.in/gorp.v2
+
