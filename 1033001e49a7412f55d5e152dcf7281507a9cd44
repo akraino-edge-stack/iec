@@ -1,0 +1,887 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95c57dab_06040578",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "duplicate sign-off line",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 46
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "091fcdef_57ed731f",
+        "filename": "src/foundation/api/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "Since all our builds happen in containers, do we need to ignore these files?\nThey are created inside ~GOPATH/src/apiserver, which should be outside the git repo.",
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1530f2a_66316543",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "`x86_64 and aarch64` or `amd64 and arm64`",
+      "range": {
+        "startLine": 9,
+        "startChar": 30,
+        "endLine": 9,
+        "endChar": 46
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6f25fae_b4436942",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "not used",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 20
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d9e40a0_b0f89bed",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "BUILD_ARCH ?\u003d $(shell [ $$(uname -m) \u003d \"aarch64\" ] \u0026\u0026 echo \"arm64\" || echo \"amd64\")",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 104
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42575292_f428340f",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "iec-apiserver-base-$(BUILD_ARCH)",
+      "range": {
+        "startLine": 28,
+        "startChar": 14,
+        "endLine": 28,
+        "endChar": 166
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b2e9665_c3c311f6",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "$(GIT_VERSION)",
+      "range": {
+        "startLine": 32,
+        "startChar": 17,
+        "endLine": 32,
+        "endChar": 62
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69097e34_1301e495",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "tr -d \u0027/\u0027",
+      "range": {
+        "startLine": 34,
+        "startChar": 58,
+        "endLine": 34,
+        "endChar": 71
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "025dc786_819bb623",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "Since the apiserver image requires the base one to be built first:\n\n  apiserver: base",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 10
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a372b3db_5304d569",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "If we rename this target to `manifest-tool` (the name of the binary we\u0027re creating), we don\u0027t need to check the file exists and let make figure it out and download it only when missing.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 12
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9476098_7749850a",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "This will break on non-Debian systems like Alpine/CentOS etc.\nImo, we should let the user deal with the Dockerhub login, in which case we won\u0027t need either the jq program or the SECRET variable above.",
+      "range": {
+        "startLine": 74,
+        "startChar": 2,
+        "endLine": 74,
+        "endChar": 29
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e294c073_c827e7b1",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "push_manifest: pre_manifest (manifest-tool if we rename that target)\nAlso, since this target should be called directly by the end user, but only via multi_arch target below, it should be prepended with a `.`, i.e.:\n.push_manifest",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 14
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ad38af4_cb7d4e0f",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "extra #?",
+      "range": {
+        "startLine": 89,
+        "startChar": 1,
+        "endLine": 89,
+        "endChar": 2
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99bb2fb7_36acd1ec",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "imo these belong in the multi_arch target, in which case this target can become simply:\n\n  push: pre_manifest push_images multi_arch\n\nOr the `multi_arch` target can just be renamed to `push` after adding the same target deps.",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 67
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b580d7ed_0ea8a5db",
+        "filename": "src/foundation/api/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "should not be needed since all other docker commands are executed without sudo",
+      "range": {
+        "startLine": 106,
+        "startChar": 14,
+        "endLine": 106,
+        "endChar": 19
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "551f2d79_93737bff",
+        "filename": "src/foundation/api/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "missing empty line after # section",
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76b8f99f_ca69b54f",
+        "filename": "src/foundation/api/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 2,
+        "startChar": 81,
+        "endLine": 2,
+        "endChar": 84
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91b73c31_d3912186",
+        "filename": "src/foundation/api/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "based upon/built using",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 30
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78393eee_15015ebd",
+        "filename": "src/foundation/api/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "`amd64 and arm64` or `x86_64 and aarch64`",
+      "range": {
+        "startLine": 4,
+        "startChar": 20,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ed024fa_986b62d6",
+        "filename": "src/foundation/api/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "4 spaces",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 3
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6f9e0d1_31fa7412",
+        "filename": "src/foundation/api/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "missing empty line after ## section",
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "759ce840_c6961799",
+        "filename": "src/foundation/api/apiserver/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "ditto + entries listed in .gitignore in the parent dir also apply to subdirs afaik",
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce701b7b_e20aa494",
+        "filename": "src/foundation/api/apiserver/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "missing empty line after # section",
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c649b2ab_6dbea846",
+        "filename": "src/foundation/api/apiserver/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 2,
+        "startChar": 81,
+        "endLine": 2,
+        "endChar": 84
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06af3a83_8cb725a4",
+        "filename": "src/foundation/api/apiserver/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "built upon/based on",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 30
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e32b376_f5420352",
+        "filename": "src/foundation/api/apiserver/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "should be aligned to 4 spaces",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 3
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88d16a19_c770df40",
+        "filename": "src/foundation/api/apiserver/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "9131",
+      "range": {
+        "startLine": 14,
+        "startChar": 27,
+        "endLine": 14,
+        "endChar": 31
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f24e171b_d94d4a83",
+        "filename": "src/foundation/api/apiserver/app/controllers/app.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "A license header should be present in all source files.",
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83f2863a_829e5453",
+        "filename": "src/foundation/api/apiserver/app/controllers/app.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "This files mixes whitespaces with tabs for identation, while most go files in this change adhere to tabs afaict.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 8
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdf3f971_a81078fa",
+        "filename": "src/foundation/api/apiserver/app/views/header.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "Imo, it is overkill to ship bootstrap, jquery and a favicon for an API server:\n- it is currently only used by the debug information box for the /Index.html while in DEV mode (not prod);\n- it is unlikely to ever be used for the actual API;\n\nWithout these, the main page (/Index.html) looks almost the same, passes the revel test (since the text content is unchanged).",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 61
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "781df8db_2aa47e21",
+        "filename": "src/foundation/api/apiserver/conf/app.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "This could be randomized on container start, but I doubt it\u0027s that important to be worth it.",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 77
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3913304f_188f4b83",
+        "filename": "src/foundation/api/apiserver/conf/app.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "missing space after \u003d",
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87476ed6_d9689665",
+        "filename": "src/foundation/api/apiserver/conf/routes",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "extra space",
+      "range": {
+        "startLine": 12,
+        "startChar": 48,
+        "endLine": 12,
+        "endChar": 55
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afb8bffd_f242b3c4",
+        "filename": "src/foundation/api/apiserver/conf/routes",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "below section (till the end) seems to be identical to the previous file",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 80
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5441f0e_bb9c86b2",
+        "filename": "src/foundation/api/apiserver/public/css/bootstrap-3.3.6.min.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "imo, we can drop this + jquery/bootstrap js + fonts (basically most if not all of public dir) ...",
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "497876f3_69856e75",
+        "filename": "src/foundation/api/apiserver/tests/apptest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "I think a license header should be added to all source files.",
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2873cdcc_0b0126c6",
+        "filename": "src/foundation/api/docker/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "The resulting image is a bit big for what it does because:\n1. it includes all go package sources and binaries from the base image (proposed solution below);\n2. it includes unnecessary libs (jquery, bootstrap) via the contents of the public dir (I will add some more comments on those files instead of here);\n3. it is based on an already bigger base image (golang) instead of something small, more fit for an API, like busybox/alpine;\n\nThe overall size of this image is ~411MB in the current form and can be reduced to \u003c20MB by:\n- switching base image to alpine;\n- using the iec-apiserver-base image as a build stage container;\n- relying on `revel package` to pack the required application files;",
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82b96c57_086dd609",
+        "filename": "src/foundation/api/docker/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "FROM ${IMAGEFROM} AS build\nADD ./apiserver /go/src/apiserver\nRUN revel package apiserver -m prod \u0026\u0026 \\\n    mkdir -p /opt/apiserver \u0026\u0026 \\\n    tar xf /go/src/apiserver/apiserver.tar.gz -C /opt/apiserver\n\nFROM alpine:latest\nCOPY --from\u003dbuild /opt/apiserver /opt/apiserver\nENTRYPOINT [\"/opt/apiserver/run.sh\"]",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 58
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "661f7b15_2958b7ab",
+        "filename": "src/foundation/api/docker/Dockerfile.base",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "I would suggest using the Alpine container here (golang:1.12.7-alpine), so our resulting binary is linked against muslc instead of libc; which would allow us to also use the alpine base for the final Docker image (that runs our go binary).",
+      "range": {
+        "startLine": 1,
+        "startChar": 5,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2aee869a_e63d773b",
+        "filename": "src/foundation/api/docker/Dockerfile.base",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "If Alpine golang image is used, it also requires to have git installed, so we\u0027ll need this too:\n\n  apk add git \u0026\u0026 \\",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 4
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c137b36_4a2931e4",
+        "filename": "src/foundation/api/k8s/check.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-08-06T16:16:08Z",
+      "side": 1,
+      "message": "#!/bin/bash -ex\nso the scripts returns 0 only if all commands succeeded",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "1033001e49a7412f55d5e152dcf7281507a9cd44",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
