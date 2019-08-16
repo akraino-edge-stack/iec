@@ -26,4 +26,12 @@ K8S_WORKER_GROUP=(
 "10.169.40.106,123456"
 )
 
-
+# K8s parameter
+CLUSTER_IP=172.16.1.136 # Align with the value in our K8s setup script
+POD_NETWORK_CIDR=192.168.0.0/16
+#CNI type: flannel/calico/contivvpp
+CNI_TYPE=calico
+#kubernetes-cni version 0.7.5/ 0.6.0
+CNI_VERSION=0.6.0
+#kubernetes version: 1.15.2/ 1.13.0
+KUBE_VERSION=1.13.0
