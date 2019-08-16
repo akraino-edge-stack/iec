@@ -36,6 +36,10 @@ install_flannel(){
   kubectl apply -f "${SCRIPTS_DIR}/cni/flannel/kube-flannel.yml"
 }
 
+install_contiv(){
+  # Install the Contiv-vpp
+  echo "World peach!!!!!!!!!!!!!!"
+}
 
 case ${CNI_TYPE} in
  'calico')
@@ -45,6 +49,10 @@ case ${CNI_TYPE} in
  'flannel')
         echo "Install flannel ..."
         install_flannel
+        ;;
+ 'contivvpp')
+        echo "Install Contiv-vpp ..."
+        install_contiv
         ;;
  *)
         echo "${CNI_TYPE} does not supportted"
