@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2dbd5683_ef54051e",
+        "filename": "src/foundation/scripts/config",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 88
+      },
+      "writtenOn": "2019-08-21T07:29:09Z",
+      "side": 1,
+      "message": "I suggest to use 1.15.0 as the default here.",
+      "revId": "083dc01ac8876fb8ee13913854e550499bcd97db",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f653a90f_0e9aceb9",
+        "filename": "src/foundation/scripts/k8s_common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 88
+      },
+      "writtenOn": "2019-08-21T07:29:09Z",
+      "side": 1,
+      "message": "I suggest to use 1.15.0 as the default k8s version",
+      "range": {
+        "startLine": 12,
+        "startChar": 30,
+        "endLine": 13,
+        "endChar": 2
+      },
+      "revId": "083dc01ac8876fb8ee13913854e550499bcd97db",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fd9a1ea_d413b97d",
+        "filename": "src/foundation/scripts/k8s_common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 88
+      },
+      "writtenOn": "2019-08-21T07:29:09Z",
+      "side": 1,
+      "message": "Why to remove \"if ! grep -q -e \u0027fail-swap-on\u0027 $KUBELET_CFG; then\"?",
+      "revId": "083dc01ac8876fb8ee13913854e550499bcd97db",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
