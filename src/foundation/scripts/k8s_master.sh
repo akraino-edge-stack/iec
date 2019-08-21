@@ -5,6 +5,7 @@ MGMT_IP=$1
 POD_NETWORK_CIDR=${2:-192.168.0.0/16}
 SERVICE_CIDR=${3:-172.16.1.0/24}
 
+
 if [ -z "${MGMT_IP}" ]; then
   echo "Please specify a management IP!"
   exit 1
