@@ -51,8 +51,12 @@ deploy_k8s () {
   sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${INSTALL_SOFTWARE}
   sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_MASTER} | tee ${LOG_FILE}
 
-  TOKEN_ID=$(grep "\--token " ./${LOG_FILE} | cut -f5 -d' ')
-  TOKEN_CA_SH256=$(grep "\--discovery-token-ca-cert-hash " ./${LOG_FILE} |cut -f2 -d':')
+  TOKEN=$(grep "\--token " ./${LOG_FILE})
+  SUBSTR=${TOKEN#*"token "}
+  TOKEN_ID=$(echo ${TOKEN#*"token "}|cut -f1 -d' ')
+
+  SH256=$(grep "\--discovery-token-ca-cert-hash " ./${LOG_FILE})
+  TOKEN_CA_SH256=${SH256#*"sha256:"}
 
   KUBEADM_JOIN_CMD="kubeadm join ${K8S_MASTER_IP}:6443 --token ${TOKEN_ID} --discovery-token-ca-cert-hash sha256:${TOKEN_CA_SH256}"
 
