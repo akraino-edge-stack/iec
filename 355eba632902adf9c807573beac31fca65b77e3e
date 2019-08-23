@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5464684_f0f220e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-08-23T09:33:22Z",
+      "side": 1,
+      "message": "The CNI is generally a Kubernetes cluster attribute, are you sure it only applies to the master node?",
+      "revId": "355eba632902adf9c807573beac31fca65b77e3e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d4c11ef_2b5aaed3",
+        "filename": "src/foundation/scripts/config",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-08-23T09:33:22Z",
+      "side": 1,
+      "message": "I think it\u0027s better if you add some comments with the possible values, otherwise this is unused code",
+      "revId": "355eba632902adf9c807573beac31fca65b77e3e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d327a0c4_4851a258",
+        "filename": "src/foundation/scripts/config",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-08-23T09:33:22Z",
+      "side": 1,
+      "message": "extra empty line not needed",
+      "revId": "355eba632902adf9c807573beac31fca65b77e3e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
