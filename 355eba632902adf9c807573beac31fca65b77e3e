@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "500b7db9_a8d6aa92",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-08-23T10:03:57Z",
+      "side": 1,
+      "message": "https://gerrit.akraino.org/r/c/iec/+/1454  this patch is about worker node support contivpp",
+      "parentUuid": "c5464684_f0f220e6",
+      "revId": "355eba632902adf9c807573beac31fca65b77e3e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d4c11ef_2b5aaed3",
         "filename": "src/foundation/scripts/config",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "872025dc_c022fdb5",
+        "filename": "src/foundation/scripts/config",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-08-23T10:03:57Z",
+      "side": 1,
+      "message": "Until now IEC have support three kind CNI, calico,flannel and contivpp. \nI don`t understand real meaning of this comments.",
+      "parentUuid": "8d4c11ef_2b5aaed3",
+      "revId": "355eba632902adf9c807573beac31fca65b77e3e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d327a0c4_4851a258",
         "filename": "src/foundation/scripts/config",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2019-08-23T09:33:22Z",
       "side": 1,
       "message": "extra empty line not needed",
+      "revId": "355eba632902adf9c807573beac31fca65b77e3e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "459c559a_ca5a496b",
+        "filename": "src/foundation/scripts/config",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-08-23T10:03:57Z",
+      "side": 1,
+      "message": "https://gerrit.akraino.org/r/c/iec/+/1454/1/src/foundation/scripts/config#45  fixed this issue,",
+      "parentUuid": "d327a0c4_4851a258",
       "revId": "355eba632902adf9c807573beac31fca65b77e3e",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
