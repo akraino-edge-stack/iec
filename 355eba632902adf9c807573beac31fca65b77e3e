@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "9a150ba1_2f030790",
+        "filename": "src/foundation/scripts/config",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-08-23T12:11:07Z",
+      "side": 1,
+      "message": "You can probably just delete it.",
+      "parentUuid": "872025dc_c022fdb5",
+      "revId": "355eba632902adf9c807573beac31fca65b77e3e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d327a0c4_4851a258",
         "filename": "src/foundation/scripts/config",
         "patchSetId": 3
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "https://gerrit.akraino.org/r/c/iec/+/1454/1/src/foundation/scripts/config#45  fixed this issue,",
       "parentUuid": "d327a0c4_4851a258",
+      "revId": "355eba632902adf9c807573beac31fca65b77e3e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f1f9594f_123de87b",
+        "filename": "src/foundation/scripts/config",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-08-23T12:11:07Z",
+      "side": 1,
+      "message": "Please rebase your patch in this case",
+      "parentUuid": "459c559a_ca5a496b",
       "revId": "355eba632902adf9c807573beac31fca65b77e3e",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
