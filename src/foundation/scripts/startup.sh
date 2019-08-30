@@ -71,7 +71,12 @@ deploy_k8s () {
     sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} ${INSTALL_SOFTWARE}
     sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} "echo \"sudo ${KUBEADM_JOIN_CMD}\" >> ./iec/src/foundation/scripts/k8s_worker.sh"
     sleep 2
-    sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} "swapon -a"
+    if [ -n "${CNI_TYPE}" ] && [ ${CNI_TYPE} == "contivpp" ] && [ -n "${DEV_NAME[$ip_addr]}" ]
+    then
+      CONTIVPP_CONFIG="cd iec/src/foundation/scripts/cni/contivpp && sudo ./contiv-update-config.sh ${DEV_NAME[$ip_addr]}"
+      sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} $CONTIVPP_CONFIG
+    fi
+    sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} "sudo swapon -a"
     sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} ${SETUP_WORKER}
 
   done
