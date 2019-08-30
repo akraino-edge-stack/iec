@@ -11,6 +11,7 @@ fi
 CLUSTER_IP=${1:-172.16.1.136} # Align with the value in our K8s setup script
 POD_NETWORK_CIDR=${2:-192.168.0.0/16}
 CNI_TYPE=${3:-calico}
+DEV_NAME=${4:-}
 
 SCRIPTS_DIR=$(dirname "${BASH_SOURCE[0]}")
 
@@ -36,9 +37,13 @@ install_flannel(){
   kubectl apply -f "${SCRIPTS_DIR}/cni/flannel/kube-flannel.yml"
 }
 
-install_contiv(){
-  # Install the Contiv-vpp
-  echo "World peach!!!!!!!!!!!!!!"
+install_contivpp(){
+  # Update vpp config file
+  ${SCRIPTS_DIR}/cni/contivpp/contiv-update-config.sh $DEV_NAME
+
+  # Install contivpp CNI
+  sed -i "s@10.1.0.0/16@${POD_NETWORK_CIDR}@" "${SCRIPTS_DIR}/cni/contivpp/contiv-vpp.yaml"
+  kubectl apply -f "${SCRIPTS_DIR}/cni/contivpp/contiv-vpp.yaml"
 }
 
 case ${CNI_TYPE} in
@@ -50,12 +55,12 @@ case ${CNI_TYPE} in
         echo "Install flannel ..."
         install_flannel
         ;;
- 'contivvpp')
-        echo "Install Contiv-vpp ..."
-        install_contiv
+ 'contivpp')
+        echo "Install Contiv-VPP ..."
+        install_contivpp
         ;;
  *)
-        echo "${CNI_TYPE} does not supportted"
+        echo "${CNI_TYPE} is not supported"
         exit 1
         ;;
 esac
