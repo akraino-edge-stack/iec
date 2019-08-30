@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bc8f8a3_5e60eaef",
+        "filename": "src/foundation/scripts/cni/contivpp/contiv-update-config.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-08-30T14:00:18Z",
+      "side": 1,
+      "message": "extra input?",
+      "range": {
+        "startLine": 11,
+        "startChar": 19,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "0167646640ec7aa5fc35202644b2e0833c5a07fc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0e662f1_1e847655",
+        "filename": "src/foundation/scripts/cni/contivpp/contiv-update-config.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-08-30T14:00:18Z",
+      "side": 1,
+      "message": "I am a bit confused about this parameter, it works both with mawk and gawk (the two most frequent alternatives of awk), but with mawk it also complains about regular expresion compile failed.\nCould it work with \u0027@| \u0027 only?",
+      "range": {
+        "startLine": 18,
+        "startChar": 53,
+        "endLine": 18,
+        "endChar": 57
+      },
+      "revId": "0167646640ec7aa5fc35202644b2e0833c5a07fc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82387245_6b715a42",
+        "filename": "src/foundation/scripts/cni/contivpp/contiv-update-config.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-08-30T14:00:18Z",
+      "side": 1,
+      "message": "maybe",
+      "range": {
+        "startLine": 21,
+        "startChar": 29,
+        "endLine": 21,
+        "endChar": 35
+      },
+      "revId": "0167646640ec7aa5fc35202644b2e0833c5a07fc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "946b8c45_d990afaf",
+        "filename": "src/foundation/scripts/setup-cni.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2019-08-30T14:00:18Z",
+      "side": 1,
+      "message": "is not supported",
+      "range": {
+        "startLine": 63,
+        "startChar": 26,
+        "endLine": 63,
+        "endChar": 45
+      },
+      "revId": "0167646640ec7aa5fc35202644b2e0833c5a07fc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
