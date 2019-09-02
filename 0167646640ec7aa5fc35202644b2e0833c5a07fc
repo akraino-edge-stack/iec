@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8b9df3b4_6ed15b9d",
+        "filename": "src/foundation/scripts/cni/contivpp/contiv-update-config.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-09-02T03:06:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bc8f8a3_5e60eaef",
+      "range": {
+        "startLine": 11,
+        "startChar": 19,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "0167646640ec7aa5fc35202644b2e0833c5a07fc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0e662f1_1e847655",
         "filename": "src/foundation/scripts/cni/contivpp/contiv-update-config.sh",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "4fc160d8_59e1cb07",
+        "filename": "src/foundation/scripts/cni/contivpp/contiv-update-config.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-09-02T03:06:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0e662f1_1e847655",
+      "range": {
+        "startLine": 18,
+        "startChar": 53,
+        "endLine": 18,
+        "endChar": 57
+      },
+      "revId": "0167646640ec7aa5fc35202644b2e0833c5a07fc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82387245_6b715a42",
         "filename": "src/foundation/scripts/cni/contivpp/contiv-update-config.sh",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2019-08-30T14:00:18Z",
       "side": 1,
       "message": "maybe",
+      "range": {
+        "startLine": 21,
+        "startChar": 29,
+        "endLine": 21,
+        "endChar": 35
+      },
+      "revId": "0167646640ec7aa5fc35202644b2e0833c5a07fc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98cbcbd4_871cffce",
+        "filename": "src/foundation/scripts/cni/contivpp/contiv-update-config.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2019-09-02T03:06:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82387245_6b715a42",
       "range": {
         "startLine": 21,
         "startChar": 29,
