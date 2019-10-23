@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b90feaba_2aeb1aa0",
+        "filename": "src/foundation/scripts/k8s_master.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-10-23T14:08:28Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be `yes | sudo cp -rf ...`?",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 19
+      },
+      "revId": "c245320130a3ae4ca7e8a95795985f79c2673319",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
