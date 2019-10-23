@@ -1,4 +1,5 @@
 #!/bin/bash -ex
+# shellcheck source=/dev/null
 
 # For host setup as Kubernetes master
 MGMT_IP=$1
@@ -25,7 +26,7 @@ if ! kubectl get nodes; then
   fi
 
   mkdir -p "${HOME}/.kube"
-  sudo cp /etc/kubernetes/admin.conf "${HOME}/.kube/config"
+  yes | sudo cp -rf /etc/kubernetes/admin.conf "${HOME}/.kube/config"
   sudo chown "$(id -u)":"$(id -g)" "${HOME}/.kube/config"
 
   sleep 5
