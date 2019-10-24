@@ -47,7 +47,7 @@ deploy_k8s () {
            cd iec/src/foundation/scripts/ && source k8s_common.sh $KUBE_VERSION $CNI_VERSION"
 
   #Automatic deploy the K8s environments on Master node
-  SETUP_MASTER="cd iec/src/foundation/scripts/ && source k8s_master.sh ${K8S_MASTER_IP}"
+  SETUP_MASTER="cd iec/src/foundation/scripts/ && source k8s_master.sh ${K8S_MASTER_IP} ${POD_NETWORK_CIDR} ${SVC_CIDR}"
   sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${INSTALL_SOFTWARE}
   sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_MASTER} | tee ${LOG_FILE}
 
@@ -83,7 +83,7 @@ deploy_k8s () {
 
 
   #Deploy etcd & CNI from master node
-  SETUP_CNI="cd iec/src/foundation/scripts && source setup-cni.sh $CLUSTER_IP $POD_NETWORK_CIDR $CNI_TYPE"
+  SETUP_CNI="cd iec/src/foundation/scripts && source setup-cni.sh $CLUSTER_IP $POD_NETWORK_CIDR $CNI_TYPE $K8S_MASTER_IP $SVC_CIDR"
   sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_CNI}
   SETUP_HELM="cd iec/src/foundation/scripts && source helm.sh"
   sshpass -p ${K8S_MASTERPW} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${K8S_MASTER_IP} ${SETUP_HELM}
