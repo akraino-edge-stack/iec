@@ -75,6 +75,18 @@ install_ovn_kubernetes(){
 
 }
 
+install_danm(){
+  ${SCRIPTS_DIR}/cni/danm/danm_install.sh
+
+  # Deploying DANM suite into K8s cluster
+  kubectl create -f ${SCRIPTS_DIR}/cni/danm/integration/crds/lightweight/
+
+  # Create the netwatcher DaemonSet
+  kubectl create -f ${SCRIPTS_DIR}/cni/danm/integration/manifests/netwatcher/
+
+  #flannel as  bootstrap networking solution
+  install_flannel
+}
 
 case ${CNI_TYPE} in
  'calico')
@@ -92,6 +104,10 @@ case ${CNI_TYPE} in
  'ovn-kubernetes')
         echo "Install Ovn-Kubernetes ..."
         install_ovn_kubernetes
+        ;;
+ 'danm')
+        echo "Install danm ..."
+        install_danm
         ;;
  *)
         echo "${CNI_TYPE} is not supported"
