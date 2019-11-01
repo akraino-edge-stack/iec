@@ -4,7 +4,7 @@
 set -o errexit
 set -o xtrace
 
-#cd $ONOS_PATH
+#cd $ONOS_PATH; git checkout v1.13.5
 
 #building onos docker image
-docker build -t iecedge/onos_arm64:v1.13.5 .
+docker build -t iecedge/onos_arm64:v1.13.5.2 .
