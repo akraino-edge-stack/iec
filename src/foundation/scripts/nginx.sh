@@ -61,7 +61,7 @@ done
 [ $attempts -gt 0 ] || exit 1
 
 svcip=$(kubectl get services nginx  -o json | grep clusterIP | cut -f4 -d'"')
-sleep 10
+sleep 20
 wget -O /dev/null "http://$svcip"
 kubectl delete -f "${NGINX_APP}"
 rm -f "${NGINX_APP}"
