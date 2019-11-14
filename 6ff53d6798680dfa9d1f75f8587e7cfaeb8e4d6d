@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "241b8152_dd299ffb",
+        "filename": "src/foundation/scripts/cni/danm/danm_install.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-11-14T13:10:32Z",
+      "side": 1,
+      "message": "I assume this are aarch64 binaries, which will break on x86 installations.\nAn architecture check should be added, or at least this limitation should be documented somehow.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "6ff53d6798680dfa9d1f75f8587e7cfaeb8e4d6d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
