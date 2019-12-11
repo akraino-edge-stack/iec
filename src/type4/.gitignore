@@ -1,0 +1,13 @@
+*.mp4
+*.jpg
+*.jpeg
+*~
+tmp/
+log_bitmaps/
+test_data/
+*.pyc
+*.o
+*.a
+*.class
+*.swp
+*.backup
