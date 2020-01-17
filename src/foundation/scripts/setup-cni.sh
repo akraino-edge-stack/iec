@@ -75,6 +75,15 @@ install_ovn_kubernetes(){
 
 }
 
+install_multus_sriov_flannel(){
+
+  sed -i "s@10.244.0.0/16@${POD_NETWORK_CIDR}@" "${SCRIPTS_DIR}/cni/multus/multus-sriov-flannel/flannel-daemonset.yml"
+  # Install Multus Flannel+SRIOV by yaml files
+  # shellcheck source=/dev/null
+  source ${SCRIPTS_DIR}/cni/multus/multus-sriov-flannel/install.sh
+
+}
+
 install_danm(){
   ${SCRIPTS_DIR}/cni/danm/danm_install.sh
 
@@ -104,6 +113,10 @@ case ${CNI_TYPE} in
  'ovn-kubernetes')
         echo "Install Ovn-Kubernetes ..."
         install_ovn_kubernetes
+        ;;
+ 'multus-flannel-sriov')
+        echo "Install Flannel with SRIOV CNI by Multus-CNI ..."
+        install_multus_sriov_flannel
         ;;
  'danm')
         echo "Install danm ..."
