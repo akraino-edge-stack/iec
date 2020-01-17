@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperfv2-client-sriov
+  labels: 
+    app: iperfv2-client-sriov
+  annotations:
+    k8s.v1.cni.cncf.io/networks: sriov-net1
+    #spec:
+    #  replicas: 1
+    #  template:
+    #metadata:
+    #  labels:
+    #    app: iperf-client
+        # ldpreload-related labels
+spec:
+  containers:
+    - image: iecedge/iperf-arm64:latest
+      imagePullPolicy: IfNotPresent
+      name: iperf3-client
+      command: ["bash"]
+      args: ["-c", "while true; do sleep 30; done;"]
+      resources:
+        requests:
+          arm.com/ps225_sriov_netdevice: '1'
+        limits:
+          arm.com/ps225_sriov_netdevice: '1'
+#        securityContext:
+#          privileged: true

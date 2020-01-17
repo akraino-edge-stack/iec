@@ -1,0 +1,41 @@
+#apiVersion: extensions/v1beta1
+apiVersion: apps/v1
+kind: Service
+apiVersion: v1
+metadata:
+  name: iperfv2-server-sriov
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 5001
+      targetPort: 5001
+      #nodePort: 31050
+  selector:
+    app: iperfv2-server-sriov
+---
+apiVersion: v1
+#kind: Deployment
+kind: Pod
+metadata:
+  name: iperfv2-server-sriov
+  labels:
+    app: iperfv2-server-sriov
+  annotations:
+    k8s.v1.cni.cncf.io/networks: sriov-net1
+spec:
+      containers:
+      - image: iecedge/iperf-arm64
+        imagePullPolicy: IfNotPresent
+        name: iperfv2-server-sriov
+        ports:
+        - containerPort: 5001
+        command: ["iperf"]
+        args: ["-s"]
+        resources:
+          requests:
+            arm.com/ps225_sriov_netdevice: '1'
+          limits:
+            arm.com/ps225_sriov_netdevice: '1'
+#        securityContext:
+#          privileged: true

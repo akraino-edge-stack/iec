@@ -1,0 +1,22 @@
+# An example of Pod spec using above SR-IOV CRD:
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testpod2
+  labels:
+    env: test
+  annotations:
+    k8s.v1.cni.cncf.io/networks: sriov-net1
+spec:
+  containers:
+  - name: appcntr2
+    image: iecedge/centos-tools-arm64
+    imagePullPolicy: IfNotPresent
+    command: [ "/bin/bash", "-c", "--" ]
+    args: [ "while true; do sleep 300000; done;" ]
+    resources:
+      requests:
+       arm.com/ps225_sriov_netdevice: '1'
+      limits:
+       arm.com/ps225_sriov_netdevice: '1'
+
