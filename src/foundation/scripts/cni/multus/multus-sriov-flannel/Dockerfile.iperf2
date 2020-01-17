@@ -1,0 +1,6 @@
+FROM ubuntu:18.04
+MAINTAINER The IPerf Project <trevor.tao@arm.com>
+
+RUN apt-get update && apt-get install -y iperf inetutils-ping iproute2
+
+CMD ["iperf -s &"]
