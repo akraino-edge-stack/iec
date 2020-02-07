@@ -49,6 +49,10 @@ case ${CNI_TYPE} in
     DANM_CONFIG="cd iec/src/foundation/scripts/cni/danm && sudo ./danm_install.sh"
     sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} $DANM_CONFIG
     ;;
+  cilium)
+    CILIUM_CONFIG="cd iec/src/foundation/scripts/cni/cilium && sudo ./cilium_install.sh"
+    sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} $CILIUM_CONFIG
+    ;;
   *)
     ;;
 esac
