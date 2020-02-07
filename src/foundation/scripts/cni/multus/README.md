@@ -32,7 +32,11 @@ For more information, please refer the above links in the [Introduction](#Introd
 
 ##Installation
 
-There are 4 yaml files give:
+To install the Multus-SRIOV-Calico or Multus-SRIOV-Flannel, the CNI_TYPE field should be set to 'multus-sriov-calico'
+or 'multus-sriov-flannel' correspondingly in the IEC's installation configuration file named as 'config', then do the
+CNI installation by setup-cni.sh.
+
+For SRIOV CNI with Flannel by Multus CNI, there are 4 yaml files give:
 1. configMap.yaml:
 The resource list configuration file for SRIOV device plugin
 1. multus-sriov-flannel-daemonsets.yaml
@@ -42,9 +46,21 @@ The Flannel CNI installation file
 1. sriov-crd.yaml
 The SRIOV CNI configuration file for the attached SRIOV interface resource.
 
+For SRIOV CNI with Calico by Multus CNI, there are 4 yaml files give:
+1. configMap.yaml:
+The resource list configuration file for SRIOV device plugin
+1. multus-sriov-calico-daemonsets.yaml
+The Multus, SRIOV device plugin&CNI configuration file
+1. calico-daemonset.yaml
+The Flannel CNI installation file
+1. sriov-crd.yaml
+The SRIOV CNI configuration file for the attached SRIOV interface resource.
+
 Usually users should modify the `configMap.yaml` and `sriov-crd.yaml` with their own corresponding networking configuration before doing the installation.
 
-A quick installation script is given as `install.sh`, and the uninstallation could be done by call the `uninstall.sh`.
+A quick installation script is given as `install.sh`, and the uninstallation could be done by call the `uninstall.sh`.Before you call the install.sh manually to do the install, you should set your desired POD_NETWORK or other parameters in the installation yaml files as we do in the setup-cni.sh.
+
+For Kubernets version >=1.16, there are some changes for Kubernetes API. There is a sample installation script for multus-sriov-calico named as install-k8s-v1.16.sh, which could be used as a sample when your K8s version >=1.16.
 
 **The `install.sh` should be called after the Kubernetes cluster had been installed but before installing the CNIs.**
 

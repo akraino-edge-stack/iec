@@ -1,0 +1,24 @@
+# yamllint disable
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: sriov-net1
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: arm.com/ps225_sriov_netdevice
+    #  "vlan": 1000,
+spec:
+  config: '{
+  "type": "sriov",
+  "cniVersion": "0.3.1",
+  "name": "sriov-network",
+  "ipam": {
+    "type": "host-local",
+    "subnet": "10.56.217.0/24",
+    "rangeStart": "10.56.217.11",
+    "rangeEnd": "10.56.217.181",
+    "routes": [{
+      "dst": "0.0.0.0/0"
+    }],
+    "gateway": "10.56.217.1"
+  }
+}'

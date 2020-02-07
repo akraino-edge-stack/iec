@@ -84,6 +84,16 @@ install_multus_sriov_flannel(){
 
 }
 
+install_multus_sriov_calico(){
+
+  sed -i "s@10.244.0.0/16@${POD_NETWORK_CIDR}@" \
+    "${SCRIPTS_DIR}/cni/multus/multus-sriov-calico/calico-daemonset.yaml"
+  # Install Multus Calico+SRIOV by yaml files
+  # shellcheck source=/dev/null
+  source ${SCRIPTS_DIR}/cni/multus/multus-sriov-calico/install.sh
+
+}
+
 install_danm(){
   ${SCRIPTS_DIR}/cni/danm/danm_install.sh
 
@@ -117,6 +127,10 @@ case ${CNI_TYPE} in
  'multus-flannel-sriov')
         echo "Install Flannel with SRIOV CNI by Multus-CNI ..."
         install_multus_sriov_flannel
+        ;;
+ 'multus-calico-sriov')
+        echo "Install Calico with SRIOV CNI by Multus-CNI ..."
+        install_multus_sriov_calico
         ;;
  'danm')
         echo "Install danm ..."
