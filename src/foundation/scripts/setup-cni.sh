@@ -97,6 +97,12 @@ install_danm(){
   install_flannel
 }
 
+install_cilium(){
+  ${SCRIPTS_DIR}/cni/cilium/cilium_install.sh
+
+  # Deploying cilium CNI
+  kubectl create -f ${SCRIPTS_DIR}/cni/cilium/quick-install.yaml
+}
 case ${CNI_TYPE} in
  'calico')
         echo "Install calico ..."
@@ -121,6 +127,10 @@ case ${CNI_TYPE} in
  'danm')
         echo "Install danm ..."
         install_danm
+        ;;
+ 'cilium')
+        echo "Install cilium ..."
+        install_cilium
         ;;
  *)
         echo "${CNI_TYPE} is not supported"
