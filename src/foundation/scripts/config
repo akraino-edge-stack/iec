@@ -30,7 +30,7 @@ K8S_WORKER_GROUP=(
 CLUSTER_IP=172.16.1.136 # Align with the value in our K8s setup script
 POD_NETWORK_CIDR=192.168.0.0/16
 SVC_CIDR=172.16.1.0/24
-#IEC support three kinds network solution for Kubernetes: calico,flannel,contivpp
+#IEC support multiple network solution for Kubernetes: calico,flannel,contivpp,cilium,etc
 CNI_TYPE=calico
 #kubernetes-cni version 0.7.5/ 0.6.0
 CNI_VERSION=0.6.0
