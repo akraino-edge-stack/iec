@@ -10,9 +10,9 @@ fi
 
 CNI_TYPE=${1:-calico}
 POD_NETWORK_CIDR=${2:-192.168.0.0/16}
-CLUSTER_IP=${3:-172.16.1.136} # Align with the value in our K8s setup script
-K8S_MASTER_IP=${4:-10.169.41.173}
-SERVICE_CIDR=${5:-172.16.1.0/24}
+K8S_MASTER_IP=${3:-10.169.41.173}
+SERVICE_CIDR=${4:-172.16.1.0/24}
+CLUSTER_IP=${5:-172.16.1.136} # Align with the value in our K8s setup script
 DEV_NAME=${6:-}
 
 SCRIPTS_DIR=$(dirname "${BASH_SOURCE[0]}")
@@ -107,6 +107,11 @@ install_danm(){
   install_flannel
 }
 
+# Remove the taints on master node
+# Taint master before installing the CNI for the case that there is
+# only one master node
+kubectl taint nodes --all node-role.kubernetes.io/master- || true
+
 install_cilium(){
   ${SCRIPTS_DIR}/cni/cilium/cilium_install.sh
 
@@ -152,5 +157,3 @@ case ${CNI_TYPE} in
         ;;
 esac
 
-# Remove the taints on master node
-kubectl taint nodes --all node-role.kubernetes.io/master- || true
