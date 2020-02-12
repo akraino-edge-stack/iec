@@ -3,6 +3,7 @@ set -x
 #Uninstall the k8s-master & k8s-worker node from Mgnt node
 #
 
+
 # Get OS version
 if grep -q -e rhel /etc/*-release; then
   OS_ID_LIKE=${1:-rhel}
