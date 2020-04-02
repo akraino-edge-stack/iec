@@ -8,6 +8,7 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
+
 # This script builds the cord-tester multi-arch docker image.
 # The main purpose of this image is to run the cord-tester tests, i.e. SIAB.
 # The existing image in iecedge/cord-tester:arm64 also contains the amd64
@@ -15,4 +16,4 @@
 set -o errexit
 set -o xtrace
 
-docker build -f Dockerfile.cord-tester -t iecedge/cord-tester:cord-7.0-arm64 .
+docker build -f Dockerfile.cord-tester -t iecedge/cord-tester:cord-7.0-amd64 .
