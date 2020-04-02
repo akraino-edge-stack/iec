@@ -7,4 +7,4 @@
 set -o errexit
 set -o xtrace
 
-docker build -f Dockerfile.cord-tester -t iecedge/cord-tester:cord-7.0-arm64 .
+docker build -f Dockerfile.cord-tester -t iecedge/cord-tester:cord-7.0-amd64 .
