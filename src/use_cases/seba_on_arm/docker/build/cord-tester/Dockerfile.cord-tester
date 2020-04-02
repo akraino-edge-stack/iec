@@ -14,21 +14,7 @@
 # limitations under the License.                                             #
 ##############################################################################
 
-# ref: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#use-multi-stage-builds
-
-FROM ubuntu:xenial as build
-ENV DIRPATH /workspace
-WORKDIR $DIRPATH
-# Dependency for kafka pip package; needed for aarch64 image
-RUN apt update && apt install -y curl make build-essential
-RUN curl -L https://github.com/edenhill/librdkafka/archive/v0.11.6.tar.gz | \
-    tar xzf - \
-    && cd librdkafka-0.11.6/ \
-    && ./configure --prefix=/usr \
-    && make -j
-RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg > key.gpg
-
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 ENV DIRPATH /workspace
 WORKDIR $DIRPATH
 
@@ -36,24 +22,22 @@ WORKDIR $DIRPATH
 ARG KUBE_VERSION=1.13.0-00
 ARG TEST_USER=ubuntu
 
-COPY --from=build $DIRPATH/librdkafka-0.11.6 librdkafka-0.11.6
-COPY --from=build $DIRPATH/key.gpg key.gpg
-RUN apt-key add key.gpg
-
 # Install packages required by cord-tester
+RUN apt update && apt install -y lsb-release openssh-server sudo curl \
+    python-pip virtualenv python3-dev \
+    git libffi-dev libssl-dev libpq-dev
+
+# For now still using old Kubernetes from Xenial to map with IEC version
 RUN echo "deb http://packages.cloud.google.com/apt kubernetes-xenial main" >\
     /etc/apt/sources.list.d/kubernetes.list
-RUN apt update && apt install -y lsb-release openssh-server sudo \
-    python python-pip python-dev \
-    git make libffi-dev libssl-dev libpq-dev \
-    kubectl=$KUBE_VERSION
-
-RUN make -C librdkafka-0.11.6 install && rm -rf librdkafka-0.11.6
+RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg > key.gpg
+RUN apt-key add key.gpg
+RUN apt update && apt install kubectl=$KUBE_VERSION
 
 RUN pip install virtualenv
 RUN apt-mark hold kubectl && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
-RUN useradd -m -s /bin/bash --system -G sudo \
-    -p $(openssl passwd -1 $TEST_USER) $TEST_USER
-RUN echo "ubuntu\tALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/90-docker-users
+RUN groupadd -r $TEST_USER && useradd -m -s /bin/bash -g $TEST_USER \                                                                                                                                            
+    --system -G sudo -p $(openssl passwd -1 $TEST_USER) $TEST_USER                                                                                                                                               
+RUN echo "$TEST_USER\tALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/90-docker-users
 USER $TEST_USER
