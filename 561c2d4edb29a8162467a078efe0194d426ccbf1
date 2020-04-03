@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4510a255_955de6b6",
+        "filename": "src/foundation/scripts/k8s_common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2020-04-03T01:55:12Z",
+      "side": 1,
+      "message": "Should be 0?",
+      "range": {
+        "startLine": 61,
+        "startChar": 36,
+        "endLine": 61,
+        "endChar": 37
+      },
+      "revId": "561c2d4edb29a8162467a078efe0194d426ccbf1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
