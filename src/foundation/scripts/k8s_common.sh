@@ -57,6 +57,9 @@ esac
 # Disable swap on your machine
 sudo swapoff -a
 
+# Set memory overcommit to 0 for extra checks during memory allocation
+sudo sysctl -w vm.overcommit_memory=1
+
 case ${OS_ID_LIKE:-} in
 debian)
   # Install Kubernetes with Kubeadm
