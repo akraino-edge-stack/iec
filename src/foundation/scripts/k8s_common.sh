@@ -101,4 +101,6 @@ sudo systemctl restart docker kubelet
 sudo modprobe br_netfilter
 _conf='/etc/sysctl.d/99-akraino-iec.conf'
 echo 'net.bridge.bridge-nf-call-iptables = 1' |& sudo tee "${_conf}"
+# Set memory overcommit to 0 for extra checks during memory allocation
+echo 'vm.overcommit_memory = 0' |& sudo tee "${_conf}"
 sudo sysctl -q -p "${_conf}"
