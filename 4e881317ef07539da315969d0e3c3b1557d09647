@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafe7fa6_6838d1d5",
+        "filename": "src/foundation/scripts/k8s_common.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 148
+      },
+      "writtenOn": "2020-04-06T13:25:01Z",
+      "side": 1,
+      "message": "Should add \"-a\" option?",
+      "range": {
+        "startLine": 105,
+        "startChar": 40,
+        "endLine": 105,
+        "endChar": 54
+      },
+      "revId": "4e881317ef07539da315969d0e3c3b1557d09647",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
