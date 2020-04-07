@@ -22,6 +22,30 @@
       "revId": "4b75f9650d2de38f1d48ab5799d1edf6c47592f3",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd73d301_20e2686d",
+        "filename": "src/foundation/scripts/k8s_common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 88
+      },
+      "writtenOn": "2020-04-07T08:14:22Z",
+      "side": 1,
+      "message": "Yes, we could add this line to that file too.",
+      "parentUuid": "d494d3d0_588201f0",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 37
+      },
+      "revId": "4b75f9650d2de38f1d48ab5799d1edf6c47592f3",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
