@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4cdbbb4a_0733aeaa",
+        "filename": "src/use_cases/seba_on_arm/install/install.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-09T13:05:52Z",
+      "side": 1,
+      "message": "I think we can rename this script to install-7.0.sh and make install.sh a symlink to it, to make it more obvious that install.sh installs 7.0 and that we support both 6.1.0 and 7.0.",
+      "revId": "5c5dc728815c52a1eec95111f2fd0ddb2c98b83a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79260029_1ee8b11e",
+        "filename": "src/use_cases/seba_on_arm/install/install.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-09T13:05:52Z",
+      "side": 1,
+      "message": "git supports running in specific dir using `-C`, similar to make:\n\n  git -C \"${AUTO_TOOLS}\" checkout \"${AUTO_TOOLS_REV}\")\n\nNote that this requires a new enough version of git (if I remember right, CentOS 6 has an older git that doesn\u0027t support this flag), but it should work in the enviroment used by IEC (Ubuntu 16/18 and CentOS7).",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 54
+      },
+      "revId": "5c5dc728815c52a1eec95111f2fd0ddb2c98b83a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "501fb4dd_fd26c03f",
+        "filename": "src/use_cases/seba_on_arm/install/install.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-09T13:05:52Z",
+      "side": 1,
+      "message": "We could ommit `test -L` and instead always force link (re)creation using:\n\n  ln -sf \"${basepath}/../../src_repo/helm-charts\" \"${CHARTS}\"",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 62
+      },
+      "revId": "5c5dc728815c52a1eec95111f2fd0ddb2c98b83a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7aecec2_76a6126b",
+        "filename": "src/use_cases/seba_on_arm/install/install.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-09T13:05:52Z",
+      "side": 1,
+      "message": "Running `shellcheck` on this file warns about:\n\n  $ shellcheck install.sh\n\n  In install.sh line 33:\n  . env.sh\n  ^-- SC1091: Not following: env.sh was not specified as input (see shellcheck -x).\n\nEither disable SC1091 (similar to SC2016 at the top of this file) or add the following comment before this line to silence shellcheck:\n\n  # shellcheck source\u003d/dev/null",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 8
+      },
+      "revId": "5c5dc728815c52a1eec95111f2fd0ddb2c98b83a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
