@@ -30,6 +30,7 @@ test -d "${CHARTS}" || test -L "${CHARTS}" || \
     ln -s "${basepath}/../../src_repo/helm-charts" "${CHARTS}"
 
 cd "${AUTO_TOOLS}/seba-in-a-box"
+# shellcheck source=/dev/null
 . env.sh
 
 # Now calling make, to install PONSim
