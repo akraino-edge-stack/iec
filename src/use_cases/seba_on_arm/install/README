@@ -16,3 +16,5 @@ SEBA on Arm Installation Guide
    For a known Kubernetes issues, you may need to add to the node you would like to access:
    $sudo iptables -A FORWARD -j ACCEPT
    if you can only access the GUI from the node where xos-gui pod runs.
+
+NOTE: install-cord-6.1.0.sh is using cord 6.1.0 and install.sh is using cord 7.0.0
