@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5eba385d_c951efbb",
+        "filename": "src/use_cases/seba_on_arm/test/ponsim/test.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 88
+      },
+      "writtenOn": "2020-04-09T08:39:41Z",
+      "side": 1,
+      "message": "the Copyright here could be \"Akraino IEC team\"?",
+      "range": {
+        "startLine": 3,
+        "startChar": 30,
+        "endLine": 3,
+        "endChar": 36
+      },
+      "revId": "e6e6515243ffc4e73f19a942ebd8c09647cd7fa2",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
