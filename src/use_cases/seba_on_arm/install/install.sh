@@ -1,48 +1,36 @@
-#!/bin/bash -ex
+#!/bin/bash
 # shellcheck disable=SC2016
 
-#Modified from https://github.com/cachengo/seba_charts/blob/master/scripts/installSEBA.sh
+set -ex
 
 basepath=$(cd "$(dirname "$0")"; pwd)
-CORD_REPO=${CORD_REPO:-https://charts.opencord.org}
-CORD_PLATFORM_VERSION=${CORD_PLATFORM_VERSION:-6.1.0}
-SEBA_VERSION=${SEBA_VERSION:-1.0.0}
-ATT_WORKFLOW_VERSION=${ATT_WORKFLOW_VERSION:-1.0.2}
-CORD_CHART=${CORD_CHART:-${basepath}/../src_repo/seba_charts}
 
-# TODO(alav): Make each step re-entrant
+export M=/tmp/milestones
+export SEBAVALUE=
+export WORKSPACE=${HOME}
 
-# shellcheck source=/dev/null
-source util.sh
+# Using opencord automation-tools from the cord-6.1 maintenance branch
+AUTO_TOOLS="${WORKSPACE}/automation-tools"
+AUTO_TOOLS_REPO="https://github.com/iecedge/automation-tools.git"
+AUTO_TOOLS_REV=${AUTO_TOOLS_VER:-cord-7.0-arm64}
 
-wait_for 10 'test $(kubectl get pods --all-namespaces | grep -ce "tiller.*Running") -eq 1'
+rm -rf "${M}"
+mkdir -p "${M}" "${WORKSPACE}/cord/test"
 
-# Add the CORD repository and update indexes
+# Update helm-charts submdule needed later
+# ignore subproject commit and use latest remote version
+git submodule update --init --remote "${basepath}/../../src_repo/helm-charts"
 
-if [ "$(uname -m)" == "aarch64" ]; then
-  if [ ! -d "${CORD_CHART}/cord-platform" ]; then
-    #git clone https://github.com/iecedge/seba_charts ${CORD_CHART}
-    cd "$(git rev-parse --show-toplevel)"
-    git submodule update --init "${CORD_CHART}"
-    cd "${basepath}/../src_repo"
-  fi
-else
-  helm repo add cord "${CORD_REPO}"
-  helm repo update
-  CORD_CHART=cord
-fi
+test -d "${AUTO_TOOLS}" || git clone "${AUTO_TOOLS_REPO}" "${AUTO_TOOLS}"
+(cd "${AUTO_TOOLS}"; git checkout "${AUTO_TOOLS_REV}")
 
+# Faking helm-charts repo clone to our own git submodule if not already there
+CHARTS="${WORKSPACE}/cord/helm-charts"
+test -d "${CHARTS}" || test -L "${CHARTS}" || \
+    ln -s "${basepath}/../../src_repo/helm-charts" "${CHARTS}"
 
-# Install the CORD platform
-helm install -n cord-platform ${CORD_CHART}/cord-platform --version="${CORD_PLATFORM_VERSION}"
-# Wait until 3 etcd CRDs are present in Kubernetes
-wait_for 300 'test $(kubectl get crd | grep -ice etcd) -eq 3' || true
+cd "${AUTO_TOOLS}/seba-in-a-box"
+. env.sh
 
-# Install the SEBA profile
-helm install -n seba --version "${SEBA_VERSION}" ${CORD_CHART}/seba
-wait_for 500 'test $(kubectl get pods | grep -vcE "(\s(.+)/\2.*Running|tosca-loader.*Completed)") -eq 1' || true
-
-# Install the AT&T workflow
-helm install -n att-workflow --version "${ATT_WORKFLOW_VERSION}" ${CORD_CHART}/att-workflow
-wait_for 500 'test $(kubectl get pods | grep -vcE "(\s(.+)/\2.*Running|tosca-loader.*Completed)") -eq 1' || true
-
+# Now calling make, to install PONSim
+make stable
