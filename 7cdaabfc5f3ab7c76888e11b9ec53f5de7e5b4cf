@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52ff335b_020bb90e",
+        "filename": "src/use_cases/seba_on_arm/install/README",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2020-04-09T14:15:33Z",
+      "side": 1,
+      "message": "let\u0027s set this to cord-platform-6.1.0, matching the name of the chart in https://charts.opencord.org/",
+      "range": {
+        "startLine": 20,
+        "startChar": 37,
+        "endLine": 20,
+        "endChar": 47
+      },
+      "revId": "7cdaabfc5f3ab7c76888e11b9ec53f5de7e5b4cf",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df550e40_93ea2673",
+        "filename": "src/use_cases/seba_on_arm/install/README",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2020-04-09T14:15:33Z",
+      "side": 1,
+      "message": "Same as before, cord-platform-7.1.0. We don\u0027t have one in iecedge, but this is what it maps to and we might create one for iecedge anyway.",
+      "range": {
+        "startLine": 20,
+        "startChar": 72,
+        "endLine": 20,
+        "endChar": 82
+      },
+      "revId": "7cdaabfc5f3ab7c76888e11b9ec53f5de7e5b4cf",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
