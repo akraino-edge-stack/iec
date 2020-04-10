@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0406545c_502d43b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-10T12:32:34Z",
+      "side": 1,
+      "message": "nitpick: commit message should not end with \u0027.\u0027, see [1].\n\n[1] https://wiki.openstack.org/wiki/GitCommitMessages",
+      "range": {
+        "startLine": 7,
+        "startChar": 39,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "265a2786a85013d8ff16f1ecfb86020804a7ee52",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
