@@ -65,6 +65,30 @@
     },
     {
       "key": {
+        "uuid": "67bc249b_d126a2e6",
+        "filename": "src/use_cases/seba_on_arm/install/install.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2020-04-10T09:07:51Z",
+      "side": 1,
+      "message": "We used to rely on this check so that we can use some other helm-charts repo for testing purposes. I would prefer we keep it this way. The CI job will be running on something clean most of the times anyway.",
+      "parentUuid": "501fb4dd_fd26c03f",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 62
+      },
+      "revId": "5c5dc728815c52a1eec95111f2fd0ddb2c98b83a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c7aecec2_76a6126b",
         "filename": "src/use_cases/seba_on_arm/install/install.sh",
         "patchSetId": 1
