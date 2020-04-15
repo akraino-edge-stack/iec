@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4da22306_0f7ef3b1",
+        "filename": "src/use_cases/seba_on_arm/test/ponsim/install.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-15T20:49:24Z",
+      "side": 1,
+      "message": "rm",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 6
+      },
+      "revId": "8e3abe1f3fc106c4a90d25f275122b63109ca3a7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
