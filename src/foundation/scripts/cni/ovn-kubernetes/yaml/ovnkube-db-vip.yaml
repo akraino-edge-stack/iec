@@ -1,4 +1,25 @@
-# yamllint disable rule:hyphens rule:commas rule:indentation
+# service to expose the ovnkube-db pod
+apiVersion: v1
+kind: Service
+metadata:
+  name: ovnkube-db
+  namespace: ovn-kubernetes
+spec:
+  ports:
+  - name: north
+    port: 6641
+    protocol: TCP
+    targetPort: 6641
+  - name: south
+    port: 6642
+    protocol: TCP
+    targetPort: 6642
+  sessionAffinity: None
+  clusterIP: None
+  type: ClusterIP
+
+---
+
 # ovnkube-db HA using Corosync/Pacemaker
 # daemonset version 3
 # starts ovn NB/SB ovsdb daemons in a single container
@@ -29,8 +50,7 @@ spec:
         name: ovnkube-db
         component: network
         type: infra
-        openshift.io/component: network
-        beta.kubernetes.io/os: "linux"
+        kubernetes.io/os: "linux"
       annotations:
         scheduler.alpha.kubernetes.io/critical-pod: ''
     spec:
@@ -71,12 +91,18 @@ spec:
           capabilities:
             add: ["NET_ADMIN"]
 
+        terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         # ovn db is stored in the pod in /etc/openvswitch
+        # (or in /etc/ovn if OVN from new repository is used)
         # and on the host in /var/lib/openvswitch/
         - mountPath: /etc/openvswitch/
           name: host-var-lib-ovs
+        - mountPath: /etc/ovn/
+          name: host-var-lib-ovs
         - mountPath: /var/log/openvswitch/
+          name: host-var-log-ovs
+        - mountPath: /var/log/ovn/
           name: host-var-log-ovs
         - mountPath: /etc/corosync
           name: host-etc-corosync
@@ -92,7 +118,7 @@ spec:
         env:
         - name: OVN_DAEMONSET_VERSION
           value: "3"
-        - name: OVN_LOG_NB
+        - name: OVN_LOGLEVEL_NB
           value: "-vconsole:info -vfile:info"
         - name: K8S_APISERVER
           valueFrom:
@@ -103,20 +129,12 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+	- name: K8S_NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
         - name: OVN_DB_VIP
           value: ""
-        ports:
-        - name: healthz
-          containerPort: 10256
-        # TODO: Temporarily disabled until we determine how to wait for clean default
-        # config
-        # livenessProbe:
-        #   initialDelaySeconds: 10
-        #   httpGet:
-        #     path: /healthz
-        #     port: 10256
-        #     scheme: HTTP
-        lifecycle:
       # end of container
 
       volumes:

@@ -1,4 +1,3 @@
-# yamllint disable rule:hyphens rule:commas rule:indentation
 ---
 # ovnkube-node
 # daemonset version 3
@@ -12,7 +11,7 @@ metadata:
   namespace: ovn-kubernetes
   annotations:
     kubernetes.io/description: |
-      This daemonset launches the ovn-kubernetes networking components.
+      This DaemonSet launches the ovn-kubernetes networking components for worker nodes.
 spec:
   selector:
     matchLabels:
@@ -23,10 +22,10 @@ spec:
     metadata:
       labels:
         app: ovnkube-node
+        name: ovnkube-node
         component: network
         type: infra
-        openshift.io/component: network
-        beta.kubernetes.io/os: "linux"
+        kubernetes.io/os: "linux"
       annotations:
         scheduler.alpha.kubernetes.io/critical-pod: ''
     spec:
@@ -39,7 +38,7 @@ spec:
 
       # ovsdb-server and ovs-switchd daemons
       - name: ovs-daemons
-        image: "iecedge/ovn-daemonset:latest"
+        image: "iecedge/ovn-daemonset-ubuntu:2020-04-16"
         imagePullPolicy: "IfNotPresent"
 
         command: ["/root/ovnkube.sh", "ovs-server"]
@@ -49,14 +48,22 @@ spec:
             command:
             - /usr/share/openvswitch/scripts/ovs-ctl
             - status
-          initialDelaySeconds: 15
-          periodSeconds: 5
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+          periodSeconds: 60
+        readinessProbe:
+          exec:
+            command: ["/usr/bin/ovn-kube-util", "readiness-probe", "-t", "ovs-daemons"]
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+          periodSeconds: 60
 
         securityContext:
           runAsUser: 0
           # Permission could be reduced by selecting an appropriate SELinux policy
           privileged: true
 
+        terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         - mountPath: /lib/modules
           name: host-modules
@@ -91,7 +98,7 @@ spec:
               command: ["/root/ovnkube.sh", "cleanup-ovs-server"]
 
       - name: ovn-controller
-        image: "iecedge/ovn-daemonset:latest"
+        image: "iecedge/ovn-daemonset-ubuntu:2020-04-16"
         imagePullPolicy: "IfNotPresent"
 
         command: ["/root/ovnkube.sh", "ovn-controller"]
@@ -101,14 +108,90 @@ spec:
           capabilities:
             add: ["SYS_NICE"]
 
+        terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         - mountPath: /var/run/dbus/
           name: host-var-run-dbus
           readOnly: true
         - mountPath: /var/log/openvswitch/
           name: host-var-log-ovs
+        - mountPath: /var/log/ovn/
+          name: host-var-log-ovs
         - mountPath: /var/run/openvswitch/
           name: host-var-run-ovs
+        - mountPath: /var/run/ovn/
+          name: host-var-run-ovs
+        - mountPath: /ovn-cert
+          name: host-ovn-cert
+          readOnly: true
+
+        resources:
+          requests:
+            cpu: 100m
+            memory: 300Mi
+        env:
+        - name: OVN_DAEMONSET_VERSION
+          value: "3"
+        - name: OVN_LOG_CONTROLLER
+          value: "-vconsole:info"
+        - name: K8S_APISERVER
+          valueFrom:
+            configMapKeyRef:
+              name: ovn-config
+              key: k8s_apiserver
+        - name: OVN_KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: OVN_SSL_ENABLE
+          value: "no"
+
+        readinessProbe:
+          exec:
+            command: ["/usr/bin/ovn-kube-util", "readiness-probe", "-t", "ovn-controller"]
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+          periodSeconds: 60
+
+      - name: ovnkube-node
+        image: "iecedge/ovn-daemonset-ubuntu:2020-04-16"
+        imagePullPolicy: "IfNotPresent"
+
+        command: ["/root/ovnkube.sh", "ovn-node"]
+
+        securityContext:
+          runAsUser: 0
+          capabilities:
+            add: ["NET_ADMIN", "SYS_ADMIN", "SYS_PTRACE"]
+          
+
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+        # for the iptables wrapper
+        - mountPath: /host
+          name: host-slash
+          readOnly: true
+        - mountPath: /var/run/dbus/
+          name: host-var-run-dbus
+          readOnly: true
+        - mountPath: /var/log/ovn-kubernetes/
+          name: host-var-log-ovnkube
+        - mountPath: /var/run/openvswitch/
+          name: host-var-run-ovs
+        - mountPath: /var/run/ovn/
+          name: host-var-run-ovs
+        # We mount our socket here
+        - mountPath: /var/run/ovn-kubernetes
+          name: host-var-run-ovn-kubernetes
+        # CNI related mounts which we take over
+        - mountPath: /opt/cni/bin
+          name: host-opt-cni-bin
+        - mountPath: /etc/cni/net.d
+          name: host-etc-cni-netd
+        - mountPath: /ovn-cert
+          name: host-ovn-cert
+          readOnly: true
+        
 
         resources:
           requests:
@@ -134,80 +217,11 @@ spec:
             configMapKeyRef:
               name: ovn-config
               key: k8s_apiserver
-        - name: K8S_NODE
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: OVN_KUBERNETES_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-
-        ports:
-        - name: healthz
-          containerPort: 10258
-        # TODO: Temporarily disabled until we determine how to wait for clean default
-        # config
-        # livenessProbe:
-        #   initialDelaySeconds: 10
-        #   httpGet:
-        #     path: /healthz
-        #     port: 10258
-        #     scheme: HTTP
-        lifecycle:
-
-      - name: ovnkube-node
-        image: "iecedge/ovn-daemonset:latest"
-        imagePullPolicy: "IfNotPresent"
-
-        command: ["/root/ovnkube.sh", "ovn-node"]
-
-        securityContext:
-          runAsUser: 0
-          capabilities:
-            add: ["NET_ADMIN", "SYS_ADMIN", "SYS_PTRACE"]
-
-        volumeMounts:
-        - mountPath: /var/run/dbus/
-          name: host-var-run-dbus
-          readOnly: true
-        - mountPath: /var/log/ovn-kubernetes/
-          name: host-var-log-ovnkube
-        - mountPath: /var/run/openvswitch/
-          name: host-var-run-ovs
-        # We mount our socket here
-        - mountPath: /var/run/ovn-kubernetes
-          name: host-var-run-ovn-kubernetes
-        # CNI related mounts which we take over
-        - mountPath: /opt/cni/bin
-          name: host-opt-cni-bin
-        - mountPath: /etc/cni/net.d
-          name: host-etc-cni-netd
-
-        resources:
-          requests:
-            cpu: 100m
-            memory: 300Mi
-        env:
-        - name: OVN_DAEMONSET_VERSION
-          value: "3"
-        - name: OVNKUBE_LOGLEVEL
-          value: "5"
-        - name: OVN_NET_CIDR
+        - name: OVN_MTU
           valueFrom:
             configMapKeyRef:
               name: ovn-config
-              key: net_cidr
-        - name: OVN_SVC_CIDR
-          valueFrom:
-            configMapKeyRef:
-              name: ovn-config
-              key: svc_cidr
-        - name: K8S_APISERVER
-          valueFrom:
-            configMapKeyRef:
-              name: ovn-config
-              key: k8s_apiserver
+              key: mtu
         - name: K8S_NODE
           valueFrom:
             fieldRef:
@@ -216,25 +230,26 @@ spec:
           value: "local"
         - name: OVN_GATEWAY_OPTS
           value: ""
+        - name: OVN_HYBRID_OVERLAY_ENABLE
+          value: ""
+        - name: OVN_HYBRID_OVERLAY_NET_CIDR
+          value: ""
+        - name: OVN_SSL_ENABLE
+          value: "no"
 
-        ports:
-        - name: healthz
-          containerPort: 10259
-        # TODO: Temporarily disabled until we determine how to wait for clean default
-        # config
-        # livenessProbe:
-        #   initialDelaySeconds: 10
-        #   httpGet:
-        #     path: /healthz
-        #     port: 10259
-        #     scheme: HTTP
         lifecycle:
           preStop:
             exec:
               command: ["/root/ovnkube.sh", "cleanup-ovn-node"]
+        readinessProbe:
+          exec:
+            command: ["/usr/bin/ovn-kube-util", "readiness-probe", "-t", "ovnkube-node"]
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+          periodSeconds: 60
 
       nodeSelector:
-        beta.kubernetes.io/os: "linux"
+        kubernetes.io/os: "linux"
       volumes:
       - name: host-modules
         hostPath:
@@ -267,8 +282,17 @@ spec:
       - name: host-etc-cni-netd
         hostPath:
           path: /etc/cni/net.d
+      - name: host-ovn-cert
+        hostPath:
+          path: /etc/ovn
+          type: DirectoryOrCreate
+      - name: host-slash
+        hostPath:
+          path: /
       - name: host-config-openvswitch
         hostPath:
           path: /etc/origin/openvswitch
+      
+
       tolerations:
       - operator: "Exists"
