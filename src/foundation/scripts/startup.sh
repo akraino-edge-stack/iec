@@ -54,6 +54,10 @@ case ${CNI_TYPE} in
     CILIUM_CONFIG="cd iec/src/foundation/scripts/cni/cilium && sudo ./cilium_install.sh"
     sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} $CILIUM_CONFIG
     ;;
+  ovn-kubernetes)
+    OVN_KUBERNETES_PRECONFIG="cd iec/src/foundation/scripts/cni/ovn-kubernetes && ./clean_old_ovs.sh"
+    sshpass -p ${passwd} ssh -o StrictHostKeyChecking=no ${HOST_USER}@${ip_addr} $OVN_KUBERNETES_PRECONFIG
+    ;;
   *)
     ;;
 esac

@@ -2,7 +2,7 @@
 # ovnkube-master
 # daemonset version 3
 # starts master daemons, each in a separate container
-# it is run on the master node(s)
+# it is run on the master(s)
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -11,7 +11,7 @@ metadata:
   namespace: ovn-kubernetes
   annotations:
     kubernetes.io/description: |
-      This daemonset launches the ovn-kubernetes networking components.
+      This Deployment launches the ovn-kubernetes master networking components.
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -30,8 +30,7 @@ spec:
         name: ovnkube-master
         component: network
         type: infra
-        openshift.io/component: network
-        beta.kubernetes.io/os: "linux"
+        kubernetes.io/os: "linux"
       annotations:
         scheduler.alpha.kubernetes.io/critical-pod: ''
     spec:
@@ -40,11 +39,35 @@ spec:
       serviceAccountName: ovn
       hostNetwork: true
 
-      containers:
+      # required to be scheduled on a linux node with node-role.kubernetes.io/master label and
+      # only one instance of ovnkube-master pod per node
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/master
+                    operator: In
+                    values:
+                      - ""
+                  - key: kubernetes.io/os
+                    operator: In
+                    values:
+                      - "linux"
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - ovnkube-master
+              topologyKey: kubernetes.io/hostname
 
-      # run-ovn-northd - v3
-      - name: run-ovn-northd
-        image: "iecedge/ovn-daemonset:latest"
+      containers:
+      # ovn-northd - v3
+      - name: ovn-northd
+        image: "iecedge/ovn-daemonset-ubuntu:2020-04-16"
         imagePullPolicy: "IfNotPresent"
 
         command: ["/root/ovnkube.sh", "run-ovn-northd"]
@@ -54,6 +77,7 @@ spec:
           capabilities:
             add: ["SYS_NICE"]
 
+        terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         # Run directories where we need to be able to access sockets
         - mountPath: /var/run/dbus/
@@ -61,8 +85,15 @@ spec:
           readOnly: true
         - mountPath: /var/log/openvswitch/
           name: host-var-log-ovs
+        - mountPath: /var/log/ovn/
+          name: host-var-log-ovs
         - mountPath: /var/run/openvswitch/
           name: host-var-run-ovs
+        - mountPath: /var/run/ovn/
+          name: host-var-run-ovs
+        - mountPath: /ovn-cert
+          name: host-ovn-cert
+          readOnly: true
 
         resources:
           requests:
@@ -71,47 +102,29 @@ spec:
         env:
         - name: OVN_DAEMONSET_VERSION
           value: "3"
-        - name: OVN_LOG_NORTHD
-          value: "-vconsole:info"
-        - name: OVN_NET_CIDR
-          valueFrom:
-            configMapKeyRef:
-              name: ovn-config
-              key: net_cidr
-        - name: OVN_SVC_CIDR
-          valueFrom:
-            configMapKeyRef:
-              name: ovn-config
-              key: svc_cidr
+        - name: OVN_LOGLEVEL_NORTHD
+          value: "-vconsole:info -vfile:info"
         - name: K8S_APISERVER
           valueFrom:
             configMapKeyRef:
               name: ovn-config
               key: k8s_apiserver
-        - name: K8S_NODE
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
         - name: OVN_KUBERNETES_NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        ports:
-        - name: healthz
-          containerPort: 10257
-        # TODO: Temporarily disabled until we determine how to wait for clean default
-        # config
-        # livenessProbe:
-        #   initialDelaySeconds: 10
-        #   httpGet:
-        #     path: /healthz
-        #     port: 10257
-        #     scheme: HTTP
-        lifecycle:
+        - name: OVN_SSL_ENABLE
+          value: "no"
+        readinessProbe:
+          exec:
+            command: ["/usr/bin/ovn-kube-util", "readiness-probe", "-t", "ovn-northd"]
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+          periodSeconds: 60
       # end of container
 
-      - name: run-nbctld
-        image: "iecedge/ovn-daemonset:latest"
+      - name: nbctl-daemon
+        image: "iecedge/ovn-daemonset-ubuntu:2020-04-16"
         imagePullPolicy: "IfNotPresent"
 
         command: ["/root/ovnkube.sh", "run-nbctld"]
@@ -119,12 +132,19 @@ spec:
         securityContext:
           runAsUser: 0
 
+        terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         - mountPath: /var/log/openvswitch/
           name: host-var-log-ovs
+        - mountPath: /var/log/ovn/
+          name: host-var-log-ovs
         - mountPath: /var/run/openvswitch/
           name: host-var-run-ovs
-
+        - mountPath: /var/run/ovn/
+          name: host-var-run-ovs
+        - mountPath: /ovn-cert
+          name: host-ovn-cert
+          readOnly: true
         resources:
           requests:
             cpu: 100m
@@ -132,27 +152,26 @@ spec:
         env:
         - name: OVN_DAEMONSET_VERSION
           value: "3"
+        - name: OVN_LOGLEVEL_NBCTLD
+          value: "-vconsole:info"
         - name: K8S_APISERVER
           valueFrom:
             configMapKeyRef:
               name: ovn-config
               key: k8s_apiserver
+        - name: OVN_SSL_ENABLE
+          value: "no"
 
-        ports:
-        - name: healthz
-          containerPort: 10260
-        # TODO: Temporarily disabled until we determine how to wait for clean default
-        # config
-        # livenessProbe:
-        #   initialDelaySeconds: 10
-        #   httpGet:
-        #     path: /healthz
-        #     port: 10258
-        #     scheme: HTTP
-        lifecycle:
+        readinessProbe:
+          exec:
+            command: ["/usr/bin/ovn-kube-util", "readiness-probe", "-t", "ovn-nbctld"]
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+          periodSeconds: 60
+      # end of container
 
       - name: ovnkube-master
-        image: "iecedge/ovn-daemonset:latest"
+        image: "iecedge/ovn-daemonset-ubuntu:2020-04-16"
         imagePullPolicy: "IfNotPresent"
 
         command: ["/root/ovnkube.sh", "ovn-master"]
@@ -160,6 +179,7 @@ spec:
         securityContext:
           runAsUser: 0
 
+        terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         # Run directories where we need to be able to access sockets
         - mountPath: /var/run/dbus/
@@ -169,6 +189,11 @@ spec:
           name: host-var-log-ovnkube
         - mountPath: /var/run/openvswitch/
           name: host-var-run-ovs
+        - mountPath: /var/run/ovn/
+          name: host-var-run-ovs
+        - mountPath: /ovn-cert
+          name: host-ovn-cert
+          readOnly: true
 
         resources:
           requests:
@@ -202,23 +227,14 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        ports:
-        - name: healthz
-          containerPort: 10254
-        # TODO: Temporarily disabled until we determine how to wait for clean default
-        # config
-        # livenessProbe:
-        #   initialDelaySeconds: 10
-        #   httpGet:
-        #     path: /healthz
-        #     port: 10254
-        #     scheme: HTTP
-        lifecycle:
+        - name: OVN_HYBRID_OVERLAY_ENABLE
+          value: ""
+        - name: OVN_HYBRID_OVERLAY_NET_CIDR
+          value: ""
+        - name: OVN_SSL_ENABLE
+          value: "no"
       # end of container
 
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-        beta.kubernetes.io/os: "linux"
       volumes:
       # TODO: Need to check why we need this?
       - name: host-var-run-dbus
@@ -233,5 +249,9 @@ spec:
       - name: host-var-run-ovs
         hostPath:
           path: /var/run/openvswitch
+      - name: host-ovn-cert
+        hostPath:
+          path: /etc/ovn
+          type: DirectoryOrCreate
       tolerations:
       - operator: "Exists"
