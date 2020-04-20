@@ -21,31 +21,41 @@ spec:
 
 ---
 
-# ovnkube-db
+# ovndb-raft PodDisruptBudget to prevent majority of ovnkube raft cluster
+# nodes from disruption
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: ovndb-raft-pdb
+  namespace: ovn-kubernetes
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      name: ovnkube-db
+
+---
+
+# ovnkube-db raft statefulset
 # daemonset version 3
 # starts ovn NB/SB ovsdb daemons, each in a separate container
-# it is running on master for now, but does not need to be the case
-kind: Deployment
+#
+kind: StatefulSet
 apiVersion: apps/v1
 metadata:
   name: ovnkube-db
-  # namespace set up by install
   namespace: ovn-kubernetes
   annotations:
     kubernetes.io/description: |
-      This daemonset launches the OVN NB/SB ovsdb service components.
+      This statefulset launches the OVN Northbound/Southbound Database raft clusters.
 spec:
-  progressDeadlineSeconds: 600
-  replicas: 1
+  serviceName: ovnkube-db
+  podManagementPolicy: "Parallel"
+  replicas: 3
   revisionHistoryLimit: 10
   selector:
     matchLabels:
       name: ovnkube-db
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -56,21 +66,46 @@ spec:
       annotations:
         scheduler.alpha.kubernetes.io/critical-pod: ''
     spec:
-      # Requires fairly broad permissions - ability to read all services and network functions as well
-      # as all pods.
+      terminationGracePeriodSeconds: 30
+      imagePullSecrets:
+        - name: registry-credentials
       serviceAccountName: ovn
       hostNetwork: true
-      containers:
-      # firewall rules for ovn - assumed to be setup
-      # iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 6641 -j ACCEPT
-      # iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 6642 -j ACCEPT
 
+      # required to be scheduled on node with k8s.ovn.org/ovnkube-db=true label but can
+      # only have one instance per node
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: k8s.ovn.org/ovnkube-db
+                operator: In
+                values:
+                - "true"
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: name
+                operator: In
+                values:
+                - ovnkube-db
+            topologyKey: kubernetes.io/hostname
+
+      containers:
       # nb-ovsdb - v3
       - name: nb-ovsdb
         image: "iecedge/ovn-daemonset-ubuntu:2020-04-16"
         imagePullPolicy: "IfNotPresent"
+        command: ["/root/ovnkube.sh", "nb-ovsdb-raft"]
 
-        command: ["/root/ovnkube.sh", "nb-ovsdb"]
+        readinessProbe:
+          exec:
+            command: ["/usr/bin/ovn-kube-util", "readiness-probe", "-t", "ovnnb-db-raft"]
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+          periodSeconds: 60
 
         securityContext:
           runAsUser: 0
@@ -90,10 +125,10 @@ spec:
           name: host-var-log-ovs
         - mountPath: /var/log/ovn/
           name: host-var-log-ovs
-        # for the iptables wrapper
-        - mountPath: /host
-          name: host-slash
-          readOnly: true
+        - mountPath: /var/run/openvswitch/
+          name: host-var-run-ovs
+        - mountPath: /var/run/ovn/
+          name: host-var-run-ovs
         - mountPath: /ovn-cert
           name: host-ovn-cert
           readOnly: true
@@ -116,26 +151,30 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         - name: K8S_NODE_IP
           valueFrom:
             fieldRef:
               fieldPath: status.hostIP
         - name: OVN_SSL_ENABLE
           value: "no"
-        readinessProbe:
-          exec:
-            command: ["/usr/bin/ovn-kube-util", "readiness-probe", "-t", "ovnnb-db"]
-          initialDelaySeconds: 30
-          timeoutSeconds: 30
-          periodSeconds: 60
       # end of container
 
       # sb-ovsdb - v3
       - name: sb-ovsdb
         image: "iecedge/ovn-daemonset-ubuntu:2020-04-16"
         imagePullPolicy: "IfNotPresent"
+        command: ["/root/ovnkube.sh", "sb-ovsdb-raft"]
 
-        command: ["/root/ovnkube.sh", "sb-ovsdb"]
+        readinessProbe:
+          exec:
+            command: ["/usr/bin/ovn-kube-util", "readiness-probe", "-t", "ovnsb-db-raft"]
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+          periodSeconds: 60
 
         securityContext:
           runAsUser: 0
@@ -155,10 +194,10 @@ spec:
           name: host-var-log-ovs
         - mountPath: /var/log/ovn/
           name: host-var-log-ovs
-        # for the iptables wrapper
-        - mountPath: /host
-          name: host-slash
-          readOnly: true
+        - mountPath: /var/run/openvswitch/
+          name: host-var-run-ovs
+        - mountPath: /var/run/ovn/
+          name: host-var-run-ovs
         - mountPath: /ovn-cert
           name: host-ovn-cert
           readOnly: true
@@ -181,34 +220,76 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         - name: K8S_NODE_IP
           valueFrom:
             fieldRef:
               fieldPath: status.hostIP
         - name: OVN_SSL_ENABLE
           value: "no"
-        readinessProbe:
-          exec:
-            command: ["/usr/bin/ovn-kube-util", "readiness-probe", "-t", "ovnsb-db"]
-          initialDelaySeconds: 30
-          timeoutSeconds: 30
-          periodSeconds: 60
-
       # end of container
 
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-        kubernetes.io/os: "linux"
+      # db-metrics-exporter - v3
+      - name: db-metrics-exporter
+        image: "iecedge/ovn-daemonset-ubuntu:2020-04-16"
+        imagePullPolicy: "IfNotPresent"
+        command: ["/root/ovnkube.sh", "db-raft-metrics"]
+
+        securityContext:
+          runAsUser: 0
+          capabilities:
+            add: ["NET_ADMIN"]
+
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+          # ovn db is stored in the pod in /etc/openvswitch
+          # (or in /etc/ovn if OVN from new repository is used)
+          # and on the host in /var/lib/openvswitch/
+          - mountPath: /etc/openvswitch/
+            name: host-var-lib-ovs
+          - mountPath: /etc/ovn/
+            name: host-var-lib-ovs
+          - mountPath: /var/run/openvswitch/
+            name: host-var-run-ovs
+          - mountPath: /var/run/ovn/
+            name: host-var-run-ovs
+          - mountPath: /ovn-cert
+            name: host-ovn-cert
+            readOnly: true
+
+        resources:
+          requests:
+            cpu: 100m
+            memory: 300Mi
+        env:
+          - name: OVN_DAEMONSET_VERSION
+            value: "3"
+          - name: K8S_APISERVER
+            valueFrom:
+              configMapKeyRef:
+                name: ovn-config
+                key: k8s_apiserver
+          - name: OVN_KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: OVN_SSL_ENABLE
+            value: "no"
+      # end of container
+
       volumes:
-      - name: host-var-lib-ovs
-        hostPath:
-          path: /var/lib/openvswitch
       - name: host-var-log-ovs
         hostPath:
           path: /var/log/openvswitch
-      - name: host-slash
+      - name: host-var-lib-ovs
         hostPath:
-          path: /
+          path: /var/lib/openvswitch
+      - name: host-var-run-ovs
+        hostPath:
+          path: /var/run/openvswitch
       - name: host-ovn-cert
         hostPath:
           path: /etc/ovn

@@ -52,21 +52,25 @@ install_contivpp(){
 install_ovn_kubernetes(){
   # Update the ovn-kubernetes yaml files
 
-  net_cidr_repl="{{ net_cidr | default('10.128.0.0/14/23') }}"
-  svc_cidr_repl="{{ svc_cidr | default('172.30.0.0/16') }}"
-  k8s_apiserver_repl="{{ k8s_apiserver.stdout }}"
+  net_cidr_repl="{{ net_cidr }}"
+  svc_cidr_repl="{{ svc_cidr }}"
+  k8s_apiserver_repl="{{ k8s_apiserver }}"
+  mtu_repl="{{ mtu_value }}"
 
   k8s_apiserver="https://${K8S_MASTER_IP}:6443"
   net_cidr="${POD_NETWORK_CIDR}"
   svc_cidr="${SERVICE_CIDR}"
+  mtu_def_value=1400
 
   echo "net_cidr: ${net_cidr}"
   echo "svc_cidr: ${svc_cidr}"
   echo "k8s_apiserver: ${k8s_apiserver}"
+  echo "mtu: ${mtu_def_value}"
 
   sed "s,${net_cidr_repl},${net_cidr},
   s,${svc_cidr_repl},${svc_cidr},
-  s,${k8s_apiserver_repl},${k8s_apiserver}," \
+  s,${k8s_apiserver_repl},${k8s_apiserver},
+  s,${mtu_repl},${mtu_def_value}," \
   ${SCRIPTS_DIR}/cni/ovn-kubernetes/templates/ovn-setup.yaml.j2 > \
   ${SCRIPTS_DIR}/cni/ovn-kubernetes/yaml/ovn-setup.yaml
 

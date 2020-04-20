@@ -22,9 +22,12 @@ function wait_for {
   )
 }
 
+# shellcheck source=/dev/null
+source ${SCRIPTS_DIR}/clean_old_ovs.sh
+
 # Create OVN namespace, service accounts, ovnkube-db headless service, configmap, and policies
 kubectl create -f ${SCRIPTS_DIR}/yaml/ovn-setup.yaml
-wait_for 5 'test $(kubectl get svc -n ovn-kubernetes | grep ovnkube-db -c ) -eq 1'
+wait_for 5 'test $(kubectl get configmap -n ovn-kubernetes | grep ovn-config -c ) -eq 1'
 
 
 # Run ovnkube-db daemonset.
