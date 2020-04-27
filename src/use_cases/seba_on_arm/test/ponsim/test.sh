@@ -31,12 +31,16 @@ then
   exit 1
 fi
 
+mkdir -p results
+chmod 777 results
 docker pull "${CORD_IMG}"
 DOCKER_CMD="docker run -id -e K8S_MASTER_IP=${K8S_MASTER_IP} \
        -e USER=${TEST_USER} \
        -v ${basepath}/docker_run.sh:/workspace/docker_run.sh \
        -v ${KUBE_DIR}:/workspace/.kube \
-       ${CORD_IMG} /bin/bash"
+       -v ${PWD}/results:/home/${TEST_USER}/results \
+       ${CORD_IMG} \
+       /bin/bash"
 if cont_id=$(eval "${DOCKER_CMD}")
 then
   echo "Starting SIAB.robot in ${cont_id}"
