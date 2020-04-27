@@ -47,5 +47,10 @@ cd Tests/WorkflowValidations/
 export SERVER_IP="${K8S_MASTER_IP}"
 
 TESTTAGS="stable"
-PYBOT_ARGS="-v SUBSCRIBER_FILENAME:SIABSubscriberLatest -v WHITELIST_FILENAME:SIABWhitelistLatest -v OLT_DEVICE_FILENAME:SIABOLT0Device"
-robot ${PYBOT_ARGS} --removekeywords wuks -e notready -i ${TESTTAGS} -v VOLTHA_DIR:${HOME}/voltha SIAB.robot
+PYBOT_ARGS="-v SUBSCRIBER_FILENAME:SIABSubscriberLatest \
+            -v WHITELIST_FILENAME:SIABWhitelistLatest \
+            -v OLT_DEVICE_FILENAME:SIABOLT0Device -r /home/${USER}/logs/report.html \
+            -l /home/${USER}/logs/log.html -o /home/${USER}/logs/output.xml"
+robot ${PYBOT_ARGS} --removekeywords wuks -e notready -i ${TESTTAGS} \
+      -v VOLTHA_DIR:${HOME}/voltha SIAB.robot
+

@@ -31,11 +31,14 @@ then
   exit 1
 fi
 
+mkdir -p logs
+chmod 777 ./logs
 docker pull "${CORD_IMG}"
 DOCKER_CMD="docker run -id -e K8S_MASTER_IP=${K8S_MASTER_IP} \
        -e USER=${TEST_USER} \
        -v ${basepath}/docker_run.sh:/workspace/docker_run.sh \
        -v ${KUBE_DIR}:/workspace/.kube \
+       -v ${PWD}/logs:/home/${TEST_USER}/logs \
        ${CORD_IMG} /bin/bash"
 if cont_id=$(eval "${DOCKER_CMD}")
 then
