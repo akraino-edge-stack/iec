@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5e5d05a_e14dcf52",
+        "filename": "src/use_cases/seba_on_arm/test/ponsim/docker_run.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-27T22:29:53Z",
+      "side": 1,
+      "message": "Usually the robot logs are stored in a dir named \u0027results\u0027, but if \u0027logs\u0027 is preferred here, I\u0027ll update the ci-management change to reflect that.\nAlso, since we split this line with 1 `-v` arg per line above, it\u0027d be nice to split `-r`/`-l`/`-o` on their own line too.",
+      "range": {
+        "startLine": 52,
+        "startChar": 67,
+        "endLine": 52,
+        "endChar": 71
+      },
+      "revId": "d91c2c011406234ceaab5a5f60f083e014782b63",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
