@@ -15,7 +15,7 @@ VOLTHA_REPO="${VOLTHA_REPO:-https://github.com/opencord/voltha.git}"
 VOLTHA_REV="master"
 K8S_MASTER_IP="${K8S_MASTER_IP:-127.0.0.1}"
 KUBE_DIR="${KUBE_DIR:-/workspace/.kube}"
-USER="${USER:-ubuntu}"
+TEST_USER="${TEST_USER:-ubuntu}"
 
 # The ssh server must be running since cord-tester does ssh to localhost
 sudo apt-get update
@@ -41,11 +41,21 @@ source venv_cord/bin/activate
 cd src/test/cord-api
 # As per documentation, we set the SERVER_IP before anything
 sed -i "s/SERVER_IP.*=.*'/SERVER_IP = '${K8S_MASTER_IP}'/g" \
-     Properties/RestApiProperties.py
+    Properties/RestApiProperties.py
 cd Tests/WorkflowValidations/
 
 export SERVER_IP="${K8S_MASTER_IP}"
 
 TESTTAGS="stable"
-PYBOT_ARGS="-v SUBSCRIBER_FILENAME:SIABSubscriberLatest -v WHITELIST_FILENAME:SIABWhitelistLatest -v OLT_DEVICE_FILENAME:SIABOLT0Device"
-robot ${PYBOT_ARGS} --removekeywords wuks -e notready -i ${TESTTAGS} -v VOLTHA_DIR:${HOME}/voltha SIAB.robot
+PYBOT_ARGS="-v SUBSCRIBER_FILENAME:SIABSubscriberLatest \
+            -v WHITELIST_FILENAME:SIABWhitelistLatest \
+            -v OLT_DEVICE_FILENAME:SIABOLT0Device \
+            -r /workspace/results/report.html \
+            -l /workspace/results/log.html \
+            -o /workspace/results/output.xml"
+robot ${PYBOT_ARGS} \
+      --removekeywords wuks \
+      -e notready \
+      -i ${TESTTAGS} \
+      -v VOLTHA_DIR:${HOME}/voltha SIAB.robot
+
