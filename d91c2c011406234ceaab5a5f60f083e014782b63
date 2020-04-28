@@ -22,6 +22,30 @@
       "revId": "d91c2c011406234ceaab5a5f60f083e014782b63",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "175b3d58_3e5748bc",
+        "filename": "src/use_cases/seba_on_arm/test/ponsim/docker_run.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2020-04-28T03:50:43Z",
+      "side": 1,
+      "message": "Using results instead of logs sounds better, see new version.",
+      "parentUuid": "c5e5d05a_e14dcf52",
+      "range": {
+        "startLine": 52,
+        "startChar": 67,
+        "endLine": 52,
+        "endChar": 71
+      },
+      "revId": "d91c2c011406234ceaab5a5f60f083e014782b63",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
