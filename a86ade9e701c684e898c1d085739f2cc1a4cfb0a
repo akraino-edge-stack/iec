@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fcb23df4_ee39c5ab",
+        "filename": "src/use_cases/seba_on_arm/test/ponsim/test.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-28T14:43:36Z",
+      "side": 1,
+      "message": "mkdir -m 777 results",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "a86ade9e701c684e898c1d085739f2cc1a4cfb0a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2ae6688_aa005dc6",
+        "filename": "src/use_cases/seba_on_arm/test/ponsim/test.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-28T14:43:36Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 9
+      },
+      "revId": "a86ade9e701c684e898c1d085739f2cc1a4cfb0a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
