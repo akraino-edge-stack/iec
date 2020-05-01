@@ -33,7 +33,7 @@ then
 fi
 
 docker pull "${CORD_IMG}"
-docker run --rm -it \
+docker run --rm \
     -e K8S_MASTER_IP=${K8S_MASTER_IP} \
     -e USER=${TEST_USER} \
     -v ${basepath}/docker_run.sh:/workspace/docker_run.sh \
