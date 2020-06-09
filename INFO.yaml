@@ -74,6 +74,16 @@ committers:
       company: 'vmware'
       id: 'xinhuili'
       timezone: 'Unknown/Unknown'
+    - name: 'hepeng'
+      email: 'hepeng.0320@bytedance.com'
+      company: 'bytedance'
+      id: 'hepeng'
+      timezone: 'Asia/Shanghai'
+    - name: 'hepeng'
+      email: 'hepeng.0320@bytedance.com'
+      company: 'bytedance'
+      id: 'hepeng'
+      timezone: 'Asia/Shanghai'
 tsc:
     # yamllint disable rule:line-length
     approval: 'missing'
