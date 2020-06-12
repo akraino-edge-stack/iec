@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck source=/dev/null
+# shellcheck source=/dev/null
 DATA_PATH=/var/lib/anbox
 ROOTFS_PATH=$DATA_PATH/rootfs
 ANDROID_IMG=$1

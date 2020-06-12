@@ -1,5 +1,5 @@
 #!/bin/sh -ex
-# shellcheck source=/dev/null
+# shellcheck source=/dev/null
 sudo rmmod binder_linux || true
 sudo rmmod ashmem_linux || true
 (cd kernel/binder ; make clean && make -j4 ; sudo insmod binder_linux.ko; sudo chmod 666 /dev/binder)

@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck source=/dev/null
+# shellcheck source=/dev/null
 readonly SCRIPT_FOLDER=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 readonly PROJECT_FOLDER="${SCRIPT_FOLDER}/.."
 readonly ARCHIVE_FOLDER=~/cpu_features_archives

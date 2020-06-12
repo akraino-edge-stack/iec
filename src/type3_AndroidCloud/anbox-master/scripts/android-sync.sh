@@ -1,5 +1,5 @@
 #!/bin/sh
-# shellcheck source=/dev/null
+# shellcheck source=/dev/null
 set -ex
 
 if [ -z "$ANDROID_PRODUCT_OUT" ]; then

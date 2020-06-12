@@ -1,5 +1,5 @@
 #!/bin/sh
-# shellcheck source=/dev/null
+# shellcheck source=/dev/null
 # Copyright 2014 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

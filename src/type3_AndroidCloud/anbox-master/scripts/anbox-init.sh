@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# shellcheck source=/dev/null
+# shellcheck source=/dev/null
 # Copyright (C) 2016 Simon Fels <morphis@gravedo.de>
 #
 # This program is free software: you can redistribute it and/or modify it

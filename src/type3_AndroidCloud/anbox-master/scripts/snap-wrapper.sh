@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck source=/dev/null
+# shellcheck source=/dev/null
 
 if [ "$SNAP_ARCH" = "amd64" ]; then
 	ARCH="x86_64-linux-gnu"
