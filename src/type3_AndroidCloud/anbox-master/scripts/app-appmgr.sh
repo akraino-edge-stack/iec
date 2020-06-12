@@ -1,5 +1,5 @@
 #!/bin/sh
-
+# shellcheck source=/dev/null
 PACKAGE=org.anbox.appmgr
 COMPONENT=org.anbox.appmgr.AppViewActivity
 

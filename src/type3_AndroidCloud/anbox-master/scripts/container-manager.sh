@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck source=/dev/null
 set -x
 
 # We need to put the rootfs somewhere where we can modify some

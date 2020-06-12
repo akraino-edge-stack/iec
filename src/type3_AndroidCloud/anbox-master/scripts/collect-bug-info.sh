@@ -1,4 +1,5 @@
 #!/bin/sh -e
+# shellcheck source=/dev/null
 
 TMPDIR=$(mktemp -d)
 

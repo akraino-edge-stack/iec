@@ -1,5 +1,5 @@
 #!/bin/sh
-
+# shellcheck source=/dev/null
 set -ex
 
 cleanup() {
