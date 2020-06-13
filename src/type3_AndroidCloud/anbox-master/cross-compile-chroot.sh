@@ -1,5 +1,6 @@
 #!/bin/bash
 # shellcheck source=/dev/null
+# shellcheck disable=2068
 # Copyright © 2016 Canonical Ltd.
 #
 # This program is free software: you can redistribute it and/or modify it

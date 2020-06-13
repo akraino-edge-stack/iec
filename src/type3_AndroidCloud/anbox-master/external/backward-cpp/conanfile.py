@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+# pylint: disable=no-member
 from conans import ConanFile, CMake
 import os
 
@@ -31,7 +33,7 @@ class BackwardCpp(ConanFile):
     def build(self):
         cmake = CMake(self)
 
-        cmake.configure(defs={'BACKWARD_' + name.upper(): value for name, value in self.options.values.as_list()})
+        cmake.configure(defs={'BACKWARD_' + name.upper(): value for name, value in self.options.values()})
         cmake.build()
 
     def package(self):

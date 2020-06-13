@@ -1,5 +1,6 @@
 #!/usr/bin/env python2
-
+# pylint: disable=no-member
+# pylint: disable=undefined-variable
 # Copyright 2015 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

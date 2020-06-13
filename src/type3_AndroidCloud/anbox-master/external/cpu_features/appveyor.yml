@@ -1,3 +1,4 @@
+# yamllint disable rule:indentation
 version: '{build}'
 shallow_clone: true
 
