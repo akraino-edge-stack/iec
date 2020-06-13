@@ -1,5 +1,6 @@
 #!/bin/sh
 # shellcheck source=/dev/null
+# shellcheck disable=2124
 set -ex
 
 debuild_args="$@"

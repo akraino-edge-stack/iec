@@ -1,5 +1,6 @@
 #!/bin/bash
 # shellcheck source=/dev/null
+# shellcheck disable=2068
 COMPILERS_CXX98=`cat<<EOF
 gcc-4.4
 gcc-4.6

@@ -1,4 +1,5 @@
 # shellcheck source=/dev/null
+# shellcheck disable=2034
 source "$(dirname -- "$0")"/run_integration.sh
 
 # Toolchains for little-endian, 64-bit ARMv8 for GNU/Linux systems

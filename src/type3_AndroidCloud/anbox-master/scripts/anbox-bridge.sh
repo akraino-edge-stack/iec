@@ -1,5 +1,6 @@
 #!/bin/sh
 # shellcheck source=/dev/null
+# shellcheck disable=SC2034
 #Copyright (C) 2016 The Linux Containers Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
