@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8b6635be_961fc864",
+        "filename": "ci/labs/unh/baremetal1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2020-06-18T16:28:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f05e98a_c522138c",
+      "range": {
+        "startLine": 18,
+        "startChar": 8,
+        "endLine": 18,
+        "endChar": 70
+      },
+      "revId": "0c9921ac2c248c44e8f9648672dc3a5036a9bcfb",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44a0ff38_d113e913",
         "filename": "ci/labs/unh/baremetal1.yaml",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "0c9921ac2c248c44e8f9648672dc3a5036a9bcfb",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b5e4684_1bb7c8b5",
+        "filename": "ci/labs/unh/baremetal1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2020-06-18T16:28:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44a0ff38_d113e913",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 28
+      },
+      "revId": "0c9921ac2c248c44e8f9648672dc3a5036a9bcfb",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
