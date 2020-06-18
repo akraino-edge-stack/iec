@@ -1,0 +1,179 @@
+##############################################################################
+# Copyright (c) 2020 Enea AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+---
+### Akraino ThunderX2 POD 2 descriptor file ###
+
+version: 1.0
+details:
+  pod_owner: Akraino UNH
+  contact: aleblanc@iol.unh.edu
+  lab: Akraino UNH lab
+  location: New Hampshire, USA
+  type: production
+  link: https://wiki.akraino.org/display/AK/ThunderX2+Pod+2
+##############################################################################
+jumphost:
+  name: ampere-jumphost2
+  node:
+    type: baremetal
+    vendor: Ampere
+    model: HR330
+    arch: aarch64
+    cpus: 1
+    cpu_cflags: fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+    cores: 32
+    memory: 128G
+  disks:
+    ## /dev/sda
+    - name: disk1
+      disk_capacity: 450G
+      disk_type: ssd
+      disk_interface: sata
+      disk_rotation: 0
+  os: ubuntu-18.04
+  remote_params: &remote_params
+    type: ipmi
+    versions:
+      - 2.0
+    user: ADMIN
+    pass: ADMIN
+  remote_management:
+    <<: *remote_params
+    address: 10.11.3.18
+    mac_address: "98:FA:9B:02:6E:BC"
+  interfaces:
+    - mac_address: "B8:59:9F:0E:52:A0"
+      speed: 10gb
+      features: ''
+      name: 'nic1'
+    - mac_address: "B8:59:9F:0E:52:A1"
+      speed: 10gb
+      features: 'dpdk|sriov'
+      name: 'nic2'
+    - mac_address: "00:1B:21:E0:6F:59"
+      speed: 1gb
+      features: 'dpdk|sriov'
+      name: 'nic3'
+##############################################################################
+nodes:
+  - name: gigabyte4
+    node: &nodeparams
+      type: baremetal
+      vendor: Marvell
+      model: ThunderX2
+      arch: aarch64
+      cpus: 2
+      cpu_cflags: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics cpuid asimdrdm
+      cores: 56
+      memory: 128G
+    disks: &disks
+      - name: disk1
+        disk_capacity: 450G
+        disk_type: ssd
+        disk_interface: sata
+        disk_rotation: 0
+      - name: disk2
+        disk_capacity: 1T
+        disk_type: hdd
+        disk_interface: sata
+        disk_rotation: 0
+    remote_management:
+      <<: *remote_params
+      address: 10.11.3.14
+      mac_address: "E0:D5:5E:AE:59:42"
+    interfaces:
+      - mac_address: "B4:96:91:4D:27:90"
+        speed: 10gb
+        features: ''
+        name: 'nic1'
+      - mac_address: "B4:96:91:4D:27:91"
+        speed: 10gb
+        features: ''
+        name: 'nic2'
+      - mac_address: "E0:D5:5E:AE:59:40"
+        speed: 10gb
+        features: 'dpdk|sriov'
+        name: 'nic3'
+      - mac_address: "E0:D5:5E:AE:59:41"
+        speed: 10gb
+        features: 'dpdk|sriov'
+        name: 'nic4'
+      - mac_address: "98:03:9B:CB:FB:64"
+        speed: 40gb
+        features: 'dpdk|sriov'
+        name: 'nic5'
+      - mac_address: "98:03:9B:CB:FB:65"
+        speed: 40gb
+        features: 'dpdk|sriov'
+        name: 'nic6'
+  ############################################################################
+  - name: gigabyte5
+    node: *nodeparams
+    disks: *disks
+    remote_management:
+      <<: *remote_params
+      address: 10.11.3.15
+      mac_address: "E0:D5:5E:AE:59:6A"
+    interfaces:
+      - mac_address: "B4:96:91:4F:10:54"
+        speed: 10gb
+        features: ''
+        name: 'nic1'
+      - mac_address: "B4:96:91:4F:10:55"
+        speed: 10gb
+        features: ''
+        name: 'nic2'
+      - mac_address: "E0:D5:5E:AE:59:68"
+        speed: 10gb
+        features: 'dpdk|sriov'
+        name: 'nic3'
+      - mac_address: "E0:D5:5E:AE:59:69"
+        speed: 10gb
+        features: 'dpdk|sriov'
+        name: 'nic4'
+      - mac_address: "98:03:9B:CB:FB:30"
+        speed: 40gb
+        features: 'dpdk|sriov'
+        name: 'nic5'
+      - mac_address: "98:03:9B:CB:FB:31"
+        speed: 40gb
+        features: 'dpdk|sriov'
+        name: 'nic6'
+  ############################################################################
+  - name: gigabyte6
+    node: *nodeparams
+    disks: *disks
+    remote_management:
+      <<: *remote_params
+      address: 10.11.3.16
+      mac_address: "E0:D5:5E:AE:59:42"
+    interfaces:
+      - mac_address: "B4:96:91:4D:26:90"
+        speed: 10gb
+        features: ''
+        name: 'nic1'
+      - mac_address: "B4:96:91:4D:26:91"
+        speed: 10gb
+        features: ''
+        name: 'nic2'
+      - mac_address: "E0:D5:5E:AE:59:70"
+        speed: 10gb
+        features: 'dpdk|sriov'
+        name: 'nic3'
+      - mac_address: "E0:D5:5E:AE:59:71"
+        speed: 10gb
+        features: 'dpdk|sriov'
+        name: 'nic4'
+      - mac_address: "98:03:9B:B4:27:72"
+        speed: 40gb
+        features: 'dpdk|sriov'
+        name: 'nic5'
+      - mac_address: "98:03:9B:B4:27:73"
+        speed: 40gb
+        features: 'dpdk|sriov'
+        name: 'nic6'

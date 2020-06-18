@@ -1,0 +1,113 @@
+##############################################################################
+# Copyright (c) 2020 Enea AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+---
+### Akraino ThunderX2 POD 2 installer descriptor file ###
+
+idf:
+  version: 0.1
+  installer: ['apex', 'compass4nfv', 'daisy', 'fuel']
+  net_config:
+    oob:
+      ip-range: 10.11.3.14-10.11.3.16
+      vlan: native
+      mask: 24
+    admin:
+      interface: 2
+      vlan: native
+      network: 192.168.11.0
+      mask: 24
+    mgmt:
+      interface: 5
+      vlan: 3006
+      network: 172.16.10.0
+      ip-range: 172.16.10.10-172.16.10.254  # Some IPs are in use by lab infra
+      mask: 24
+    storage: # Not actually needed for IEC
+      interface: 5
+      vlan: 3007
+      network: 10.2.0.0
+      mask: 24
+    private: # Not actually needed for IEC
+      interface: 5
+      vlan: 3008
+      network: 10.1.0.0
+      mask: 24
+    public:
+      interface: 4
+      vlan: native
+      network: 10.11.4.0
+      ip-range: 10.11.4.100-10.11.4.253  # Some IPs are in use by lab infra
+      mask: 24
+      gateway: 10.11.4.1
+      dns:
+        - 8.8.8.8
+        - 8.8.4.4
+  fuel:
+    jumphost:
+      bridges:
+        admin: 'admin_br0'
+        mgmt: 'mgmt_br0'
+        private: ~
+        public: 'public_br0'
+    maas:
+      # MaaS timeouts (in minutes)
+      timeout_comissioning: 25
+      timeout_deploying: 35
+    network:
+      node:
+        # Ordered-list, index should be in sync with node index in PDF
+        - interfaces: &interfaces
+            # Ordered-list, index should be in sync with interface index in PDF
+            - 'enp5s0f0'
+            - 'enp5s0f1'
+            - 'eno1'
+            - 'eno2'
+            - 'enp145s0f0'
+            - 'enp145s0f1'
+          busaddr: &busaddr
+            # Bus-info reported by `ethtool -i ethX`
+            - '0000:05:00.0'
+            - '0000:05:00.1'
+            - '0000:0c:00.0'
+            - '0000:0c:00.1'
+            - '0000:91:00.0'
+            - '0000:91:00.1'
+        - interfaces: *interfaces
+          busaddr: *busaddr
+        - interfaces: *interfaces
+          busaddr: *busaddr
+        - interfaces: *interfaces
+          busaddr: *busaddr
+        - interfaces: *interfaces
+          busaddr: *busaddr
+    reclass:
+      node:
+        - compute_params: &compute_params
+            common:
+              nova_cpu_pinning: &nova_cpu_pinning_common "8-47"
+              compute_hugepages_size: 2M
+              compute_hugepages_count: 8192
+              compute_hugepages_mount: /mnt/hugepages_2M
+              compute_kernel_isolcpu: *nova_cpu_pinning_common
+            dpdk:
+              nova_cpu_pinning: "12-47"
+              compute_hugepages_size: 1G
+              compute_hugepages_count: 16
+              compute_hugepages_mount: /mnt/hugepages_1G
+              compute_kernel_isolcpu: *nova_cpu_pinning_common
+              compute_dpdk_driver: vfio
+              compute_ovs_pmd_cpu_mask: "0x300"
+              compute_ovs_dpdk_socket_mem: "2048"
+              compute_ovs_dpdk_lcore_mask: "0xC00"
+              compute_ovs_memory_channels: "2"
+              dpdk0_driver: vfio-pci
+              dpdk0_n_rxq: 2
+        - compute_params: *compute_params
+        - compute_params: *compute_params
+        - compute_params: *compute_params
+        - compute_params: *compute_params
