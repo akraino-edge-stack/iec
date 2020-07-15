@@ -16,9 +16,11 @@ if [ "$#" -gt 0 ]; then UPSTREAM_PROJECT="$1"; fi
 case "${UPSTREAM_PROJECT}" in
   "iec")
     HELM_CHARTS_REV="${HELM_CHARTS_REV_IEC}"
+    SEBAVALUES="configs/seba-ponsim-iec-arm64.yaml"
     ;;
   "rec")
     HELM_CHARTS_REV="${HELM_CHARTS_REV_REC}"
+    SEBAVALUES="configs/seba-ponsim-rec-arm64.yaml"
     ;;
   *)
     echo "Invalid upstream project ${UPSTREAM_PROJECT}"
@@ -28,7 +30,7 @@ case "${UPSTREAM_PROJECT}" in
 esac
 
 export M="/tmp/milestones"
-export SEBAVALUE=
+export SEBAVALUES=
 export WORKSPACE="${HOME}"
 export HELM_CHARTS_REV
 
