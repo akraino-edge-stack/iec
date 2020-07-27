@@ -22,6 +22,30 @@
       "revId": "426ac5d229cf0b4db90b76fc66aa3355dad2fb25",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62e7cd3e_8303b5c1",
+        "filename": "src/use_cases/seba_on_arm/test/ponsim/install.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2020-07-27T08:54:40Z",
+      "side": 1,
+      "message": "No, just typo, thanks",
+      "parentUuid": "1ff65faf_ee0de385",
+      "range": {
+        "startLine": 33,
+        "startChar": 7,
+        "endLine": 33,
+        "endChar": 16
+      },
+      "revId": "426ac5d229cf0b4db90b76fc66aa3355dad2fb25",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
