@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c59f79e9_106a1af1",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-09-23T16:43:59Z",
+      "side": 1,
+      "message": "This is not a valid timezone. If this is supposed to be US Pacific, it should be \u0027America/Los_Angeles\u0027.",
+      "range": {
+        "startLine": 76,
+        "startChar": 17,
+        "endLine": 76,
+        "endChar": 23
+      },
+      "revId": "ec61041b31e897bbec089164a9e7810bfbd415a5",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
