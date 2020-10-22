@@ -1,4 +1,4 @@
-# yamllint disable rule:hyphens rule:commas rule:indentation
+# yamllint disable rule:hyphens rule:commas rule:indentation rule:colons
 ---
 # ovn-namespace.yaml
 #
@@ -22,7 +22,7 @@ metadata:
 # Create the service account and policies.
 # ovnkube interacts with kubernetes and the environment
 # must be properly set up.
-# 
+#
 # This provisioning is done as part of installation after the cluster is
 # up and before the ovn daemonsets are created.
 
