@@ -29,7 +29,7 @@ IEC Reference Foundation Overview
 This document provides a general description about the reference foundation of IEC.
 The Integrated Edge Cloud (IEC) will enable new functionalities and business models
 on the network edge. The benefits of running applications on the network edge are
-- Better latencies for end users
+- Better latencies for end userss
 - Less load on network since more data can be processed locally
 - Fully utilize the computation power of the edge devices
 
