@@ -94,6 +94,16 @@ committers:
       company: 'ChinaMobile'
       id: 'crispychicken'
       timezone: 'Asia/Shanghai'
+    - name: 'Ashvin'
+      email: 'ashvin.p@gopaddle.io'
+      company: 'Gopaddle'
+      id: 'ashvin'
+      timezone: 'Asia/Delhi'
+    - name: 'Vinothini Raju'
+      email: 'vinothiniraju@gopaddle.io'
+      company: 'Gopaddle'
+      id: 'vinothini'
+      timezone: 'Asia/Delhi'
 tsc:
     # yamllint disable rule:line-length
     approval: 'missing'
