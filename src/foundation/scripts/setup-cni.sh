@@ -19,19 +19,31 @@ DEV_NAME=${6:-}
 SCRIPTS_DIR=$(dirname "${BASH_SOURCE[0]}")
 
 install_calico(){
-  # Install the Etcd Database
-  ETCD_YAML=etcd.yaml
 
-  sed -i "s/10.96.232.136/${CLUSTER_IP}/" "${SCRIPTS_DIR}/cni/calico/${ETCD_YAML}"
-  kubectl apply -f "${SCRIPTS_DIR}/cni/calico/${ETCD_YAML}"
+  #If k8s version is greater than 1.15, then uses new Calico install
 
-  # Install the RBAC Roles required for Calico
-  kubectl apply -f "${SCRIPTS_DIR}/cni/calico/rbac.yaml"
+  kube_version=$(kubectl version |grep "Client" | cut -f 5 -d : | cut -f 1 -d ,)
+  echo "Install Calico for K8s version: "$kube_version
+  if [[ $kube_version > "v1.15.0" ]]; then
+    sed -i "s@192.168.0.0/16@${POD_NETWORK_CIDR}@" \
+      "${SCRIPTS_DIR}/cni/calico/k8s-new/calico-multi-arch.yaml"
+    kubectl create -f "${SCRIPTS_DIR}/cni/calico/k8s-new/calico-multi-arch.yaml"
+  else
+    # Install the Etcd Database
+    ETCD_YAML=etcd.yaml
 
-  # Install Calico to system
-  sed -i "s@10.96.232.136@${CLUSTER_IP}@; s@192.168.0.0/16@${POD_NETWORK_CIDR}@" \
-    "${SCRIPTS_DIR}/cni/calico/calico.yaml"
-  kubectl apply -f "${SCRIPTS_DIR}/cni/calico/calico.yaml"
+    sed -i "s/10.96.232.136/${CLUSTER_IP}/" "${SCRIPTS_DIR}/cni/calico/${ETCD_YAML}"
+    kubectl apply -f "${SCRIPTS_DIR}/cni/calico/${ETCD_YAML}"
+
+    # Install the RBAC Roles required for Calico
+    kubectl apply -f "${SCRIPTS_DIR}/cni/calico/rbac.yaml"
+
+    # Install Calico to system
+    sed -i "s@10.96.232.136@${CLUSTER_IP}@; s@192.168.0.0/16@${POD_NETWORK_CIDR}@" \
+      "${SCRIPTS_DIR}/cni/calico/calico.yaml"
+    kubectl apply -f "${SCRIPTS_DIR}/cni/calico/calico.yaml"
+  fi
+
 }
 
 install_flannel(){

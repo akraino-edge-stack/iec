@@ -33,9 +33,12 @@ SVC_CIDR=172.16.1.0/24
 #IEC support multiple network solution for Kubernetes: calico,flannel,contivpp,cilium,etc
 CNI_TYPE=calico
 #kubernetes-cni version 0.7.5/ 0.6.0
-CNI_VERSION=0.7.5
+#CNI_VERSION=0.7.5
+CNI_VERSION=0.8.6
 #kubernetes version: 1.15.2/ 1.13.0
-KUBE_VERSION=1.15.0
+#KUBE_VERSION=1.15.0
+KUBE_VERSION=1.19.0
+
 
 # DEV_NAME is an associative array, list network interface device names used by contivpp,
 # Use IP address of K8S_WORKER_GROUP as key, for example
