@@ -1,0 +1,5 @@
+From the node you wish to join to this cluster, run the following:
+microk8s join 172.31.18.98:25000/629d7bf742ec927cc21963b2ff404def
+
+If the node you are adding is not reachable through the default interface you can use one of the following:
+ microk8s join 172.31.18.98:25000/629d7bf742ec927cc21963b2ff404def

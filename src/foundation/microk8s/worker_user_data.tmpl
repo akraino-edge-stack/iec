@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sudo apt update -y >> microk8s_install.log
+sudo apt install snapd -y >> microk8s_install.log
+sudo snap install microk8s --classic >> microk8s_install.log
+sudo microk8s enable dns >> microk8s_install.log
+sudo ${token} >> microk8s_install.log
+sudo touch microk8s.complete
+      
+
