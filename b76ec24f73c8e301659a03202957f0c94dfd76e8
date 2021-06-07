@@ -22,6 +22,30 @@
       "revId": "b76ec24f73c8e301659a03202957f0c94dfd76e8",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b466e53a_13ff6103",
+        "filename": "src/foundation/microk8s/readme",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 440
+      },
+      "writtenOn": "2021-06-07T10:00:55Z",
+      "side": 1,
+      "message": "Can you share more information about the OS version on which you are installing terraform. If you can share the output for this command \u0027cat /etc/os-release\u0027 that\u0027d be helpful.",
+      "parentUuid": "6e11ee0d_81d4e720",
+      "range": {
+        "startLine": 7,
+        "startChar": 23,
+        "endLine": 7,
+        "endChar": 82
+      },
+      "revId": "b76ec24f73c8e301659a03202957f0c94dfd76e8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
