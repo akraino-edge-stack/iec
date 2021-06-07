@@ -46,6 +46,30 @@
       "revId": "b76ec24f73c8e301659a03202957f0c94dfd76e8",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24643cc6_bb0dd969",
+        "filename": "src/foundation/microk8s/readme",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 88
+      },
+      "writtenOn": "2021-06-07T10:05:24Z",
+      "side": 1,
+      "message": "I think the Ubuntu Focal and/or Bionic or above are all ok here:\n$  cat /etc/os-release\nNAME\u003d\"Ubuntu\"\nVERSION\u003d\"20.04.1 LTS (Focal Fossa)\"\nID\u003dubuntu\nID_LIKE\u003ddebian\nPRETTY_NAME\u003d\"Ubuntu 20.04.1 LTS\"\nVERSION_ID\u003d\"20.04\"\nHOME_URL\u003d\"https://www.ubuntu.com/\"\nSUPPORT_URL\u003d\"https://help.ubuntu.com/\"\nBUG_REPORT_URL\u003d\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL\u003d\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nVERSION_CODENAME\u003dfocal\nUBUNTU_CODENAME\u003dfocal\n\nNAME\u003d\"Ubuntu\"\nVERSION\u003d\"18.04.4 LTS (Bionic Beaver)\"\nID\u003dubuntu\nID_LIKE\u003ddebian\nPRETTY_NAME\u003d\"Ubuntu 18.04.4 LTS\"\nVERSION_ID\u003d\"18.04\"\nHOME_URL\u003d\"https://www.ubuntu.com/\"\nSUPPORT_URL\u003d\"https://help.ubuntu.com/\"\nBUG_REPORT_URL\u003d\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL\u003d\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nVERSION_CODENAME\u003dbionic\nUBUNTU_CODENAME\u003dbionic\n\n@Jianlin Could you add other information?",
+      "parentUuid": "b466e53a_13ff6103",
+      "range": {
+        "startLine": 7,
+        "startChar": 23,
+        "endLine": 7,
+        "endChar": 82
+      },
+      "revId": "b76ec24f73c8e301659a03202957f0c94dfd76e8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
