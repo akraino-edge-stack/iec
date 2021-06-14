@@ -21,14 +21,16 @@ files = docs/**.rst
 use_spaces = true
 ignore = .git/**,
     .tox/**,
-    src/type3_AndroidCloud/**
+    src/type3_AndroidCloud/**,
+    src/foundation/**
 
 [all.ShellCheck]
 bears = ShellCheckBear,SpaceConsistencyBear
 files = **.sh
 shell = bash
 use_spaces = true
-ignore = src/type3_AndroidCloud/**
+ignore = src/type3_AndroidCloud/**,
+    src/foundation/**
 
 [all.YAML]
 bears = YAMLLintBear
@@ -37,7 +39,9 @@ use_spaces = true
 ignore_length_regex = ^.*https?://
 yamllint_config = .yamllint.conf
 ignore = src/use_cases/**,
-    src/type3_AndroidCloud/**
+    src/type3_AndroidCloud/**,
+    src/foundation/**
+
 
 [all.Python]
 bears = PyLintBear
@@ -45,4 +49,5 @@ files = **.py
 use_spaces = true
 pylint_disable = E0401, W0401, C0111
 ignore = src/use_cases/**,
-    src/type3_AndroidCloud/**
+    src/type3_AndroidCloud/**,
+    src/foundation/**
