@@ -1,0 +1,91 @@
+Terraform + microk8s
+--------------------
+The purpose of this terraform template is to provision multi-node kubernetes cluster on AWS using microk8s. MicroK8s offers a light weight kubernetes environment for edge use cases.
+
+Pre-requisite
+-------------
+1. Install terraform - https://www.terraform.io/downloads.html
+
+   (a)Downlaod the zip file based on the server type. 
+   (b)Unzip the file to get the terraform binary. 
+   (c)Currently supported ubuntu version is 18.04
+
+2. IAM Access Keys -  Permissions required for running the template - AmazonEC2FullAccess
+3. PEM file for the AWS Key used in the terraform template
+NOTE : Replace fields in the variable.tf file with your corresponding values
+
+In order for Terraform to be able to create resources in your AWS account, you will need to configure the AWS credentials. One of the easiest ofwhich is to set the following environment variables:
+
+export AWS_ACCESS_KEY_ID=(your access key id)
+export AWS_SECRET_ACCESS_KEY=(your secret access key)
+
+The credentials can also be set in the variable.tf file.
+
+variable "access_key" {
+  description = "access_key"
+  default     = <insertKey>
+}
+
+variable "secret_key" {
+  description = "secret_key"
+  default     = <insertKey>
+}
+
+
+Terraform template
+------------------
+The template contains main.tf file, variable.tf file, pem file (add your pem file here) and worker_user_data.tmpl 
+You can move the pem file to the the directory where this template resides or you can change the location of the pem file in the main.tf file.
+ 
+Master's main.tf file
+--------------------
+The first step to using Terraform is typically to configure the provider(s) you want to use.
+This tells Terraform that you are going to be using the AWS provider and that you wish to deploy your infrastructure in the us-east-2 region.
+
+              provider "aws" {
+                region = var.aws_region
+              }
+
+The user_data installs the microk8s inside the EC2 instance. 
+
+              #!/bin/bash
+              sudo su
+              apt update -y >> microk8s_install.log
+              apt install snapd -y >> microk8s_install.log
+              snap install core >> microk8s_install.log
+              export PATH=$PATH:/snap/bin
+              snap install microk8s --classic >> microk8s_install.log
+              microk8s status --wait-ready
+              microk8s enable dns >> microk8s_install.log
+              microk8s add-node > microk8s.join_token
+              microk8s config > configFile
+
+Since terraform does not wait until the user_data is executed, we exec into the instace by using the 'remote-exec' type provisioner and add the following script. This script will make terraform wait util microk8s.join-token file is created. 
+
+              provisioner "remote-exec" {
+                inline = ["until [ -f /microk8s.join_token ]; do sleep 5; done; cat /microk8s.join_token"]
+              }
+
+For testing purposes, we create an 'ALLOW ALL' ingress and egress rule security group.
+
+Variables.tf file
+----------------
+The provider and the resource blocks in the main.tf file can be configured by changing the values in variables.tf file.
+For example, if you want to change the aws_instace type from t2.small to t2.micro, replace the value here in this block.
+             variable "aws_instance" {
+               type        = string
+               description = "instance_type"
+               default     = "t2.small"
+             }
+Other resource specific values like aws_region, aws_ami, vpc and the subenet can also be changed the same way by editing the variable.tf file. 
+
+Apply terraform
+---------------
+
+To create a master node with microk8s, run the following commands. 
+terraform init
+terraform plan
+terraform apply
+
+Once the worked nodes are created, it will be connected to the master. A multi-node k8s cluster will be provisioned with calico CNI. 
+
