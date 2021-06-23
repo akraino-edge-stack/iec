@@ -9,14 +9,14 @@ fi
 case ${OS_ID_LIKE:-} in
 debian)
   DOCKER_VERSION=18.06.1~ce~3-0~ubuntu
-  KUBE_VERSION=${1:-1.15.0}-00
-  K8S_CNI_VERSION=${2:-0.7.5}-00
+  KUBE_VERSION=${1:-1.19.0}-00
+  K8S_CNI_VERSION=${2:-0.8.6}-00
   KUBELET_CFG=/etc/default/kubelet
   ;;
 rhel)
   DOCKER_VERSION=18.06.1.ce-3.el7
-  KUBE_VERSION=${1:-1.15.0}-0
-  K8S_CNI_VERSION=${2:-0.7.5}-0
+  KUBE_VERSION=${1:-1.19.0}-0
+  K8S_CNI_VERSION=${2:-0.8.6}-0
   KUBELET_CFG=/etc/sysconfig/kubelet
   ;;
 *)
@@ -41,7 +41,8 @@ debian)
     $(lsb_release -cs) \
     stable"
   sudo apt update
-  sudo apt install -y docker-ce=${DOCKER_VERSION}
+  #sudo apt install -y docker-ce=${DOCKER_VERSION}
+  sudo apt install -y docker-ce
   ;;
 rhel)
   sudo yum install -y yum-utils device-mapper-persistent-data lvm2
