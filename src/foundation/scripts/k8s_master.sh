@@ -13,7 +13,7 @@ if [ -z "${MGMT_IP}" ]; then
   exit 1
 fi
 
-if ! kubectl get nodes; then
+if ! kubectl get nodes --request-timeout=3s; then
   sudo kubeadm config images pull
   sudo kubeadm init \
     --pod-network-cidr="${POD_NETWORK_CIDR}" \
