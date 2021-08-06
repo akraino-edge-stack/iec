@@ -17,7 +17,11 @@ resource "aws_instance" "master" {
               apt install snapd -y >> microk8s_install.log
               snap install core >> microk8s_install.log
               export PATH=$PATH:/snap/bin
+<<<<<<< HEAD   (ca0ef4 deprecated microk8s version.)
               snap install microk8s --classic --channel=1.20/stable >> microk8s_install.log
+=======
+              snap install microk8s --classic --channel=1.21 >> microk8s_install.log
+>>>>>>> CHANGE (d0f871 change in microk8s 1.20 to 1.21 version.)
               microk8s status --wait-ready
               microk8s enable dns >> microk8s_install.log
               microk8s add-node > microk8s.join_token
@@ -127,6 +131,14 @@ resource "null_resource" "cluster" {
   inline = ["sudo microk8s kubectl get no >> kubectl.info"]
   }
 
+<<<<<<< HEAD   (ca0ef4 deprecated microk8s version.)
+=======
+resource "null_resource" "cluster" {
+  provisioner "remote-exec" {
+  inline = ["sudo microk8s kubectl get no >> kubectl.info"]
+  }
+
+>>>>>>> CHANGE (d0f871 change in microk8s 1.20 to 1.21 version.)
   connection {
     host = aws_instance.master.public_ip
     type     = "ssh"
@@ -161,3 +173,7 @@ output "public_ip" {
 output "private_ip" {
   value = aws_instance.master.private_ip
 }
+<<<<<<< HEAD   (ca0ef4 deprecated microk8s version.)
+=======
+
+>>>>>>> CHANGE (d0f871 change in microk8s 1.20 to 1.21 version.)
