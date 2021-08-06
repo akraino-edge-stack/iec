@@ -17,11 +17,11 @@ resource "aws_instance" "master" {
               apt install snapd -y >> microk8s_install.log
               snap install core >> microk8s_install.log
               export PATH=$PATH:/snap/bin
-              snap install microk8s --classic >> microk8s_install.log
+              snap install microk8s --classic --channel=1.21 >> microk8s_install.log
               microk8s status --wait-ready
               microk8s enable dns >> microk8s_install.log
               microk8s add-node > microk8s.join_token
-              microk8s config > configFile
+              microk8s config > configFile-master
               EOF
   key_name = "terraform"
   tags = {
@@ -46,10 +46,11 @@ resource "aws_instance" "master" {
 
   provisioner "local-exec" {
     command = <<EOT
+               touch token 
                ssh-keyscan -H ${self.public_dns} >> ~/.ssh/known_hosts
                scp -i terraform.pem ubuntu@${self.public_dns}:/microk8s.join_token .
                tail -n1 microk8s.join_token >> token
-               scp -i terraform.pem ubuntu@${self.public_dns}:/configFile .
+               scp -i terraform.pem ubuntu@${self.public_dns}:/configFile-master .
               EOT
   }
 
@@ -122,7 +123,43 @@ resource "aws_instance" "worker" {
 }
 
 
-output "master_ip" {
+resource "null_resource" "cluster" {
+  provisioner "remote-exec" {
+  inline = ["sudo microk8s kubectl get no >> kubectl.info"]
+  }
+
+  connection {
+    host = aws_instance.master.public_ip
+    type     = "ssh"
+    user     = "ubuntu"
+    password = ""
+    private_key = "${file("terraform.pem")}"
+  }
+
+  provisioner "local-exec" {
+  command = <<EOT
+               echo ${aws_instance.master.private_ip}
+               export privateIP=${aws_instance.master.private_ip}
+               export publicIP=${aws_instance.master.public_ip}
+               ssh-keyscan -H ${aws_instance.worker.public_dns} >> ~/.ssh/known_hosts
+               scp -i terraform.pem ubuntu@${aws_instance.worker.public_dns}:/configFile-worker .
+              EOT
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  depends_on = [
+    aws_instance.worker,
+  ]
+}
+
+output "public_ip" {
   value         = aws_instance.master.public_ip
+}
+
+output "private_ip" {
+  value = aws_instance.master.private_ip
 }
 
