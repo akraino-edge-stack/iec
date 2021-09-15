@@ -17,7 +17,7 @@ resource "aws_instance" "master" {
               apt install snapd -y >> microk8s_install.log
               snap install core >> microk8s_install.log
               export PATH=$PATH:/snap/bin
-              snap install microk8s --classic --channel=1.20/stable >> microk8s_install.log
+              snap install microk8s --classic --channel=1.21 >> microk8s_install.log
               microk8s status --wait-ready
               microk8s enable dns >> microk8s_install.log
               microk8s add-node > microk8s.join_token
@@ -122,6 +122,7 @@ resource "aws_instance" "worker" {
   ]
 }
 
+
 resource "null_resource" "cluster" {
   provisioner "remote-exec" {
   inline = ["sudo microk8s kubectl get no >> kubectl.info"]
@@ -161,3 +162,4 @@ output "public_ip" {
 output "private_ip" {
   value = aws_instance.master.private_ip
 }
+
