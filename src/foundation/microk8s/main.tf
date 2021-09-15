@@ -20,6 +20,7 @@ resource "aws_instance" "master" {
               snap install microk8s --classic --channel=1.20/stable >> microk8s_install.log
               microk8s status --wait-ready
               microk8s enable dns >> microk8s_install.log
+              microk8s enable storage >> microk8s_install.log
               microk8s add-node > microk8s.join_token
               microk8s config > configFile-master
               EOF
@@ -32,7 +33,7 @@ resource "aws_instance" "master" {
             "sudo sed -i 's/#MOREIPS/IP.7 = ${self.public_ip}\\n#MOREIPS/g' /var/snap/microk8s/current/certs/csr.conf.template",
             "sudo sleep 1m",
             "sudo microk8s stop",
-            "sudo microk8s start"
+            "sudo microk8s start",
            ]
   }
 
@@ -47,6 +48,7 @@ resource "aws_instance" "master" {
   provisioner "local-exec" {
     command = <<EOT
                touch token 
+               mkdir /root/.ssh && chmod 0700 /root/.ssh
                ssh-keyscan -H ${self.public_dns} >> ~/.ssh/known_hosts
                scp -i terraform.pem ubuntu@${self.public_dns}:/microk8s.join_token .
                tail -n1 microk8s.join_token >> token
@@ -122,6 +124,7 @@ resource "aws_instance" "worker" {
   ]
 }
 
+
 resource "null_resource" "cluster" {
   provisioner "remote-exec" {
   inline = ["sudo microk8s kubectl get no >> kubectl.info"]
@@ -161,3 +164,4 @@ output "public_ip" {
 output "private_ip" {
   value = aws_instance.master.private_ip
 }
+

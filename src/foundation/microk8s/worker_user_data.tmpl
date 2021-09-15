@@ -2,7 +2,7 @@
 
 sudo apt update -y >> microk8s_install.log
 sudo apt install snapd -y >> microk8s_install.log
-sudo snap install microk8s --classic --channel=1.20/stable >> microk8s_install.log
+snap install microk8s --classic --channel=1.20/stable >> microk8s_install.log
 sudo microk8s enable dns >> microk8s_install.log
 sudo ${token} >> microk8s_install.log
 microk8s config > configFile-worker
