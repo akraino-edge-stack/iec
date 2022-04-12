@@ -24,14 +24,14 @@ fi
 
 if ! kubectl get nodes --request-timeout=3s; then
   sudo kubeadm config images pull
-  #sudo kubeadm init \
-  #  --pod-network-cidr="${POD_NETWORK_CIDR}" \
-  #  --apiserver-advertise-address="${MGMT_IP}" \
-  #  --service-cidr="${SERVICE_CIDR}"
   sudo kubeadm init \
     --pod-network-cidr="${POD_NETWORK_CIDR}" \
-    --apiserver-advertise-address="${MGMT_HOST}" \
+    --apiserver-advertise-address="${MGMT_IP}" \
     --service-cidr="${SERVICE_CIDR}"
+  #sudo kubeadm init \
+  #  --pod-network-cidr="${POD_NETWORK_CIDR}" \
+  #  --apiserver-advertise-address="${MGMT_HOST}" \
+  #  --service-cidr="${SERVICE_CIDR}"
 
   if [ "$(id -u)" = 0 ]; then
     echo "export KUBECONFIG=/etc/kubernetes/admin.conf" | \
