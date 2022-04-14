@@ -104,6 +104,11 @@ committers:
       company: 'Gopaddle'
       id: 'vinothini'
       timezone: 'Asia/Delhi'
+    - name: 'ysemicn'
+      email: 'ysemicn@sina.com'
+      company: 'ysemi'
+      id: 'ysemicn'
+      timezone: 'Asia/Shanghai'
 tsc:
     # yamllint disable rule:line-length
     approval: 'missing'
