@@ -2,7 +2,7 @@
 # File Name: loadimages.sh
 # Author   : rd-sw
 # email    : rd-sw@ysemi.cn
-# Created Time: 2022-04-27 10:04
+# Created Time: 2022-04-28 10:04
 #########################################################################
 #!/bin/bash
 
