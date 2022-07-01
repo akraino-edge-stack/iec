@@ -1,0 +1,21 @@
+# yamllint disable
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sriovdp-config
+  namespace: kube-system
+data:
+  config.json: |
+    {
+        "resourceList": [
+            {
+                "resourceName": "82599_sriov_netdevice",
+                "selectors": {
+                    "vendors": ["8086"],
+                    "devices": ["10ed"],
+                    "drivers": ["ixgbevf"],
+                    "pfNames": ["enp142s0f0"]
+                }
+            }
+        ]
+    }
