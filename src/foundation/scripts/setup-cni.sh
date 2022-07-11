@@ -27,7 +27,7 @@ install_calico(){
   if [[ $kube_version > "v1.15.0" ]]; then
     sed -i "s@192.168.0.0/16@${POD_NETWORK_CIDR}@" \
       "${SCRIPTS_DIR}/cni/calico/k8s-new/calico-multi-arch.yaml"
-    kubectl create -f "${SCRIPTS_DIR}/cni/calico/k8s-new/calico-multi-arch.yaml"
+    kubectl create -f "${SCRIPTS_DIR}/cni/calico/k8s-new/calico-3.23-install-vxlan.yaml"
   else
     # Install the Etcd Database
     ETCD_YAML=etcd.yaml
