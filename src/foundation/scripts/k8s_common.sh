@@ -31,7 +31,7 @@ debian)
   # Install basic software
   echo "Acquire::ForceIPv4 \"true\";" | sudo tee -a /etc/apt/apt.conf.d/99force-ipv4 > /dev/null
   sudo apt update
-  sudo apt install -y software-properties-common apt-transport-https curl python-pip
+  sudo apt install -y software-properties-common apt-transport-https curl python3-pip
 
   # Install Docker as Prerequisite
   curl -4fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -66,6 +66,7 @@ debian)
   cat <<-EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
+  sudo apt remove -f kubeadm kubectl kubernetes-cni kubelet
   sudo apt update
   # Minor fix for broken kubernetes-cni dependency in upstream xenial repo
   sudo apt install -y \
