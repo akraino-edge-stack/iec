@@ -82,16 +82,26 @@ START=1
 END=$aNum
 
 if [ "x${nodeOnly}" != "xtrue" ]; then
-  echo "Now access the service IP $svcIP:80, $aNum times:"
+  echo "Now access the service IP $svcIP:80, $aNum times, time total:"
   for (( c=$START; c<=$END; c++))
-  do 
+  do
     curl -w "%{time_total}\n" -o /dev/null -s http://$svcIP
+  done | jq -s add/length
+  echo "Now access the service IP $svcIP:80, $aNum times, time connect:"
+  for (( c=$START; c<=$END; c++))
+  do
+    curl -w "%{time_connect}\n" -o /dev/null -s http://$svcIP
   done | jq -s add/length
 fi
 
 echo ""
-echo "Now access the $nodeIP:$nodePort, $aNum times"
+echo "Now access the $nodeIP:$nodePort, $aNum times, time total:"
 for (( c=$START; c<=$END; c++))
 do
     curl -w "%{time_total}\n" -o /dev/null -s $nodeIP:$nodePort
+done | jq -s add/length
+echo "Now access the $nodeIP:$nodePort, $aNum times, time total:"
+for (( c=$START; c<=$END; c++))
+do
+    curl -w "%{time_connect}\n" -o /dev/null -s $nodeIP:$nodePort
 done | jq -s add/length
