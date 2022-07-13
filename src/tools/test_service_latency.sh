@@ -100,7 +100,7 @@ for (( c=$START; c<=$END; c++))
 do
     curl -w "%{time_total}\n" -o /dev/null -s $nodeIP:$nodePort
 done | jq -s add/length
-echo "Now access the $nodeIP:$nodePort, $aNum times, time total:"
+echo "Now access the $nodeIP:$nodePort, $aNum times, time connect:"
 for (( c=$START; c<=$END; c++))
 do
     curl -w "%{time_connect}\n" -o /dev/null -s $nodeIP:$nodePort
