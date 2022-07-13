@@ -17,7 +17,13 @@ display_help () {
   echo "Please input the nodeIP and access number"
 }
 
-ARGS=`getopt -a -o s:n:h -l nodeIP:,number:,help -- "$@"`
+#svcIP=$(kubectl get svc | grep nginx |grep -i "nodeport" | awk -F'[ ]+' '{print $3}')
+#echo "Service IP:"$svcIP
+#nodePort=$(kubectl get svc | grep nginx |grep -i "nodeport" | awk -F'[ ]+' '{print $5}' | cut -d ":" -f 2 |cut -d "/" -f 1)
+#echo "NodePort:"$nodePort
+
+
+ARGS=`getopt -a -o s:n:c:p:k::h:: -l nodeIP:,number:,serviceIP:,nodePort:,nodeOnly::,help:: -- "$@"`
 eval set -- "${ARGS}"
 while true
 do
@@ -32,12 +38,30 @@ do
                 echo "access number=$2"
                 shift
                 ;;
+        -c|--serviceIP)
+                svcIP="$2"
+		echo "Service IP=$2"
+                shift
+                ;;
+        -p|--nodePort)
+                nodePort="$2"
+		echo "nodePort=$2"
+                shift
+                ;;
+        -k|--nodeOnly)
+                nodeOnly="true"
+                echo "Ignore accessing service IP test."
+		echo "nodeOnly=true"
+                ;;
         -h|--help)
                 echo "this is help case"
                 display_help
+                exit 0
                 ;;
         --)
-                echo "Now do the test:"
+		echo ""
+                echo "Use default args, now do the test:"
+		echo ""
                 shift
                 break
                 ;;
@@ -46,26 +70,36 @@ shift
 done
 
 
-svcIP=$(kubectl get svc | grep nginx |grep -i "nodeport" | awk -F'[ ]+' '{print $3}')
-echo "Service IP:"$svcIP
-nodePort=$(kubectl get svc | grep nginx |grep -i "nodeport" | awk -F'[ ]+' '{print $5}' | cut -d ":" -f 2 |cut -d "/" -f 1)
-echo "NodePort:"$nodePort
+if [[ "x${svcIP}" == "x"  &&  ${onlyNode} != "true" ]]; then
+  echo "No service IP defined, try to find locally:"
+  svcIP=$(kubectl get svc | grep nginx |grep -i "nodeport" | awk -F'[ ]+' '{print $3}')
+  echo "Service IP:"$svcIP
+fi
+
+if [ "x${nodePort}" == "x" ]; then
+  echo "No nodePort defined, try to find locally:"
+  nodePort=$(kubectl get svc | grep nginx |grep -i "nodeport" | awk -F'[ ]+' '{print $5}' | cut -d ":" -f 2 |cut -d "/" -f 1)
+  echo "NodePort:"$nodePort
+fi
+
 
 accessNum=$((aNum + 0))
-echo "Now access the service IP, $aNum times:"
 #for i in {1..$(($aNum + 0))} 
 START=1
 END=$aNum
 
-for (( c=$START; c<=$END; c++))
-do 
-    curl -w "%{time_total}\n" -o /dev/null -s http://$svcIP
-done | jq -s add/length
 
-echo "Now access the NodePort, $aNum times"
+if [ "x${nodeOnly}" != "xtrue" ]; then
+  echo "Now access the service IP $svcIP:80, $aNum times:"
+  for (( c=$START; c<=$END; c++))
+  do 
+    curl -w "%{time_total}\n" -o /dev/null -s http://$svcIP
+  done | jq -s add/length
+fi
+
+echo ""
+echo "Now access the $nodeIP:$nodePort, $aNum times"
 for (( c=$START; c<=$END; c++))
 do
-    #curl -w "%{time_total}\n" -o /dev/null -s http://10.169.210.208:31942 
-    #curl -w "%{time_total}\n" -o /dev/null -s http://10.169.210.208:31942 
-    curl -w "%{time_total}\n" -o /dev/null -s $localIP:$nodePort
+    curl -w "%{time_total}\n" -o /dev/null -s $nodeIP:$nodePort
 done | jq -s add/length
