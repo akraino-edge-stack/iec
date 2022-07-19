@@ -24,3 +24,7 @@ export DOCKER_CLI_EXPERIMENTAL=enabled
 docker manifest rm "${registry}" || true
 docker manifest create "${registry}" "${images[@]}"
 docker manifest push "${registry}"
+
+echo "Now check the manifest information:"
+docker manifest inspect "${registry}"
+
