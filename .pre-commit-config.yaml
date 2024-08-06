@@ -1,0 +1,17 @@
+---
+# To simplify and beautify the long regex for exclude, newlines (which will be
+# parsed into spaces) are followed by '*', in order to allow the regex to read
+# this whitespace as "0 or more spaces".
+exclude: >-
+  src/use_cases/seba_on_arm/src_repo/.*|
+  *\.git.*
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.1
+    hooks:
+      - id: gitlint
