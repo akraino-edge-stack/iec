@@ -284,7 +284,7 @@ void Platform::process_input_event(const SDL_Event &event) {
   }
 
   if (mouse_events.size() > 0) {
-    mouse_events.push_back({EV_SYN, SYN_REPORT, 0});      
+    mouse_events.push_back({EV_SYN, SYN_REPORT, 0});
     pointer_->send_events(mouse_events);
   }
 
@@ -326,7 +326,7 @@ void Platform::push_finger_down(int x, int y, int finger_id, std::vector<input::
 
 void Platform::push_finger_up(int finger_id, std::vector<input::Event> &touch_events){
     int slot = find_touch_slot(finger_id);
-    if (slot == -1) 
+    if (slot == -1)
       return;
     push_slot(touch_events, slot);
     touch_events.push_back({EV_ABS, ABS_MT_TRACKING_ID, -1});
@@ -336,7 +336,7 @@ void Platform::push_finger_up(int finger_id, std::vector<input::Event> &touch_ev
 
 void Platform::push_finger_motion(int x, int y, int finger_id, std::vector<input::Event> &touch_events){
     int slot = find_touch_slot(finger_id);
-    if (slot == -1) 
+    if (slot == -1)
       return;
     push_slot(touch_events, slot);
     touch_events.push_back({EV_ABS, ABS_MT_POSITION_X, x});

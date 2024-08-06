@@ -15,13 +15,13 @@ index d79dcb6..206a3a8 100644
 +++ b/src/test/cord-api/Dockerfile.k8s-api-tester
 @@ -19,7 +19,7 @@
  FROM python:2.7
- 
+
  RUN pip install httpie robotframework robotframework-requests pexpect \
 -     robotframework-sshlibrary robotframework-httplibrary robotframework-kafkalibrary pygments pyyaml tinydb && \
 +     robotframework-sshlibrary robotframework-httplibrary robotframework-kafkalibrary pygments pyyaml tinydb pynacl==1.1.2 && \
      pip install -U requests && rm -rf /var/lib/apt/lists/*
- 
+
  RUN  mkdir -p /src/cord-api
--- 
+--
 2.17.1
 

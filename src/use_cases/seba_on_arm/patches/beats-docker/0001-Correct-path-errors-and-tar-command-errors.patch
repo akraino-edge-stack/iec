@@ -15,16 +15,16 @@ index 9cdcb4a..31ed20b 100644
 --- a/templates/Dockerfile.j2
 +++ b/templates/Dockerfile.j2
 @@ -24,8 +24,8 @@ FROM centos:7
- 
+
  RUN yum update -y && yum install -y curl && yum clean all
- 
+
 -COPY --from=golang /go/src/github.com/alexandruavadanii/beats/{{ beat }}/build/distributions/{{ beat }}-{{ elastic_version }}-linux-arm64.tar.gz /tmp
 -RUN tar zxf /tmp/FIXME -C /tmp && \
 +COPY --from=golang /go/src/github.com/elastic/beats/{{ beat }}/build/distributions/{{ beat }}-{{ elastic_version }}-linux-arm64.tar.gz /tmp
 +RUN tar zxf /tmp/{{ beat }}-{{ elastic_version }}-linux-arm64.tar.gz -C /tmp && \
      mv /tmp/{{ beat }}-{{ elastic_version }}-linux-arm64 {{ beat_home }} && \
      rm /tmp/{{ beat }}-{{ elastic_version }}-linux-arm64.tar.gz
- 
--- 
+
+--
 2.17.1
 

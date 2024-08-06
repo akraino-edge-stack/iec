@@ -387,7 +387,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      name: sriov-cni        
+      name: sriov-cni
   template:
     metadata:
       labels:

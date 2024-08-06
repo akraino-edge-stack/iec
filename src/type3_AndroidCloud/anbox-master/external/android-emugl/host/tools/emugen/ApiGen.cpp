@@ -718,7 +718,7 @@ int ApiGen::genEncoderImpl(const std::string &filename)
     for (size_t i = 0; i < n; i++) {
         EntryPoint *e = &at(i);
         if (e->unsupported()) {
-            fprintf(fp, 
+            fprintf(fp,
                     "\tthis->%s = (%s_%s_proc_t) &enc_unsupported;\n",
                     e->name().c_str(),
                     e->name().c_str(),
@@ -767,8 +767,8 @@ int ApiGen::genDecoderHeader(const std::string &filename)
     fprintf(fp, "struct %s : public %s_%s_context_t {\n\n",
             classname.c_str(), m_basename.c_str(), sideString(SERVER_SIDE));
     fprintf(fp, "\tsize_t decode(void *buf, size_t bufsize, IOStream *stream);\n");
-    if (strcmp(classname.c_str(), "gles2_decoder_context_t") == 0){ 
-	fprintf(fp, 
+    if (strcmp(classname.c_str(), "gles2_decoder_context_t") == 0){
+	fprintf(fp,
 			"\tvoid freeShader(); \n\
 			\tvoid freeProgram(); \n\
 			\tstd::map<GLuint, GLuint> m_programs; \n\
@@ -853,7 +853,7 @@ int ApiGen::genDecoderImpl(const std::string &filename)
     // glsl shader/program free;
     if (strcmp(classname.c_str(), "gles2_decoder_context_t") == 0) {
         fprintf(fp, "void %s::freeShader(){\n", classname.c_str());
-	fprintf(fp, 
+	fprintf(fp,
 		"                       \n\
 \tauto it = m_shaders.begin();\n\
 \tm_lock.lock();\n\
@@ -866,7 +866,7 @@ int ApiGen::genDecoderImpl(const std::string &filename)
 }\n\n");
 
         fprintf(fp, "void %s::freeProgram(){\n", classname.c_str());
-	fprintf(fp, 
+	fprintf(fp,
 		"		\n\
 \tauto it = m_programs.begin(); \n\
 \tm_lock.lock();\n\
@@ -1211,7 +1211,7 @@ int ApiGen::genDecoderImpl(const std::string &filename)
 			m_shaders.insert({var_shader, 1});\n\
 			m_lock.unlock();\n");
 	    } else if(strcmp(e->name().c_str(), "glDeleteProgram") == 0){
-		fprintf(fp, 
+		fprintf(fp,
 			"\t\t\tm_lock.lock(); \n"
 			"\t\t\tauto pro = m_programs.find(var_program); \n"
 			"\t\t\tif (pro != m_programs.end()) \n"
@@ -1220,7 +1220,7 @@ int ApiGen::genDecoderImpl(const std::string &filename)
 			"\t\t\t}\n"
 			"\t\t\tm_lock.unlock();\n");
             } else if(strcmp(e->name().c_str(), "glDeleteShader") == 0){
-		fprintf(fp, 
+		fprintf(fp,
 			"\t\t\tm_lock.lock(); \n\
 			\t\t\tauto shader = m_shaders.find(var_shader); \n\
 			\t\t\tif (shader != m_shaders.end()) \n\

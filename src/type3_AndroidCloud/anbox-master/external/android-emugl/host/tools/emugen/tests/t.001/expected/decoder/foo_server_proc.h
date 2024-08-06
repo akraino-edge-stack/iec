@@ -9,7 +9,7 @@
 
 #include "emugl/common/logging.h"
 #ifndef foo_APIENTRY
-#define foo_APIENTRY 
+#define foo_APIENTRY
 #endif
 typedef void (foo_APIENTRY *fooAlphaFunc_server_proc_t) (FooInt, FooFloat);
 typedef FooBoolean (foo_APIENTRY *fooIsBuffer_server_proc_t) (void*);

@@ -336,7 +336,7 @@ static int sensor_device_poll_event_locked(SensorDevice* dev)
             events[ID_TEMPERATURE].type = SENSOR_TYPE_TEMPERATURE;
             continue;
         }
- 
+
         /* "proximity:<value>" */
         if (sscanf(buff, "proximity:%g", params+0) == 1) {
             new_sensors |= SENSORS_PROXIMITY;

@@ -165,7 +165,6 @@ spec:
           capabilities:
             add: ["NET_ADMIN", "SYS_ADMIN", "SYS_PTRACE"]
 
-
         terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         # for the iptables wrapper
@@ -192,7 +191,6 @@ spec:
         - mountPath: /ovn-cert
           name: host-ovn-cert
           readOnly: true
-
 
         resources:
           requests:
@@ -293,7 +291,6 @@ spec:
       - name: host-config-openvswitch
         hostPath:
           path: /etc/origin/openvswitch
-
 
       tolerations:
       - operator: "Exists"

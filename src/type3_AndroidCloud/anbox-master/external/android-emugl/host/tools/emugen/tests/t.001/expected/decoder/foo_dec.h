@@ -4,7 +4,7 @@
 #ifndef GUARD_foo_decoder_context_t
 #define GUARD_foo_decoder_context_t
 
-#include "IOStream.h" 
+#include "IOStream.h"
 #include "foo_server_context.h"
 
 

@@ -1,4 +1,4 @@
-greeting=Hallo 
+greeting=Hallo
 greeting.name=Rob
 greeting.suffix=, welkom bij Revel!
 

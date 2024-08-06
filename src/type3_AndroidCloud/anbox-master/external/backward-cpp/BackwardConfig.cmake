@@ -196,7 +196,7 @@ if (NOT TARGET Backward::Backward)
 	)
 	if(BACKWARD_HAS_EXTERNAL_LIBRARIES)
 		set_target_properties(Backward::Backward PROPERTIES
-			INTERFACE_LINK_LIBRARIES "${BACKWARD_LIBRARIES}" 
+			INTERFACE_LINK_LIBRARIES "${BACKWARD_LIBRARIES}"
 		)
 	endif()
 endif()

@@ -117,19 +117,19 @@ the files that are generated for this protocol.  A line in the .in
 file has the following format:
 
 [prefix](retvalType, FuncName, <param type> [param name],...)
-where 
+where
 	retvalType - The function return value type
 	FuncName - function name
 	<param type> mandatory parameter type
 	[param name] - optional parameter name
 Examples:
-GL_ENTRY(void, glVertex1f, float v) 
+GL_ENTRY(void, glVertex1f, float v)
 XXX(int *, foo, int n, float, short)
 XXX(void, glFlush, void)
 
 Note: Empty lines in the file are ignored. A line starts with # is a comment
 
-2. basename.attrib - Attributes information of the API. 
+2. basename.attrib - Attributes information of the API.
 This file includes additional flags, pointers datalen information and
 global attributes of the protocol. For uptodate format of the file,
 please refer to the specification file in the project source
@@ -153,7 +153,7 @@ GLint 32 %d false
 GLint* 32 %p true
 GLptr  32 %p true
 
-Encoder generated code files 
+Encoder generated code files
 ----------------------------
 In order to generate the encoder files, one should run the ‘emugen’
 tool as follows:
@@ -176,7 +176,7 @@ provide a callback function that is used by the functions to access
 the encoder context. For example, such callback could fetch the
 context from a Thread Local Storage (TLS) location.
 
-api_client_proc.h - type defintions for the protocol procedures. 
+api_client_proc.h - type defintions for the protocol procedures.
 
 api_client_context.h - defines the client side dispatch table data
 structure that stores the encoding functions. This data structure also
@@ -191,7 +191,7 @@ encoder data structure inherits its functionality from the
 ‘client_context’ class above and adds encoding and streaming
 functionality.
 
-api_enc.cpp - Encoder implementation. 
+api_enc.cpp - Encoder implementation.
 
 Decoder generated files
 -----------------------
@@ -311,7 +311,7 @@ custom_pack
 	to the codec, out from data that returns from the codec.
      	format: dir <varname> <[in | out | inout]>
 
- var_flag 
+ var_flag
  	 description : set variable flags
  	 format: var_flag <varname> < nullAllowed | isLarge | ... >
 
@@ -319,10 +319,10 @@ custom_pack
         isLarge     -> for pointer variables, indicates that the data should be sent without an intermediate copy
 
  flag
-	description: set entry point flag; 
+	description: set entry point flag;
 	format: flag < unsupported | ... >
 	supported flags are:
-	unsupported - The encoder side implementation is pointed to "unsuppored reporting function". 
+	unsupported - The encoder side implementation is pointed to "unsuppored reporting function".
 	custom_decoder - The decoder is expected to be provided with
 		       	 custom implementation. The call to the
 		       	 deocder function includes a pointer to the

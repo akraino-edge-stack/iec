@@ -58,7 +58,7 @@ void for_each(const std::function<void(const std::string&, const std::string&)>&
     auto it = ::environ;
     while (it != nullptr && *it != nullptr)
     {
-        std::string line(*it);        
+        std::string line(*it);
         functor(line.substr(0,line.find_first_of('=')),
                 line.substr(line.find_first_of('=')+1));
         ++it;

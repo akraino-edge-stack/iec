@@ -32,18 +32,18 @@ using namespace emugl;
 
 size_t foo_decoder_context_t::decode(void *buf, size_t len, IOStream *stream)
 {
-                           
+
 	size_t pos = 0;
-	if (len < 8) return pos; 
+	if (len < 8) return pos;
 	unsigned char *ptr = (unsigned char *)buf;
-	bool unknownOpcode = false;  
-#ifdef CHECK_GL_ERROR 
-	char lastCall[256] = {0}; 
-#endif 
-	while ((len - pos >= 8) && !unknownOpcode) {   
-		uint32_t opcode = *(uint32_t *)ptr;   
+	bool unknownOpcode = false;
+#ifdef CHECK_GL_ERROR
+	char lastCall[256] = {0};
+#endif
+	while ((len - pos >= 8) && !unknownOpcode) {
+		uint32_t opcode = *(uint32_t *)ptr;
 		size_t packetLen = *(uint32_t *)(ptr + 4);
-		if (len - pos < packetLen)  return pos; 
+		if (len - pos < packetLen)  return pos;
 		bool useChecksum = ChecksumCalculatorThreadInfo::getVersion() > 0;
 		size_t checksumSize = 0;
 		if (useChecksum) {
@@ -54,7 +54,7 @@ size_t foo_decoder_context_t::decode(void *buf, size_t len, IOStream *stream)
 			FooInt var_func = Unpack<FooInt,uint32_t>(ptr + 8);
 			FooFloat var_ref = Unpack<FooFloat,uint32_t>(ptr + 8 + 4);
 			if (useChecksum) {
-				ChecksumCalculatorThreadInfo::validOrDie(ptr, 8 + 4 + 4, ptr + 8 + 4 + 4, checksumSize, 
+				ChecksumCalculatorThreadInfo::validOrDie(ptr, 8 + 4 + 4, ptr + 8 + 4 + 4, checksumSize,
 					"8 + 4 + 4::decode, OP_foo_decoder_context_t: GL checksumCalculator failure\n");
 			}
 			DEBUG("foo(%p): fooAlphaFunc(%d %f )\n", stream,var_func, var_ref);
@@ -66,7 +66,7 @@ size_t foo_decoder_context_t::decode(void *buf, size_t len, IOStream *stream)
 			uint32_t size_stuff __attribute__((unused)) = Unpack<uint32_t,uint32_t>(ptr + 8);
 			InputBuffer inptr_stuff(ptr + 8 + 4, size_stuff);
 			if (useChecksum) {
-				ChecksumCalculatorThreadInfo::validOrDie(ptr, 8 + 4 + size_stuff, ptr + 8 + 4 + size_stuff, checksumSize, 
+				ChecksumCalculatorThreadInfo::validOrDie(ptr, 8 + 4 + size_stuff, ptr + 8 + 4 + size_stuff, checksumSize,
 					"8 + 4 + size_stuff::decode, OP_foo_decoder_context_t: GL checksumCalculator failure\n");
 			}
 			size_t totalTmpSize = sizeof(FooBoolean);
@@ -85,7 +85,7 @@ size_t foo_decoder_context_t::decode(void *buf, size_t len, IOStream *stream)
 			uint32_t size_params __attribute__((unused)) = Unpack<uint32_t,uint32_t>(ptr + 8);
 			InputBuffer inptr_params(ptr + 8 + 4, size_params);
 			if (useChecksum) {
-				ChecksumCalculatorThreadInfo::validOrDie(ptr, 8 + 4 + size_params, ptr + 8 + 4 + size_params, checksumSize, 
+				ChecksumCalculatorThreadInfo::validOrDie(ptr, 8 + 4 + size_params, ptr + 8 + 4 + size_params, checksumSize,
 					"8 + 4 + size_params::decode, OP_foo_decoder_context_t: GL checksumCalculator failure\n");
 			}
 			DEBUG("foo(%p): fooUnsupported(%p(%u) )\n", stream,(void*)(inptr_params.get()), size_params);
@@ -96,7 +96,7 @@ size_t foo_decoder_context_t::decode(void *buf, size_t len, IOStream *stream)
 		case OP_fooDoEncoderFlush: {
 			FooInt var_param = Unpack<FooInt,uint32_t>(ptr + 8);
 			if (useChecksum) {
-				ChecksumCalculatorThreadInfo::validOrDie(ptr, 8 + 4, ptr + 8 + 4, checksumSize, 
+				ChecksumCalculatorThreadInfo::validOrDie(ptr, 8 + 4, ptr + 8 + 4, checksumSize,
 					"8 + 4::decode, OP_foo_decoder_context_t: GL checksumCalculator failure\n");
 			}
 			DEBUG("foo(%p): fooDoEncoderFlush(%d )\n", stream,var_param);
@@ -108,7 +108,7 @@ size_t foo_decoder_context_t::decode(void *buf, size_t len, IOStream *stream)
 			uint32_t size_param __attribute__((unused)) = Unpack<uint32_t,uint32_t>(ptr + 8);
 			InputBuffer inptr_param(ptr + 8 + 4, size_param);
 			if (useChecksum) {
-				ChecksumCalculatorThreadInfo::validOrDie(ptr, 8 + 4 + size_param, ptr + 8 + 4 + size_param, checksumSize, 
+				ChecksumCalculatorThreadInfo::validOrDie(ptr, 8 + 4 + size_param, ptr + 8 + 4 + size_param, checksumSize,
 					"8 + 4 + size_param::decode, OP_foo_decoder_context_t: GL checksumCalculator failure\n");
 			}
 			DEBUG("foo(%p): fooTakeConstVoidPtrConstPtr(%p(%u) )\n", stream,(const void* const*)(inptr_param.get()), size_param);

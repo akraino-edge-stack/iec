@@ -8,7 +8,7 @@ END=5
 
 urlIP=${1:-172.26.12.101}
 urlPort=${2:-30942}
- 
+
 
 IFS_OLD=$IFS
 IFS=$'\n'
@@ -18,7 +18,7 @@ runCmd(){
 
 for (( c=$START; c<=$END; c++))
 do
-    
+
     #curl -w "%{time_total}\n" -o /dev/null -s http://$svcIP
     cmd=$1
     echo "Round:"$c"--"$cmd
@@ -45,7 +45,7 @@ do
       sleep 0.1
     done
 
-done 
+done
 
 echo "Latency:"
 for (( c=$START; c<=$END; c++))

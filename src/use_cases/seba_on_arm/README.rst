@@ -29,7 +29,7 @@ SEBA on Arm Use Case
 .. _SEBA: https://wiki.opencord.org/display/CORD/SEBA
 
 SDN-Enabled Broadband Access (SEBA) is an Exemplar Platform being built by the ONF and CORD community,
-which would also be a sample use case of IEC. 
+which would also be a sample use case of IEC.
 
 We would enable SEBA on arm with the native installation method for SEBA by great efforts.
 

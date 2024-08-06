@@ -19,9 +19,9 @@ index 5f2cfd2..004a069 100755
  packaging==17.1
  pexpect==4.6.0
 +pynacl==1.1.2
- 
+
  # python-consul>=0.6.1  we need the pre-released version for now, because 0.6.1 does not
  # yet support Twisted. Once this is released, it will be the 0.6.2 version
--- 
+--
 2.17.1
 

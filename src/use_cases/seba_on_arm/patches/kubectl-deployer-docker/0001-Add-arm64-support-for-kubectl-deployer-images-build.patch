@@ -14,12 +14,12 @@ index 117b386..88195c6 100644
 +++ b/Dockerfile
 @@ -1,13 +1,11 @@
  FROM alpine:3.6
- 
+
 -LABEL MAINTAINER="Sergii Nuzhdin <ipaq.lw@gmail.com@gmail.com>"
 -
 -ENV KUBE_LATEST_VERSION="v1.13.0"
 +ENV KUBE_LATEST_VERSION="v1.6.4"
- 
+
  RUN apk add --update ca-certificates \
      && apk add --update -t deps curl \
      && apk add --update gettext \
@@ -28,6 +28,6 @@ index 117b386..88195c6 100644
      && chmod +x /usr/local/bin/kubectl \
      && apk del --purge deps \
      && rm /var/cache/apk/*
--- 
+--
 2.17.1
 

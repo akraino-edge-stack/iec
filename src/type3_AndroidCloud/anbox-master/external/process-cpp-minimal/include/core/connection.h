@@ -30,7 +30,7 @@ class ScopedConnection;
  */
 class Connection
 {
-public:    
+public:
     typedef std::function<void(const std::function<void()>&)> Dispatcher;
 
     /**

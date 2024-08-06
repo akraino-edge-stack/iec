@@ -41,7 +41,7 @@ struct BufferData {
     BufferData();
     BufferData(GLsizeiptr size, void * data);
     GLsizeiptr  m_size;
-    FixedBuffer m_fixedBuffer;    
+    FixedBuffer m_fixedBuffer;
 };
 
 class ProgramData {
@@ -119,7 +119,7 @@ public:
 
     bool    isProgram(GLuint program);
     bool    isProgramInitialized(GLuint program);
-    void    addProgramData(GLuint program); 
+    void    addProgramData(GLuint program);
     void    initProgramData(GLuint program, GLuint numIndexes);
     void    attachShader(GLuint program, GLuint shader);
     void    detachShader(GLuint program, GLuint shader);
@@ -139,6 +139,6 @@ public:
     void    unrefShaderData(GLuint shader);
 };
 
-typedef SmartPtr<GLSharedGroup> GLSharedGroupPtr; 
+typedef SmartPtr<GLSharedGroup> GLSharedGroupPtr;
 
 #endif //_GL_SHARED_GROUP_H_

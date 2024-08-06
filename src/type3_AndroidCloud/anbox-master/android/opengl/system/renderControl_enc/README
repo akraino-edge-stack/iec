@@ -30,7 +30,7 @@ EGLint rcGetConfigs(uint32_t bufSize, GLuint* buffer);
        with their attribute values.
        bufSize is the size of buffer, the size should be at least equal to
        (numConfigs + 1) * numAttribs * sizeof(GLuint)
-       where numConfigs and numAttribs are the values returned in 
+       where numConfigs and numAttribs are the values returned in
        rcGetNumConfigs. if bufSize is not big enough then the negative number
        of required bytes is returned otherwise the function returns the number
        of configs and buffer is filled as follows: The first 'numAttribs'
@@ -40,13 +40,13 @@ EGLint rcGetConfigs(uint32_t bufSize, GLuint* buffer);
        in the same order as the attribute vector.
 
 EGLint rcChooseConfig(EGLint *attribs, uint32_t attribs_size, uint32_t *configs, uint32_t configs_size)
-       This function triggers an eglChooseConfig on the host, to get a list of 
+       This function triggers an eglChooseConfig on the host, to get a list of
        configs matching the given attribs values.
  	attribs - a list of attribute names followed by the desired values, terminated by EGL_NONE
 	attribs_size - the size of the list
 	configs - the returned matching configuration names (same names as familiar to the client in rcGetConfigs)
 	configs_size - the size of the configs buffers
-	returns - the actual number of matching configurations (<= configs_size) 
+	returns - the actual number of matching configurations (<= configs_size)
 
 EGLint rcGetFBParam(EGLint param);
        queries the host for framebuffer parameter, see renderControl_types.h
@@ -73,7 +73,7 @@ void rcDestroyWindowSurface(uint32_t windowSurface);
 
 uint32_t rcCreateColorBuffer(uint32_t width, uint32_t height, GLenum internalFormat);
        This function creates a colorBuffer object on the host which can be then
-       be specified as a render target for a window surface through 
+       be specified as a render target for a window surface through
        rcSetWindowColorBuffer or to be displayed on the framebuffer window
        through rcFBPost.
        The function returns a handle to the colorBuffer object, with an initial
@@ -96,7 +96,7 @@ void rcSetWindowColorBuffer(uint32_t windowSurface, uint32_t colorBuffer);
        colorBuffer.
 
 EGLint rcMakeCurrent(uint32_t context, uint32_t drawSurf, uint32_t readSurf);
-       Binds a windowSurface(s) and current rendering context for the 
+       Binds a windowSurface(s) and current rendering context for the
        calling thread.
 
 void rcFBPost(uint32_t colorBuffer);
@@ -122,15 +122,15 @@ EGLint rcColorBufferCacheFlush(uint32_t colorbuffer, EGLint postCount, int forRe
        with non-zero 'forRead' value, otherwise the function returns zero or
        negative value on failure.
 
-void rcReadColorBuffer(uint32_t colorbuffer, GLint x, GLint y, 
-                       GLint width, GLint height, GLenum format, 
+void rcReadColorBuffer(uint32_t colorbuffer, GLint x, GLint y,
+                       GLint width, GLint height, GLenum format,
                        GLenum type, void* pixels);
        This function queries the host for the pixel content of a colorBuffer's
        subregion. It act the same as OpenGL glReadPixels however pixels
        are always packed with alignment of 1.
 
-void rcUpdateColorBuffer(uint32_t colorbuffer, GLint x, GLint y, 
-                         GLint width, GLint height, GLenum format, 
+void rcUpdateColorBuffer(uint32_t colorbuffer, GLint x, GLint y,
+                         GLint width, GLint height, GLenum format,
                          GLenum type, void* pixels);
        Updates the content of a subregion of a colorBuffer object.
        pixels are always unpacked with alignment of 1.

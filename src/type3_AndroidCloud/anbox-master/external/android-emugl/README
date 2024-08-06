@@ -75,7 +75,7 @@ to debug the various modules described above:
   tests/ut_rendercontrol_dec -> host library used by tests/ut_renderer
   tests/ut_renderer          -> unit-test for render control and rendering library.
 
-                                
+
 II. Build system considerations:
 --------------------------------
 

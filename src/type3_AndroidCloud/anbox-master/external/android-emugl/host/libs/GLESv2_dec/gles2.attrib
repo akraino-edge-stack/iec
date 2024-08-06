@@ -29,22 +29,22 @@ glCompressedTexSubImage2D
 #void glDeleteBuffers(GLsizei n, GLuint *buffers)
 glDeleteBuffers
 	len buffers (n * sizeof(GLuint))
-    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; } 
+    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; }
 
 #void glDeleteFramebuffers(GLsizei n, GLuint *framebuffers)
 glDeleteFramebuffers
 	len framebuffers (n * sizeof(GLuint))
-    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; } 
+    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; }
 
 #void glDeleteRenderbuffers(GLsizei n, GLuint *renderbuffers)
 glDeleteRenderbuffers
 	len renderbuffers (n * sizeof(GLuint))
-    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; } 
+    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; }
 
 #void glDeleteTextures(GLsizei n, GLuint *textures)
 glDeleteTextures
 	len textures (n * sizeof(GLuint))
-    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; } 
+    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; }
 
 #void glDrawElements(GLenum mode, GLsizei count, GLenum type, GLvoid *indices)
 glDrawElements
@@ -54,25 +54,25 @@ glDrawElements
 glGenBuffers
 	len buffers (n * sizeof(GLuint))
 	dir buffers out
-    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; } 
+    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; }
 
 #void glGenFramebuffers(GLsizei n, GLuint *framebuffers)
 glGenFramebuffers
 	len framebuffers (n * sizeof(GLuint))
 	dir framebuffers out
-    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; } 
+    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; }
 
 #void glGenRenderbuffers(GLsizei n, GLuint *renderbuffers)
 glGenRenderbuffers
 	len renderbuffers (n * sizeof(GLuint))
 	dir renderbuffers out
-    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; } 
+    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; }
 
 #void glGenTextures(GLsizei n, GLuint *textures)
 glGenTextures
 	len textures (n * sizeof(GLuint))
 	dir textures out
-    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; } 
+    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; }
 
 #void glGetActiveAttrib(GLuint program, GLuint index, GLsizei bufsize, GLsizei *length, GLint *size, GLenum *type, GLchar *name)
 glGetActiveAttrib
@@ -88,7 +88,7 @@ glGetActiveAttrib
 	dir type out
 	len type (sizeof(GLenum))
 	var_flag type nullAllowed
-	
+
 #void glGetActiveUniform(GLuint program, GLuint index, GLsizei bufsize, GLsizei *length, GLint *size, GLenum *type, GLchar *name)
 glGetActiveUniform
 	len name bufsize
@@ -176,7 +176,7 @@ glGetShaderInfoLog
 	var_flag length nullAllowed
 	dir infolog out
 	len infolog bufsize
-	
+
 
 #void glGetShaderPrecisionFormat(GLenum shadertype, GLenum precisiontype, GLint *range, GLint *precision)
 glGetShaderPrecisionFormat
@@ -223,7 +223,7 @@ glGetUniformLocation
 
 # client-state shall be handled locally by the encoder in most cases.
 # however, GL_CURRENT_VERTEX_ATTRIB and potential others are handled by the server side,
-# thus we still need to implement it. 
+# thus we still need to implement it.
 #void glGetVertexAttribfv(GLuint index, GLenum pname, GLfloat *params)
 glGetVertexAttribfv
 	dir params out
@@ -263,7 +263,7 @@ glTexParameteriv
 glTexSubImage2D
 	len pixels glesv2_enc::pixelDataSize(self, width, height, format, type, 0)
         var_flag pixels nullAllowed isLarge
-	
+
 #void glUniform1fv(GLint location, GLsizei count, GLfloat *v)
 glUniform1fv
 	len v (count * sizeof(GLfloat))
@@ -303,7 +303,7 @@ glUniformMatrix2fv
 #void glUniformMatrix3fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value)
 glUniformMatrix3fv
 	len value (count * 9 * sizeof(GLfloat))
-	
+
 #void glUniformMatrix4fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value)
 glUniformMatrix4fv
 	len value (count * 16 * sizeof(GLfloat))
@@ -346,7 +346,7 @@ glTexImage3DOES
 
 #void glTexSubImage3DOES(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, GLvoid *pixels)
 glTexSubImage3DOES
-	len pixels glesv2_enc::pixelDataSize3D(self, width, height, depth, format, type, 0)	
+	len pixels glesv2_enc::pixelDataSize3D(self, width, height, depth, format, type, 0)
         var_flag pixels nullAllowed isLarge
 
 #void glCompressedTexImage3DOES(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, GLvoid *data)
@@ -362,13 +362,13 @@ glCompressedTexSubImage3DOES
 #void glDeleteVertexArraysOES(GLsizei n, GLuint *arrays)
 glDeleteVertexArraysOES
 	len arrays (n * sizeof(GLuint))
-    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; } 
+    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; }
 
 #void glGenVertexArraysOES(GLsizei n, GLuint *arrays)
 glGenVertexArraysOES
 	len arrays (n * sizeof(GLuint))
 	dir arrays out
-    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; } 
+    param_check n if(n<0){ ctx->setError(GL_INVALID_VALUE); return; }
 
 
 #void glDiscardFramebufferEXT(GLenum target, GLsizei numAttachments, GLenum *attachments)
@@ -554,7 +554,7 @@ glEndTilingQCOM
 #void glVertexAttribPointerData(GLuint indx, GLint size, GLenum type, GLboolean normalized, GLsizei stride,  void * data, GLuint datalen)
 glVertexAttribPointerData
 	len data datalen
-	custom_pack data glUtilsPackPointerData((unsigned char *)ptr, (unsigned char *)data, size, type, stride, datalen) 
+	custom_pack data glUtilsPackPointerData((unsigned char *)ptr, (unsigned char *)data, size, type, stride, datalen)
 	flag custom_decoder
 	flag not_api
 
@@ -588,7 +588,7 @@ glShaderString
 	len string len
 	flag custom_decoder
 	flag not_api
-	
+
 glFinishRoundTrip
 	flag custom_decoder
 	flag not_api

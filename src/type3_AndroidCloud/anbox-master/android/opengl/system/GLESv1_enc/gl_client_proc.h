@@ -7,7 +7,7 @@
 
 #include "gl_types.h"
 #ifndef gl_APIENTRY
-#define gl_APIENTRY 
+#define gl_APIENTRY
 #endif
 typedef void (gl_APIENTRY *glAlphaFunc_client_proc_t) (void * ctx, GLenum, GLclampf);
 typedef void (gl_APIENTRY *glClearColor_client_proc_t) (void * ctx, GLclampf, GLclampf, GLclampf, GLclampf);

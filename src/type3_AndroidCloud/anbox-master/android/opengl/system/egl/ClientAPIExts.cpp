@@ -135,7 +135,7 @@ static const struct _client_ext_funcs {
 } s_client_ext_funcs[] = {
 #include "ClientAPIExts.in"
 };
-static const int numExtFuncs = sizeof(s_client_ext_funcs) / 
+static const int numExtFuncs = sizeof(s_client_ext_funcs) /
                                sizeof(s_client_ext_funcs[0]);
 
 #undef API_ENTRY

@@ -30,115 +30,115 @@ func Run(port int) {
 // Register all the controllers
 func Register() {
 	revel.AppLog.Info("Running revel server")
-	
+
 	revel.RegisterController((*controllers.App)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
 				Name: "Index",
-				Args: []*revel.MethodArg{ 
+				Args: []*revel.MethodArg{
 				},
-				RenderArgNames: map[int][]string{ 
-					12: []string{ 
+				RenderArgNames: map[int][]string{
+					12: []string{
 					},
 				},
 			},
 			&revel.MethodType{
 				Name: "GetStatus",
-				Args: []*revel.MethodArg{ 
+				Args: []*revel.MethodArg{
 				},
-				RenderArgNames: map[int][]string{ 
+				RenderArgNames: map[int][]string{
 				},
 			},
-			
+
 		})
-	
+
 	revel.RegisterController((*controllers0.Static)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
 				Name: "Serve",
-				Args: []*revel.MethodArg{ 
+				Args: []*revel.MethodArg{
 					&revel.MethodArg{Name: "prefix", Type: reflect.TypeOf((*string)(nil)) },
 					&revel.MethodArg{Name: "filepath", Type: reflect.TypeOf((*string)(nil)) },
 				},
-				RenderArgNames: map[int][]string{ 
+				RenderArgNames: map[int][]string{
 				},
 			},
 			&revel.MethodType{
 				Name: "ServeDir",
-				Args: []*revel.MethodArg{ 
+				Args: []*revel.MethodArg{
 					&revel.MethodArg{Name: "prefix", Type: reflect.TypeOf((*string)(nil)) },
 					&revel.MethodArg{Name: "filepath", Type: reflect.TypeOf((*string)(nil)) },
 				},
-				RenderArgNames: map[int][]string{ 
+				RenderArgNames: map[int][]string{
 				},
 			},
 			&revel.MethodType{
 				Name: "ServeModule",
-				Args: []*revel.MethodArg{ 
+				Args: []*revel.MethodArg{
 					&revel.MethodArg{Name: "moduleName", Type: reflect.TypeOf((*string)(nil)) },
 					&revel.MethodArg{Name: "prefix", Type: reflect.TypeOf((*string)(nil)) },
 					&revel.MethodArg{Name: "filepath", Type: reflect.TypeOf((*string)(nil)) },
 				},
-				RenderArgNames: map[int][]string{ 
+				RenderArgNames: map[int][]string{
 				},
 			},
 			&revel.MethodType{
 				Name: "ServeModuleDir",
-				Args: []*revel.MethodArg{ 
+				Args: []*revel.MethodArg{
 					&revel.MethodArg{Name: "moduleName", Type: reflect.TypeOf((*string)(nil)) },
 					&revel.MethodArg{Name: "prefix", Type: reflect.TypeOf((*string)(nil)) },
 					&revel.MethodArg{Name: "filepath", Type: reflect.TypeOf((*string)(nil)) },
 				},
-				RenderArgNames: map[int][]string{ 
+				RenderArgNames: map[int][]string{
 				},
 			},
-			
+
 		})
-	
+
 	revel.RegisterController((*controllers1.TestRunner)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
 				Name: "Index",
-				Args: []*revel.MethodArg{ 
+				Args: []*revel.MethodArg{
 				},
-				RenderArgNames: map[int][]string{ 
-					76: []string{ 
+				RenderArgNames: map[int][]string{
+					76: []string{
 						"testSuites",
 					},
 				},
 			},
 			&revel.MethodType{
 				Name: "Suite",
-				Args: []*revel.MethodArg{ 
+				Args: []*revel.MethodArg{
 					&revel.MethodArg{Name: "suite", Type: reflect.TypeOf((*string)(nil)) },
 				},
-				RenderArgNames: map[int][]string{ 
+				RenderArgNames: map[int][]string{
 				},
 			},
 			&revel.MethodType{
 				Name: "Run",
-				Args: []*revel.MethodArg{ 
+				Args: []*revel.MethodArg{
 					&revel.MethodArg{Name: "suite", Type: reflect.TypeOf((*string)(nil)) },
 					&revel.MethodArg{Name: "test", Type: reflect.TypeOf((*string)(nil)) },
 				},
-				RenderArgNames: map[int][]string{ 
-					125: []string{ 
+				RenderArgNames: map[int][]string{
+					125: []string{
 					},
 				},
 			},
 			&revel.MethodType{
 				Name: "List",
-				Args: []*revel.MethodArg{ 
+				Args: []*revel.MethodArg{
 				},
-				RenderArgNames: map[int][]string{ 
+				RenderArgNames: map[int][]string{
 				},
 			},
-			
+
 		})
-	
-	revel.DefaultValidationKeys = map[string]map[int]string{ 
+
+	revel.DefaultValidationKeys = map[string]map[int]string{
 	}
-	testing.TestSuites = []interface{}{ 
+	testing.TestSuites = []interface{}{
 		(*tests.AppTest)(nil),
 	}
 }

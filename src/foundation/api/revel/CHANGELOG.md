@@ -5,7 +5,7 @@
 
 # Maintenance Release
 
-This release is focused on improving the security and resolving some issues. 
+This release is focused on improving the security and resolving some issues.
 
 **There are no breaking changes from version 0.18**
 
@@ -33,7 +33,7 @@ Everything else should just work....
 ## New items
 * Server Engine revel/revel#998
 The server engine implementation is described in the [docs](http://revel.github.io/manual/server-engine.html)
-* Allow binding to a structured map. revel/revel#998 
+* Allow binding to a structured map. revel/revel#998
 Have a structure inside a map object which will be realized properly from params
 * Gorm module revel/modules/#51
 Added transaction controller
@@ -42,7 +42,7 @@ Added transaction controller
 Start the application without doing a request first using revel run ....
 * Logger update revel/revel#1213
 Configurable logger and added context logging on controller via controller.Log
-* Before after finally panic controller method detection revel/revel#1211 
+* Before after finally panic controller method detection revel/revel#1211
 Controller methods will be automatically detected and called - similar to interceptors but without the extra code
 * Float validation revel/revel#1209
 Added validation for floats
@@ -52,17 +52,17 @@ Added timeago function to Revel template functions
 Added ability to specify authorization to access the jobs module routes
 * Add MessageKey, ErrorKey methods to ValidationResult object revel/revel#1215
 This allows the message translator to translate the keys added. So model objects can send out validation codes
-* Vendor friendlier - Revel recognizes and uses `deps` (to checkout go libraries) if a vendor folder exists in the project root. 
+* Vendor friendlier - Revel recognizes and uses `deps` (to checkout go libraries) if a vendor folder exists in the project root.
 * Updated examples to use Gorp modules and new loggers
 
 
 ### Breaking Changes
 
-* `http.Request` is no longer contained in `revel.Request` revel.Request remains functionally the same but 
+* `http.Request` is no longer contained in `revel.Request` revel.Request remains functionally the same but
 you cannot extract the `http.Request` from it. You can get the `http.Request` from `revel.Controller.Request.In.GetRaw().(*http.Request)`
 * `http.Response.Out` Is not the http.Response and is deprecated, you can get the output writer by doing `http.Response.GetWriter()`. You can get the `http.Response` from revel.Controller.Response.Out.Server.GetRaw().(*http.Response)`
 
-* `Websocket` changes. `revel.ServerWebsocket` is the new type of object you need to declare for controllers 
+* `Websocket` changes. `revel.ServerWebsocket` is the new type of object you need to declare for controllers
 which should need to attach to websockets. Implementation of these objects have been simplified
 
 Old
@@ -132,7 +132,7 @@ func (c WebSocket) RoomSocket(user string, ws revel.ServerWebSocket) revel.Resul
 		}
 	}()
 ```
-* GORM module has been refactored into modules/orm/gorm 
+* GORM module has been refactored into modules/orm/gorm
 
 
 ### Deprecated methods
@@ -149,7 +149,7 @@ func (c WebSocket) RoomSocket(user string, ws revel.ServerWebSocket) revel.Resul
 * Pluggable server engine support. You can now implement **your own server engine**. This means if you need to listen to more then 1 IP address or port you can implement a custom server engine to do this. By default Revel uses GO http server, but also available is fasthttp server in the revel/modules repository. See the docs for more information on how to implement your own engine.
 
 ### Enhancements
-* Controller instances are cached for reuse. This speeds up the request response time and prevents unnecessary garbage collection cycles.  
+* Controller instances are cached for reuse. This speeds up the request response time and prevents unnecessary garbage collection cycles.
 
 ### Bug fixes
 
@@ -199,24 +199,24 @@ Deprecating support for golang versions prior to 1.6
 
 ### Features
 
-* Modular Template Engine #1170 
+* Modular Template Engine #1170
 * Pongo2 engine driver added revel/modules#39
 * Ace engine driver added revel/modules#40
-* Added i18n template support #746 
+* Added i18n template support #746
 
 ### Enhancements
 
-* JSON request binding #1161 
-* revel.SetSecretKey function added #1127 
-* ResolveFormat now looks at the extension as well (this sets the content type) #936 
+* JSON request binding #1161
+* revel.SetSecretKey function added #1127
+* ResolveFormat now looks at the extension as well (this sets the content type) #936
 * Updated command to run tests using the configuration revel/cmd#61
 
 ### Bug fixes
 
 * Updated documentation typos revel/modules#37
-* Updated order of parameter map assignment #1155 
-* Updated cookie lifetime for firefox #1174 
-* Added test path for modules, so modules will run tests as well #1162 
+* Updated order of parameter map assignment #1155
+* Updated cookie lifetime for firefox #1174
+* Added test path for modules, so modules will run tests as well #1162
 * Fixed go profiler module revel/modules#20
 
 

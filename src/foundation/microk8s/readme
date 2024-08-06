@@ -6,8 +6,8 @@ Pre-requisite
 -------------
 1. Install terraform - https://www.terraform.io/downloads.html
 
-   (a)Downlaod the zip file based on the server type. 
-   (b)Unzip the file to get the terraform binary. 
+   (a)Downlaod the zip file based on the server type.
+   (b)Unzip the file to get the terraform binary.
    (c)Currently supported ubuntu version is 18.04
 
 2. IAM Access Keys -  Permissions required for running the template - AmazonEC2FullAccess
@@ -34,9 +34,9 @@ variable "secret_key" {
 
 Terraform template
 ------------------
-The template contains main.tf file, variable.tf file, pem file (add your pem file here) and worker_user_data.tmpl 
+The template contains main.tf file, variable.tf file, pem file (add your pem file here) and worker_user_data.tmpl
 You can move the pem file to the the directory where this template resides or you can change the location of the pem file in the main.tf file.
- 
+
 Master's main.tf file
 --------------------
 The first step to using Terraform is typically to configure the provider(s) you want to use.
@@ -46,7 +46,7 @@ This tells Terraform that you are going to be using the AWS provider and that yo
                 region = var.aws_region
               }
 
-The user_data installs the microk8s inside the EC2 instance. 
+The user_data installs the microk8s inside the EC2 instance.
 
               #!/bin/bash
               sudo su
@@ -60,7 +60,7 @@ The user_data installs the microk8s inside the EC2 instance.
               microk8s add-node > microk8s.join_token
               microk8s config > configFile
 
-Since terraform does not wait until the user_data is executed, we exec into the instace by using the 'remote-exec' type provisioner and add the following script. This script will make terraform wait util microk8s.join-token file is created. 
+Since terraform does not wait until the user_data is executed, we exec into the instace by using the 'remote-exec' type provisioner and add the following script. This script will make terraform wait util microk8s.join-token file is created.
 
               provisioner "remote-exec" {
                 inline = ["until [ -f /microk8s.join_token ]; do sleep 5; done; cat /microk8s.join_token"]
@@ -77,15 +77,15 @@ For example, if you want to change the aws_instace type from t2.small to t2.micr
                description = "instance_type"
                default     = "t2.small"
              }
-Other resource specific values like aws_region, aws_ami, vpc and the subenet can also be changed the same way by editing the variable.tf file. 
+Other resource specific values like aws_region, aws_ami, vpc and the subenet can also be changed the same way by editing the variable.tf file.
 
 Apply terraform
 ---------------
 
-To create a master node with microk8s, run the following commands. 
+To create a master node with microk8s, run the following commands.
 terraform init
 terraform plan
 terraform apply
 
-Once the worked nodes are created, it will be connected to the master. A multi-node k8s cluster will be provisioned with calico CNI. 
+Once the worked nodes are created, it will be connected to the master. A multi-node k8s cluster will be provisioned with calico CNI.
 

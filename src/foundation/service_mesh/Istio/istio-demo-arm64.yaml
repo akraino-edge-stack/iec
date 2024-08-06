@@ -810,7 +810,7 @@ metadata:
     release: istio
     istio: galley
 data:
-  validatingwebhookconfiguration.yaml: |-    
+  validatingwebhookconfiguration.yaml: |-
     apiVersion: admissionregistration.k8s.io/v1beta1
     kind: ValidatingWebhookConfiguration
     metadata:
@@ -941,7 +941,7 @@ metadata:
     release: istio
     istio: grafana
 data:
-  custom-resources.yaml: |-    
+  custom-resources.yaml: |-
     apiVersion: authentication.istio.io/v1alpha1
     kind: Policy
     metadata:
@@ -957,18 +957,18 @@ data:
       - name: grafana
         ports:
         - number: 3000
-  run.sh: |-    
+  run.sh: |-
     #!/bin/sh
-    
+
     set -x
-    
+
     if [ "$#" -ne "1" ]; then
         echo "first argument should be path to custom resource yaml"
         exit 1
     fi
-    
+
     pathToResourceYAML=${1}
-    
+
     kubectl get validatingwebhookconfiguration istio-galley 2>/dev/null
     if [ "$?" -eq 0 ]; then
         echo "istio-galley validatingwebhookconfiguration found - waiting for istio-galley deployment to be ready"
@@ -988,7 +988,7 @@ data:
     fi
     sleep 5
     kubectl apply -f ${pathToResourceYAML}
-    
+
 
 ---
 # Source: istio/charts/grafana/templates/configmap-dashboards.yaml
@@ -14212,7 +14212,7 @@ data:
       orgId: 1
       type: prometheus
       url: http://prometheus:9090
-    
+
   dashboardproviders.yaml: |
     apiVersion: 1
     providers:
@@ -14223,7 +14223,7 @@ data:
         path: /var/lib/grafana/dashboards/istio
       orgId: 1
       type: file
-    
+
 ---
 # Source: istio/charts/kiali/templates/configmap.yaml
 apiVersion: v1
@@ -14246,9 +14246,9 @@ data:
       web_root: /kiali
     external_services:
       tracing:
-        url: 
+        url:
       grafana:
-        url: 
+        url:
       prometheus:
         url: http://prometheus:9090
 
@@ -14650,14 +14650,14 @@ data:
     sdsUdsPath:
 
     # This flag is used by secret discovery service(SDS).
-    # If set to true(prerequisite: https://kubernetes.io/docs/concepts/storage/volumes/#projected), Istio will inject volumes mount 
-    # for k8s service account JWT, so that K8s API server mounts k8s service account JWT to envoy container, which 
+    # If set to true(prerequisite: https://kubernetes.io/docs/concepts/storage/volumes/#projected), Istio will inject volumes mount
+    # for k8s service account JWT, so that K8s API server mounts k8s service account JWT to envoy container, which
     # will be used to generate key/cert eventually. This isn't supported for non-k8s case.
     enableSdsTokenMount: false
 
     # This flag is used by secret discovery service(SDS).
-    # If set to true, envoy will fetch normal k8s service account JWT from '/var/run/secrets/kubernetes.io/serviceaccount/token' 
-    # (https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-the-api-from-a-pod) 
+    # If set to true, envoy will fetch normal k8s service account JWT from '/var/run/secrets/kubernetes.io/serviceaccount/token'
+    # (https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-the-api-from-a-pod)
     # and pass to sds server, which will be used to request key/cert eventually.
     # this flag is ignored if enableSdsTokenMount is set.
     # This isn't supported for non-k8s case.
@@ -16671,7 +16671,7 @@ spec:
           resources:
             requests:
               cpu: 10m
-            
+
       volumes:
       - name: certs
         secret:
@@ -17287,7 +17287,7 @@ spec:
         resources:
           requests:
             cpu: 10m
-          
+
       volumes:
       - name: kiali-configuration
         configMap:
@@ -17437,7 +17437,7 @@ spec:
           requests:
             cpu: 10m
             memory: 100Mi
-          
+
         volumeMounts:
         - name: istio-certs
           mountPath: /etc/certs
@@ -17492,7 +17492,7 @@ spec:
           requests:
             cpu: 10m
             memory: 40Mi
-          
+
         volumeMounts:
         - name: istio-certs
           mountPath: /etc/certs
@@ -17673,7 +17673,7 @@ spec:
           requests:
             cpu: 10m
             memory: 40Mi
-          
+
         volumeMounts:
         - name: istio-certs
           mountPath: /etc/certs
@@ -17767,7 +17767,7 @@ spec:
             requests:
               cpu: 10m
               memory: 100Mi
-            
+
           volumeMounts:
           - name: config-volume
             mountPath: /etc/istio/config
@@ -17912,7 +17912,7 @@ spec:
           resources:
             requests:
               cpu: 10m
-            
+
           volumeMounts:
           - name: config-volume
             mountPath: /etc/prometheus
@@ -18010,7 +18010,7 @@ spec:
           resources:
             requests:
               cpu: 10m
-            
+
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -18122,7 +18122,7 @@ spec:
           resources:
             requests:
               cpu: 10m
-            
+
       volumes:
       - name: config-volume
         configMap:
@@ -18227,7 +18227,7 @@ spec:
           - name: MEMORY_MAX_TRACES
             value: "50000"
           - name: QUERY_BASE_PATH
-            value:  /jaeger 
+            value:  /jaeger
           livenessProbe:
             httpGet:
               path: /
@@ -18239,7 +18239,7 @@ spec:
           resources:
             requests:
               cpu: 10m
-            
+
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

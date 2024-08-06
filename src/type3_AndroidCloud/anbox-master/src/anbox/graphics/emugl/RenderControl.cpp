@@ -324,7 +324,7 @@ static void rcBindRenderbuffer(uint32_t colorBuffer) {
   renderer->bindColorBufferToRenderbuffer(colorBuffer);
 }
 
-static EGLint rcColorBufferCacheFlush(uint32_t, EGLint, 
+static EGLint rcColorBufferCacheFlush(uint32_t, EGLint,
                                       int) {
   // XXX: TBD - should be implemented
   return 0;

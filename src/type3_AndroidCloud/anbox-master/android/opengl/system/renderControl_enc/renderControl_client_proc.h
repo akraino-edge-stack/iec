@@ -7,7 +7,7 @@
 
 #include "renderControl_types.h"
 #ifndef renderControl_APIENTRY
-#define renderControl_APIENTRY 
+#define renderControl_APIENTRY
 #endif
 typedef GLint (renderControl_APIENTRY *rcGetRendererVersion_client_proc_t) (void * ctx);
 typedef EGLint (renderControl_APIENTRY *rcGetEGLVersion_client_proc_t) (void * ctx, EGLint*, EGLint*);

@@ -52,7 +52,7 @@ while getopts a:d:r:h opt; do
             sources="$sources source$sourceid"
             ;;
         :)
-            echo "Option -$OPTARG requires an argument" 
+            echo "Option -$OPTARG requires an argument"
             usage
             exit 1
             ;;
@@ -61,7 +61,7 @@ while getopts a:d:r:h opt; do
             exit 0
             ;;
         \?)
-            echo "Invalid option: -$OPTARG" 
+            echo "Invalid option: -$OPTARG"
             usage
             exit 1
             ;;
@@ -79,7 +79,7 @@ directory=${1}
 echo "creating phablet-compatible $arch partial chroot for anbox compilation in directory ${directory}"
 
 if [ ! -d ${directory} ]; then
-    mkdir -p ${directory} 
+    mkdir -p ${directory}
 fi
 
 DEBCONTROL=$(pwd)/../debian/control
@@ -96,7 +96,7 @@ set +e
 # dpkg-checkbuilddeps returns non-zero when dependencies are not met and the list is sent to stderr
 builddeps=$(dpkg-checkbuilddeps -a ${arch} --admindir=. ${DEBCONTROL} 2>&1 )
 if [ $? -eq 0 ] ; then
-    exit 0 
+    exit 0
 fi
 echo "${builddeps}"
 
@@ -158,7 +158,7 @@ suite=${dist}
 " >> mstrap.conf
 done
 
-multistrap -f mstrap.conf 
+multistrap -f mstrap.conf
 
 rm -f var/cache/apt/archives/lock
 
@@ -178,4 +178,4 @@ for broken_symlink in $(find . -name \*.so -type l -xtype l) ; do
     ln -sf $(pwd)$(readlink ${broken_symlink}) ${broken_symlink}
 done
 
-popd > /dev/null 
+popd > /dev/null

@@ -47,7 +47,7 @@ resource "aws_instance" "master" {
 
   provisioner "local-exec" {
     command = <<EOT
-               touch token 
+               touch token
                mkdir /root/.ssh && chmod 0700 /root/.ssh
                ssh-keyscan -H ${self.public_dns} >> ~/.ssh/known_hosts
                scp -i terraform.pem ubuntu@${self.public_dns}:/microk8s.join_token .

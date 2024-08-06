@@ -1,5 +1,5 @@
-# We have to manually alter the cxx flags to have a working 
-# travis-ci build. Its container-based infrastructure only features 
+# We have to manually alter the cxx flags to have a working
+# travis-ci build. Its container-based infrastructure only features
 # a very old cmake that does not support the more current:
 #   set_property(TARGET xdg_test PROPERTY CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")

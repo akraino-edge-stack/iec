@@ -17,7 +17,7 @@ add_library(
   process-cpp
 
   STATIC
-  
+
   core/posix/backtrace.h
   core/posix/backtrace.cpp
 

@@ -38,7 +38,7 @@ BUILD_DIR=build-android-arm
 NUM_JOBS=5
 _do_update_chroot=0
 
-# Default to vivid as we don't seem to have any working wily devices right now 
+# Default to vivid as we don't seem to have any working wily devices right now
 dist=vivid
 clean=0
 update_build_dir=0
@@ -97,12 +97,12 @@ if [ "${AC_NDK_PATH}" = "" ]; then
     export AC_NDK_PATH=~/.cache/anbox-${target_arch}-chroot-${dist}
 fi
 
-if [ ! -d ${AC_NDK_PATH} ]; then 
+if [ ! -d ${AC_NDK_PATH} ]; then
     echo "no partial chroot dir detected. attempting to create one"
     _do_update_chroot=1
 fi
 
-if [ ! -d ${BUILD_DIR} ]; then 
+if [ ! -d ${BUILD_DIR} ]; then
     mkdir ${BUILD_DIR}
 fi
 

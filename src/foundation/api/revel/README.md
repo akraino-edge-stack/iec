@@ -1,6 +1,6 @@
 # Revel Framework
 
-[![Build Status](https://secure.travis-ci.org/revel/revel.svg?branch=master)](http://travis-ci.org/revel/revel) 
+[![Build Status](https://secure.travis-ci.org/revel/revel.svg?branch=master)](http://travis-ci.org/revel/revel)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/revel/revel)](https://goreportcard.com/report/github.com/revel/revel)
 

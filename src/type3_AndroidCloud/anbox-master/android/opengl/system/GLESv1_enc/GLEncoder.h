@@ -76,7 +76,7 @@ private:
     glBufferData_client_proc_t m_glBufferData_enc;
     glBufferSubData_client_proc_t m_glBufferSubData_enc;
     glDeleteBuffers_client_proc_t m_glDeleteBuffers_enc;
-    
+
     glEnableClientState_client_proc_t m_glEnableClientState_enc;
     glDisableClientState_client_proc_t m_glDisableClientState_enc;
     glIsEnabled_client_proc_t m_glIsEnabled_enc;

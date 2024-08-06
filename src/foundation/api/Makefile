@@ -33,7 +33,7 @@ IMAGE_VERSION ?= $(GIT_VERSION)
 IMAGE_TAG := $(shell echo $(IMAGE_VERSION) | cut -d. -f1,2)
 IMAGE_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD | tr -d '/')
 
-#Currently, we choose golang-alpine based image as the default image base due to its 
+#Currently, we choose golang-alpine based image as the default image base due to its
 #small size
 base:
 	@IMAGE_NAME="$(REGISTRY)/iec-apiserver-base"; \
@@ -110,7 +110,7 @@ pre_manifest:
 	./manifest-tool push from-args --platforms $(PLATFORMS) --template $(REGISTRY)/$(TARGET)-ARCH:$(VERSION) --target $(REGISTRY)/$(TARGET):$(VERSION)
 
 
-#Note: Currently, just multi-arch the latest version of the images to avoid the possible version 
+#Note: Currently, just multi-arch the latest version of the images to avoid the possible version
 #mismatch between amd64 and arm64 in docker hub. In case we need them, we can just remove the comment tags below
 #Just multi-arch the iec-apiserver image currently
 

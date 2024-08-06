@@ -82,17 +82,17 @@ TEST(CpuinfoArmTest, InvalidArmv7) {
   DisableHardwareCapabilities();
   auto& fs = GetEmptyFilesystem();
   fs.CreateFile("/proc/cpuinfo",
-                R"(Processor       : ARMv6-compatible processor rev 6 (v6l) 
-BogoMIPS        : 199.47 
-Features        : swp half thumb fastmult vfp edsp java 
-CPU implementer : 0x41 
-CPU architecture: 7 
-CPU variant     : 0x0 
-CPU part        : 0xb76 
-CPU revision    : 6 
+                R"(Processor       : ARMv6-compatible processor rev 6 (v6l)
+BogoMIPS        : 199.47
+Features        : swp half thumb fastmult vfp edsp java
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xb76
+CPU revision    : 6
 
-Hardware        : SPICA 
-Revision        : 0020 
+Hardware        : SPICA
+Revision        : 0020
 Serial          : 33323613546d00ec )");
   const auto info = GetArmInfo();
   EXPECT_EQ(info.architecture, 6);

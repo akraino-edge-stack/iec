@@ -324,7 +324,7 @@ class Printer { public:
 		FILE* print(StackTrace& st, FILE* fp = stderr);
 
 	// Resolve and print a stack trace to the given std::ostream object.
-	// Color will only be used if color_mode is set to always. 
+	// Color will only be used if color_mode is set to always.
 	template <typename ST>
 		std::ostream& print(ST& st, std::ostream& os);
 ```

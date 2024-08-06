@@ -37,7 +37,7 @@ RUN apt update && apt install kubectl=$KUBE_VERSION
 RUN pip install virtualenv
 RUN apt-mark hold kubectl && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
-RUN groupadd -r $TEST_USER && useradd -m -s /bin/bash -g $TEST_USER \                                                                                                                                            
-    --system -G sudo -p $(openssl passwd -1 $TEST_USER) $TEST_USER                                                                                                                                               
+RUN groupadd -r $TEST_USER && useradd -m -s /bin/bash -g $TEST_USER \
+    --system -G sudo -p $(openssl passwd -1 $TEST_USER) $TEST_USER
 RUN echo "$TEST_USER\tALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/90-docker-users
 USER $TEST_USER
