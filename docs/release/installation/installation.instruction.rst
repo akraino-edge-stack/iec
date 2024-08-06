@@ -403,4 +403,4 @@ N/A
 .. _`IEC Wiki`: https://wiki.akraino.org/display/AK/Integrated+Edge+Cloud+%28IEC%29+Blueprint+Family
 .. _`IEC JIRA`: https://jira.akraino.org/projects/IEC/issues/
 .. _`Akraino Blueprint Validation`: https://wiki.akraino.org/display/AK/Akraino+Blueprint+Validation+Framework
-.. _`Sonobuoy`: https://github.com/heptio/sonobuoy
+.. _`Sonobuoy`: https://github.com/vmware-tanzu/sonobuoy

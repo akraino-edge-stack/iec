@@ -7,7 +7,7 @@
 =====================
 Integrated Edge Cloud
 =====================
-                                                                                                          1,1           Top
+
 .. toctree::
    :numbered:
    :maxdepth: 2

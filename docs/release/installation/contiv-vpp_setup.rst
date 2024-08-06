@@ -138,7 +138,7 @@ for more details and information refer to `installation.instruction.rst`_
 Setting up for IEC type1
 ------------------------
 
-IEC type1 device is suitable for low power device.Now we choose
+IEC type1 device is suitable for low power device. Now we choose
 `MACCHIATObin`_ board as the main hardware
 platform.
 
@@ -250,8 +250,8 @@ storage:
 
 .. All links go below this line
 .. _`DPDK DOC`: https://doc.dpdk.org/guides/linux_gsg/linux_drivers.html#binding-and-unbinding-network-ports-to-from-the-kernel-modules
-.. _`DPDK`: https://github.com/DPDK/dpdk/blob/master/usertools/dpdk-devbind.py
+.. _`DPDK`: https://github.com/DPDK/dpdk/blob/main/usertools/dpdk-devbind.py
 .. _`installation.instruction.rst`: ./installation.instruction.rst
-.. _`MACCHIATObin`: http://macchiatobin.net
+.. _`MACCHIATObin`: https://www.solid-run.com/macchiatobin-gcp/
 .. _`MUSDK`: https://github.com/MarvellEmbeddedProcessors/musdk-marvell
-.. _`VPP Marvell plugin`: https://github.com/FDio/vpp/blob/master/src/plugins/marvell/README.md
+.. _`VPP Marvell plugin`: https://github.com/FDio/vpp/blob/master/src/plugins/marvell/README.rst
