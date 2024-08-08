@@ -1,5 +1,5 @@
 ---
-name: Gerrit Required Verify
+name: Gerrit Verify
 
 # yamllint disable-line rule:truthy
 on:
